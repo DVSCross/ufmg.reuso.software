@@ -9,6 +9,11 @@ package br.ufmg.reuso;
  * Date: 16/07/2011
  */
 
+import javax.swing.UIManager;
+import javax.swing.plaf.metal.DefaultMetalTheme;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.OceanTheme;
+
 import br.ufmg.reuso.negocio.jogo.Jogo;
 
 /**
@@ -23,7 +28,32 @@ public class Principal {
 	 * Método principal que cria um objeto da classe jogo e inicia o jogo com este objeto.
 	 */ 
 	public static void main(String[] args) {
-		Jogo jogo = Jogo.getJogo();	//instanciando um objeto da classe jogo ou chamando o existente.
+    try {
+      //#ifdef OceanTheme
+      MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+      UIManager.setLookAndFeel(new MetalLookAndFeel());
+      //#endif
+      
+      //#ifdef DefaultMetalTheme
+      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+      UIManager.setLookAndFeel(new MetalLookAndFeel());
+      //#endif
+
+      //#ifdef NimbusTheme
+      UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+      //#endif
+      
+      //#ifdef MotifTheme
+      UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+      //#endif
+      
+      //#ifdef GtkTheme
+      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+      //#endif
+    }
+    catch (Exception e) { }
+
+    Jogo jogo = Jogo.getJogo();	//instanciando um objeto da classe jogo ou chamando o existente.
 		jogo.start(jogo);			//iniciando a parte dinâmica do jogo	
 	}
 }
