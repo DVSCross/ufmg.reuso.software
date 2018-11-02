@@ -316,8 +316,7 @@ public class BaralhoCartas
 	}
 
 	public void mostrarBaralho()					//TODO METODO DE TESTE -> EXCUIR DEPOIS
-	{
-		System.out.println();
+	{		
 		for (int i=0;i<getNumeroCartasBaralhoAtual();i++)
 		{
 			//System.out.printf("Carta %d:",i+1); //->ok

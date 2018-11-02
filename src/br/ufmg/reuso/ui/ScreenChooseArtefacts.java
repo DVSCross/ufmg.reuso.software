@@ -555,16 +555,10 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 				Modulo[] retorno = (createAndShowChooseArtefacts(
 						"Selecione os artefatos a serem produzidos.",
 						null,4, 7).getReturn());
-
-				System.out.println(retorno[0].toString());
-				System.out.println(retorno[1].toString());
 				
 				retorno = (createAndShowChooseArtefacts(
 						"Selecione os artefatos a serem inspecionados.",
 						modulo,-1, 7).getReturn());
-
-				System.out.println(retorno[0].toString());
-				System.out.println(retorno[1].toString());
 			}
 		});
 

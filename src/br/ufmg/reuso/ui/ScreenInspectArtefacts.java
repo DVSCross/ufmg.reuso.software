@@ -479,9 +479,6 @@ public class ScreenInspectArtefacts extends JDialog implements ActionListener {
 				Modulo[] retorno = (createAndShowInspectArtefacts(
 						"Selecione os artefatos a serem inspecionados.",
 						modulo, 7).getReturn());
-
-				System.out.println(retorno[0].toString());
-				System.out.println(retorno[1].toString());
 			}
 		});
 

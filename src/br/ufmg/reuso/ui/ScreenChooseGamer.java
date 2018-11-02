@@ -166,9 +166,7 @@ public class ScreenChooseGamer extends JDialog implements ActionListener {
 			public void run() {
 				String retorno = (createAndShowGetGamers(new String[] {
 						"Alisson", "Rodrigo", "Michel", "Eduardo", "Rafael",
-						"Stephanie" }, "Rodrigo").getReturn());
-
-				System.out.println(retorno);
+						"Stephanie" }, "Rodrigo").getReturn());				
 			}
 		});
 

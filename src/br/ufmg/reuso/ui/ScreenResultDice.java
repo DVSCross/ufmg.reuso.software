@@ -166,8 +166,7 @@ public class ScreenResultDice extends JDialog implements ActionListener {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println(createAndShowResultDice(tabuleiro, 12)
-						.getReturn());
+				createAndShowResultDice(tabuleiro, 12);
 			}
 		});
 	}

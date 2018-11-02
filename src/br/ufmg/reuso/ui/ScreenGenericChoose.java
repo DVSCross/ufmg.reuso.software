@@ -167,8 +167,6 @@ public class ScreenGenericChoose extends JDialog implements ActionListener {
 				String retorno = (createAndShowGenericChoose("Selecione o jogador", new String[] {
 						"Alisson", "Rodrigo", "Michel", "Eduardo", "Rafael",
 						"Stephanie" }, "Rodrigo").getReturn());
-
-				System.out.println(retorno);
 			}
 		});
 

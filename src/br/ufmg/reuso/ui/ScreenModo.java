@@ -178,7 +178,6 @@ public class ScreenModo extends JDialog implements ActionListener {
 		if (fl.isFile()) {
 			return new ImageIcon(path);
 		} else {
-			System.err.println("Couldn't find file: " + path);
 			return null;
 		}
 	}
@@ -213,7 +212,7 @@ public class ScreenModo extends JDialog implements ActionListener {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println (createAndShowGetModo(tabuleiro).getModeGame());
+				createAndShowGetModo(tabuleiro);
 			}
 		});		
 	}

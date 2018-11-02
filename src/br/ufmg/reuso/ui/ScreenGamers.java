@@ -190,7 +190,6 @@ public class ScreenGamers extends JDialog implements ActionListener {
 			@Override
 			public void run() {
 				String[] retorno = (createAndShowGetGamers(tabuleiro).getReturn());
-				System.out.println("Nummero de jogadores: " + retorno.length);
 			}
 		});
 	

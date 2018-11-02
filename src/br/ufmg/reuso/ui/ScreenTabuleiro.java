@@ -845,9 +845,6 @@ public class ScreenTabuleiro extends JDialog {
 				if (((JButton) e.getSource()).getName().compareToIgnoreCase(
 						"Descartar") == 0) {
 
-					System.out.println(((JButton) e.getSource()).getName()
-							+ " " + e.getActionCommand());
-
 					Carta[] cartas = new Carta[1];
 					int numCard = Integer.parseInt(e.getActionCommand());
 					cartas[0] = ScreenTabuleiro.this.jogador.getCartas()[numCard];
@@ -856,8 +853,7 @@ public class ScreenTabuleiro extends JDialog {
 
 				} else if (((JButton) e.getSource()).getName()
 						.compareToIgnoreCase("Usar") == 0) {
-					System.out.println(((JButton) e.getSource()).getName()
-							+ " " + e.getActionCommand());
+
 					int numCard = Integer.parseInt(e.getActionCommand());
 					Carta carta = ScreenTabuleiro.this.jogador.getCartas()[numCard];
 					if (carta instanceof CartaEngenheiro) {
@@ -871,9 +867,6 @@ public class ScreenTabuleiro extends JDialog {
 								.inserirBeneficio(jogo, jogador, (CartaBonificacao) carta);
 					}
 					//#endif
-				} else {
-					System.out.println(((JButton) e.getSource()).getName()
-							+ " " + e.getActionCommand() + " Não bateu");
 				}
 				ScreenTabuleiro.this.refresh();
 			}
@@ -946,7 +939,6 @@ public class ScreenTabuleiro extends JDialog {
 					}// FIM DO TESTE VER OPONENTE
 
 				}
-				System.out.println(e.getActionCommand());
 			}
 
 		};

@@ -560,21 +560,7 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 	 * @return int = índice do módulo escolhido para integração no projeto.
 	 */
 	public  int getModuleReturn() {
-
-		int retorno = listModules.getSelectedIndex();
-		
-		
-		//Testes
-		System.out.println("Modulo escolhido:"  + Integer.toString(retorno) );
-		for( int i = 0; i < 10; i++){
-			for( int j = 0; j < 10; j++){
-				System.out.print("["+ Integer.toString(artefactsReturn[i][j])+ "]");											
-			}
-			System.out.println();
-		}		//FIM DO Testes
-		
-		
-		return retorno ;
+		return listModules.getSelectedIndex();		
 	}
 	
 	public  int[][] getArtefatosEscolhidos() {
@@ -621,26 +607,9 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-
 				CartaoProjeto projeto = new CartaoProjeto(Jogo.DIFICIL);
 				Mesa mesa= new Mesa();		
-				
-							
-				ScreenIntegrateModule scr = createAndShowIntegrateModule(
-						 projeto,  mesa);
-				
-				int [][] artefactsReturn =scr.getArtefatosEscolhidos() ;
-				int modulo =  scr.getModuleReturn();
-				System.out.println("Modulo escolhido:"  + Integer.toString(modulo) );
-				for( int i = 0; i < 10; i++){
-					for( int j = 0; j < 10; j++){
-						System.out.print("["+ Integer.toString(artefactsReturn[i][j])+ "]");											
-					}
-					System.out.println();
-				}
-				
-
-				
+				ScreenIntegrateModule scr = createAndShowIntegrateModule(projeto,  mesa);
 			}
 		});
 

@@ -152,9 +152,7 @@ public class ScreenOrderGamers extends JDialog implements ActionListener {
 			@Override
 			public void run() {
 				boolean retorno = (createAndShowGetGamers(tabuleiro, new String[] {
-						"Alisson","Eduardo" , "Rafael","Stephanie"  }).getReturn());
-
-				System.out.println(retorno);
+						"Alisson","Eduardo" , "Rafael","Stephanie"  }).getReturn());				
 			}
 		});
 

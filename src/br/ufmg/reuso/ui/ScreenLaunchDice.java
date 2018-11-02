@@ -182,9 +182,8 @@ public class ScreenLaunchDice extends JDialog implements ActionListener{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println(createAndShowLaunchDice(tabuleiro, "Alisson", "Lance os dados para definir a ordem do jogo!").getReturn());
-				System.out.println(createAndShowLaunchDice(tabuleiro, "Alisson","Voc� empatou com outro jogador! Lance os dados novamente!").getReturn());
-
+				createAndShowLaunchDice(tabuleiro, "Alisson", "Lance os dados para definir a ordem do jogo!");
+				createAndShowLaunchDice(tabuleiro, "Alisson","Voc� empatou com outro jogador! Lance os dados novamente!");
 			}
 		});
 	}

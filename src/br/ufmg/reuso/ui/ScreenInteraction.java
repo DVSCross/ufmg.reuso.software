@@ -71,7 +71,7 @@ public class ScreenInteraction implements SetupInteraction {
 		@SuppressWarnings("unused")
 		String Retorno = ScreenStart.createAndShowGetModo(tabuleiro)
 				.getReturn();
-		System.out.printf(Retorno);
+		
 		return 0; // TODO michael david -> teste [ARS]Micheal voce precisa
 					// testar o valor de retorno para saber se entra ou não no
 					// modo de configuração. Quais são os valores 0 passa direto
@@ -127,10 +127,7 @@ public class ScreenInteraction implements SetupInteraction {
 	 * novamente
 	 */
 	{
-		System.out.println(ScreenLaunchDice.createAndShowLaunchDice(tabuleiro,
-				nomeJogador,
-				"Você empatou com outro jogador! Lance os dados novamente!")
-				.getReturn());
+		ScreenLaunchDice.createAndShowLaunchDice(tabuleiro, nomeJogador, null);
 	}
 
 	@Override
@@ -370,7 +367,6 @@ public class ScreenInteraction implements SetupInteraction {
 			try {
 				s = JOptionPane.showInputDialog(null, messager, title,
 						JOptionPane.QUESTION_MESSAGE);
-				System.out.println(s);
 				mesa = Integer.parseInt(s);
 
 			} catch (Exception e) {
@@ -384,7 +380,6 @@ public class ScreenInteraction implements SetupInteraction {
 				if ((mesa < 1) || (mesa > 6)) {
 					messager = "Selecione o módulo?"
 							+ "\n Entre com um número entre 1 e 6. (-1 para cancelar)";
-					System.out.println(mesa + " final " + s);
 					s = "";
 				}
 
@@ -429,9 +424,6 @@ public class ScreenInteraction implements SetupInteraction {
 	 * escolhido
 	 */
 	{
-		System.out
-				.printf("\nEngenheiro deve ter habilidade >=1 para integrar módulo do projeto escolhido");
-
 		String messager = "Engenheiro deve ter habilidade maior ou igual a 1 para integrar módulo do projeto escolhido.";
 		String title = "Impossível integrar módulo.";
 		JOptionPane.showMessageDialog(null, messager, title,

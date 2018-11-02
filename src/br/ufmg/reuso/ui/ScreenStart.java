@@ -146,7 +146,6 @@ public class ScreenStart extends JDialog implements ActionListener {
 		if (fl.isFile()) {
 			return new ImageIcon(path);
 		} else {
-			System.err.println("Couldn't find file: " + path);
 			return null;
 		}
 	}
@@ -182,7 +181,7 @@ public class ScreenStart extends JDialog implements ActionListener {
 			
 			@Override
 			public void run() {
-				System.out.println(createAndShowGetModo(tabuleiro).getReturn());
+				createAndShowGetModo(tabuleiro);
 			}
 		});
 	}

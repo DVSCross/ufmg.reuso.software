@@ -23,7 +23,7 @@ import br.ufmg.reuso.negocio.tabuleiro.Tabuleiro;
 
 public class Jogador 
 {
-	private static final int NUMERO_MAX_CARTAS_MAO = 5;						//numero maximo de cartas que o jogador pode ter em mãos.
+	public static final int NUMERO_MAX_CARTAS_MAO = 5;						//numero maximo de cartas que o jogador pode ter em mãos.
 	private String nome;													//contém o nome do jogador
 	private int saldo;														//contém o saldo que o jogador tem para utilizar (limite é orcamento do projeto)
 	private Tabuleiro tabuleiro;
@@ -148,14 +148,7 @@ public class Jogador
 	
 	public void mostrarCartaMao()   /********************/			//TODO usado só pra teste
 	{
-		System.out.printf("Cartas do jogador %s:\n",getNome());
-		for (int i=0;i<NUMERO_MAX_CARTAS_MAO;i++)
-		{
-			if (cartas[i]==null)
-				continue;
-			System.out.println("iteracao: "+i);
-			cartas[i].mostrarCarta();
-		}
+    // printa cartas
 	}
 	
 	public int contarModuloJaIntegrado()

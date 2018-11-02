@@ -410,40 +410,20 @@ public class Mesa
 			}
 		}
 		
-		System.out.println("\nartefatos AJUDAS inspecionadas:");
 		for (int i=0;i<ajudas.size();i++)			//TODO teste
-			{
 				ajudas.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + ajudas.get(i).inspected()+"\n");
-			}
 		
-		System.out.println("\nartefatos CODIGOS inpecionados:");
 		for (int i=0;i<codigos.size();i++)			//TODO teste
-			{
 				codigos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + codigos.get(i).inspected()+"\n");
-			}
-		
-		System.out.println("\nartefatos DESENHOS inpecionados:");
+				
 		for (int i=0;i<desenhos.size();i++)			//TODO teste
-			{
 				desenhos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + desenhos.get(i).inspected()+"\n");
-			}
-		
-		System.out.println("\nartefatos RASTROS inpecionados");
+				
 		for (int i=0;i<rastros.size();i++)			//TODO teste
-			{
 				rastros.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + rastros.get(i).inspected()+"\n");
-			}
-		
-		System.out.println("\nartefatos REQUISITOS inspecionados");
+				
 		for (int i=0;i<requisitos.size();i++)			//TODO teste
-			{
 				requisitos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + requisitos.get(i).inspected()+"\n");
-			}
 	}
 
 	public void trocarArtefatos(Modulo [] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
@@ -656,42 +636,22 @@ public class Mesa
 					trocarBaralhoArtefatosRuins(ArtefatosR);
 				}
 			}
-		}
-		
-		System.out.println("\nartefatos AJUDAS inspecionadas:");
+		}	
+
 		for (int i=0;i<ajudas.size();i++)			//TODO teste
-			{
 				ajudas.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + ajudas.get(i).inspected()+"\n");
-			}
-		
-		System.out.println("\nartefatos CODIGOS inpecionados:");
+
 		for (int i=0;i<codigos.size();i++)			//TODO teste
-			{
 				codigos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + codigos.get(i).inspected()+"\n");
-			}
 		
-		System.out.println("\nartefatos DESENHOS inpecionados:");
 		for (int i=0;i<desenhos.size();i++)			//TODO teste
-			{
 				desenhos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + desenhos.get(i).inspected()+"\n");
-			}
 		
-		System.out.println("\nartefatos RASTROS inpecionados");
 		for (int i=0;i<rastros.size();i++)			//TODO teste
-			{
 				rastros.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + rastros.get(i).inspected()+"\n");
-			}
 		
-		System.out.println("\nartefatos REQUISITOS inspecionados");
 		for (int i=0;i<requisitos.size();i++)			//TODO teste
-			{
 				requisitos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				System.out.println("Artefato Inspecionado?: " + requisitos.get(i).inspected()+"\n");
-			}
 	}
 	
 	public void trocarBaralhoArtefatosBons(BaralhoArtefatosBons[] artefatosB)		/**troca o baralho principal pelo auxiliar*/
@@ -913,7 +873,7 @@ public class Mesa
 			}
 		}	
 		
-		System.out.println("\n\nArtefato AJUDAS recebido");
+
 		for (int i=0;i<ajudas.size();i++)			//TODO teste
 			ajudas.get(i).mostrarArtefato();
 		
