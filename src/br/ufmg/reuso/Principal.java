@@ -19,41 +19,41 @@ import br.ufmg.reuso.negocio.jogo.Jogo;
 /**
  * @author MichaelDavid
  * 
- * Classe que Inicia o a execução do programa.
+ * Classe que Inicia o a execu??o do programa.
  */
 public class Principal {
 	
 	/**
 	 * @param args
-	 * Método principal que cria um objeto da classe jogo e inicia o jogo com este objeto.
+	 * M?todo principal que cria um objeto da classe jogo e inicia o jogo com este objeto.
 	 */ 
 	public static void main(String[] args) {
     try {
-      //#ifdef OceanTheme
+      //#ifdef Ocean
       MetalLookAndFeel.setCurrentTheme(new OceanTheme());
       UIManager.setLookAndFeel(new MetalLookAndFeel());
       //#endif
       
-      //#ifdef DefaultMetalTheme
-      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
-      UIManager.setLookAndFeel(new MetalLookAndFeel());
+      //#ifdef Metal
+//@      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+//@      UIManager.setLookAndFeel(new MetalLookAndFeel());
       //#endif
 
-      //#ifdef NimbusTheme
-      UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+      //#ifdef Nimbus
+//@      UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
       //#endif
       
-      //#ifdef MotifTheme
-      UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+      //#ifdef Motif
+//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
       //#endif
       
-      //#ifdef GtkTheme
-      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+      //#ifdef GTK
+//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
       //#endif
     }
     catch (Exception e) { }
 
     Jogo jogo = Jogo.getJogo();	//instanciando um objeto da classe jogo ou chamando o existente.
-		jogo.start(jogo);			//iniciando a parte dinâmica do jogo	
+		jogo.start(jogo);			//iniciando a parte din?mica do jogo	
 	}
 }
