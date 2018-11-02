@@ -1,0 +1,4 @@
+* TODO Logging aspect :refactor:
+* TODO Java doc :refactor:
+* TODO Look'n feel :feature:
+* TODO External card repository :feature:

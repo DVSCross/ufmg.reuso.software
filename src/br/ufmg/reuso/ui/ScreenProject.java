@@ -23,8 +23,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -89,23 +87,10 @@ public class ScreenProject extends JDialog implements ActionListener {
 	 * 
 	 */
 	public ScreenProject(ScreenTabuleiro tabuleiro, CartaoProjeto projeto) {
-
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
 		this.projeto = projeto;
 		initiVars();
 		panelProject = getPanelProject();
 		this.setContentPane(panelProject);
-
 	}
 
 	// =====================================================================================//

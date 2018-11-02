@@ -33,8 +33,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -100,17 +98,6 @@ public class ScreenTabuleiro extends JDialog {
 	public ScreenTabuleiro(Jogador jogador, Jogo jogo) {
 		super();
 
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
 		this.jogador = jogador;
 		this.jogo = jogo;
 
@@ -154,7 +141,6 @@ public class ScreenTabuleiro extends JDialog {
 
 		JLabel lblNoth = new JLabel();
 		lblNoth.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
-		lblNoth.setBackground(colorBack);
 		lblNoth.setOpaque(true);
 		jpanel.add(lblNoth, BorderLayout.NORTH);
 
@@ -193,8 +179,6 @@ public class ScreenTabuleiro extends JDialog {
 
 		//Define componentes
 		JPanel jpanel = new JPanel();
-		jpanel.setBorder(BorderFactory.createRaisedBevelBorder());
-		jpanel.setBackground(colorBack);
 		jpanel.setPreferredSize(myDim);
 		jpanel.setLayout(null);
 
@@ -268,13 +252,7 @@ public class ScreenTabuleiro extends JDialog {
 				mySise.height * 60 / 100);
 		
 		JPanel jpanel = new JPanel();
-
-		jpanel.setBorder(BorderFactory.createRaisedBevelBorder());
-
 		jpanel.setPreferredSize(myDim);
-
-		jpanel.setBackground(colorBack);		
-		
 		jpanel.setLayout(null);
 		
 		String messager = "Situação do jogo\n";
@@ -295,7 +273,6 @@ public class ScreenTabuleiro extends JDialog {
 		paneDesc.setInheritsPopupMenu(true);
 		paneDesc.setAlignmentX(CENTER_ALIGNMENT);
 		//paneDesc.setFont(font);
-		paneDesc.setBorder(BorderFactory.createLineBorder(Color.white));
 		paneDesc.setEditable(false);		
 		paneDesc.setEnabled(false);		
 		JScrollPane sliderPaneDesc = new JScrollPane(paneDesc);		
@@ -320,15 +297,9 @@ public class ScreenTabuleiro extends JDialog {
 		JPanel jpanel = new JPanel();
 		jpanel.setLayout(null);
 
-		jpanel.setBorder(BorderFactory.createLoweredBevelBorder());
-
-		jpanel.setBackground(colorBack);
-
 		dimPanel = new Dimension(mySise.width * 70 /100 ,mySise.height * 57 /100);
 
 		jpanel.setPreferredSize(dimPanel);
-
-		Border borderW = BorderFactory.createLineBorder(Color.white, 1);
 
 		// int x, y, height, width, xInc, yInc; // Definido em escopo geral
 
@@ -354,7 +325,6 @@ public class ScreenTabuleiro extends JDialog {
 
 				panelBoard = new JPanel();
 				panelBoard.setLayout(null);
-				panelBoard.setBackground(colorBack);
 				
 				y = 0;
 				height = yInc;
@@ -461,7 +431,6 @@ public class ScreenTabuleiro extends JDialog {
 				panelBoard.setBounds(width * (i + 1), 0, maxBoardSize,
 						dimPanel.height);
 				panelBoard.setPreferredSize(new Dimension(maxBoardSize,dimPanel.height));
-				panelBoard.setBorder(borderW);
 
 				scrollBoard = new JScrollPane();
 				scrollBoard.setBorder(null);
@@ -543,7 +512,6 @@ public class ScreenTabuleiro extends JDialog {
 
 		JPanel panelTitle = new JPanel();
 		panelTitle.setLayout(null);
-		panelTitle.setBackground(colorBack);
 
 		//Border borderW = BorderFactory.createLineBorder(Color.WHITE);
 
@@ -615,9 +583,7 @@ public class ScreenTabuleiro extends JDialog {
 		
 		JPanel jpanel = new JPanel();
 		jpanel.setLayout(null);
-		jpanel.setBackground(colorBack);
 		jpanel.setPreferredSize(Mydim);
-		jpanel.setBorder(border);
 
 		Carta[] carta = jogador.getCartas();
 
@@ -640,7 +606,6 @@ public class ScreenTabuleiro extends JDialog {
 
 			if (carta[i] != null) {
 				component = new ComponentCard(carta[i], ScreenTabuleiro.this);
-				component.setBorder(border);
 				component.setBounds(x, y, width, height);
 				jpanel.add(component);
 
