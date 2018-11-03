@@ -23,9 +23,18 @@
             </and>
             <and abstract="true" mandatory="true" name="DeckOfCards">
                 <and abstract="true" mandatory="true" name="GameCards">
-                    <feature mandatory="true" name="SoftwareEngineer"/>
-                    <feature mandatory="true" name="ProblemCard"/>
-                    <feature name="ConceptCard"/>
+                    <alt name="ConceptCard">
+                        <feature name="LocalConceptCard"/>
+                        <feature name="OnlineConceptCard"/>
+                    </alt>
+                    <alt mandatory="true" name="ProblemCard">
+                        <feature name="LocalProblemCard"/>
+                        <feature name="OnlineProblemCard"/>
+                    </alt>
+                    <alt mandatory="true" name="SoftwareEngineer">
+                        <feature name="LocalSoftwareEngineerCard"/>
+                        <feature name="OnlineSoftwareEngineerCard"/>
+                    </alt>
                 </and>
                 <feature mandatory="true" name="ArtifactCards"/>
             </and>
@@ -36,23 +45,7 @@
             </and>
         </and>
     </struct>
-    <constraints>
-        <rule>
-            <disj>
-                <var>Metal</var>
-                <disj>
-                    <var>Motif</var>
-                    <disj>
-                        <var>Nimbus</var>
-                        <disj>
-                            <var>Ocean</var>
-                            <var>GTK</var>
-                        </disj>
-                    </disj>
-                </disj>
-            </disj>
-        </rule>
-    </constraints>
+    <constraints/>
     <calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
     <comments/>
     <featureOrder userDefined="false"/>

@@ -10,10 +10,10 @@ package br.ufmg.reuso;
  */
 
 import javax.swing.UIManager;
-import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
+import br.ufmg.reuso.dados.carta.RepositorioOnline;
 import br.ufmg.reuso.negocio.jogo.Jogo;
 
 /**
@@ -27,31 +27,33 @@ public class Principal {
 	 * @param args
 	 * M?todo principal que cria um objeto da classe jogo e inicia o jogo com este objeto.
 	 */ 
-	public static void main(String[] args) {
-    try {
-      //#ifdef Ocean
-      MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-      UIManager.setLookAndFeel(new MetalLookAndFeel());
-      //#endif
-      
-      //#ifdef Metal
-//@      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
-//@      UIManager.setLookAndFeel(new MetalLookAndFeel());
-      //#endif
-
-      //#ifdef Nimbus
-//@      UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-      //#endif
-      
-      //#ifdef Motif
-//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-      //#endif
-      
-      //#ifdef GTK
-//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-      //#endif
-    }
-    catch (Exception e) { }
+	public static void main(String[] args) {		
+	    try {
+	      //#ifdef Ocean
+	      MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+	      UIManager.setLookAndFeel(new MetalLookAndFeel());
+	      //#endif
+	      
+	      //#ifdef Metal
+	//@      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+	//@      UIManager.setLookAndFeel(new MetalLookAndFeel());
+	      //#endif
+	
+	      //#ifdef Nimbus
+	//@      UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+	      //#endif
+	      
+	      //#ifdef Motif
+	//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+	      //#endif
+	      
+	      //#ifdef GTK
+	//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+	      //#endif
+	      
+	      RepositorioOnline repo = new RepositorioOnline();	     
+	    }
+	    catch (Exception e) { }
 
     Jogo jogo = Jogo.getJogo();	//instanciando um objeto da classe jogo ou chamando o existente.
 		jogo.start(jogo);			//iniciando a parte din?mica do jogo	
