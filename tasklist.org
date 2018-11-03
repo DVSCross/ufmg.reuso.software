@@ -1,4 +1,15 @@
-* TODO Logging aspect :refactor:
-* TODO Java doc :refactor:
-* TODO Look'n feel :feature:
-* TODO External card repository :feature:
+* TODO Documentation
+* TODO Action plan :thor:
+* TODO Slide
+* TODO Card creation :feature:manoel:
+* TODO Card upload :feature:daniel:
+* TODO Architectural pattern :refactor:furtini:
+* TODO Special card :feature:daniel:
+* DISMISSED Java doc :refactor:
+  CLOSED: [2018-11-03 Sat]
+* DONE External card repository :feature:dp:daniel:
+  CLOSED: [2018-11-03 Sat]
+* DONE Logging aspect :refactor:aspect:effy:
+  CLOSED: [2018-11-02 Fri]
+* DONE Look'n feel :feature:thor:
+  CLOSED: [2018-11-01 Thu]
