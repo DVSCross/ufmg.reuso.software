@@ -4,7 +4,7 @@
 * TODO Card creation :feature:manoel:
 * TODO Card upload :feature:daniel:
 * TODO Architectural pattern :refactor:furtini:
-* TODO Special card :feature:daniel:
+* TODO Rescue question :feature:daniel:
 * DISMISSED Java doc :refactor:
   CLOSED: [2018-11-03 Sat]
 * DONE External card repository :feature:dp:daniel:
