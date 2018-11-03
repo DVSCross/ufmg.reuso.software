@@ -5,8 +5,8 @@
     <feature automatic="selected" name="ChooseLevel"/>
     <feature automatic="selected" name="CreateProject"/>
     <feature automatic="selected" name="Theme"/>
-    <feature manual="selected" name="Ocean"/>
-    <feature automatic="unselected" name="Metal"/>
+    <feature automatic="unselected" name="Ocean"/>
+    <feature manual="selected" name="Metal"/>
     <feature automatic="unselected" name="Nimbus"/>
     <feature automatic="unselected" name="Motif"/>
     <feature automatic="unselected" name="GTK"/>

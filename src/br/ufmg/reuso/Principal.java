@@ -10,6 +10,7 @@ package br.ufmg.reuso;
  */
 
 import javax.swing.UIManager;
+import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
@@ -30,13 +31,13 @@ public class Principal {
 	public static void main(String[] args) {		
 	    try {
 	      //#ifdef Ocean
-	      MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-	      UIManager.setLookAndFeel(new MetalLookAndFeel());
+//@	      MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+//@	      UIManager.setLookAndFeel(new MetalLookAndFeel());
 	      //#endif
 	      
 	      //#ifdef Metal
-	//@      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
-	//@      UIManager.setLookAndFeel(new MetalLookAndFeel());
+	      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+	      UIManager.setLookAndFeel(new MetalLookAndFeel());
 	      //#endif
 	
 	      //#ifdef Nimbus
