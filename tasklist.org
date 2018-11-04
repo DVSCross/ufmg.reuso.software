@@ -1,10 +1,16 @@
-* TODO Documentation
-* TODO Action plan :thor:
+* TODO Readme :daniel:thor:
+  Installation, configuration and execution of products from the SPL.
+* TODO Documentation :effy:
+  - Characteristics diagram
+  - 2 design patterns
+  - 1 architectural pattern
+  - Activities plan
+* TODO Activities plan :thor:
 * TODO Slide
 * TODO Card creation :feature:manoel:
 * TODO Card upload :feature:daniel:
 * TODO Architectural pattern :refactor:furtini:
-* TODO Rescue question :feature:daniel:
+* TODO Rescue question :feature:dp:daniel:
 * DISMISSED Java doc :refactor:
   CLOSED: [2018-11-03 Sat]
 * DONE External card repository :feature:dp:daniel:
