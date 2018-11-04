@@ -17,6 +17,7 @@ import br.ufmg.reuso.negocio.carta.CartaoProjeto;
 import br.ufmg.reuso.negocio.jogador.Jogador;
 import br.ufmg.reuso.negocio.jogo.Jogo;
 import br.ufmg.reuso.negocio.mesa.Modulo;
+import br.ufmg.reuso.negocio.questao.Questao;
 
 /**
  * @author Michael David
@@ -49,7 +50,11 @@ public interface SetupInteraction
 	
 	public void mostrarOrdemJogo(String [] nomeJogadoresOrdenados); 	//recebe vetor de strings já ordenados para exibir na GUI 
 	
-	public void exibirProjeto(CartaoProjeto projeto);					//exibe cartao de projeto na GUI						
+	public void exibirProjeto(CartaoProjeto projeto);					//exibe cartao de projeto na GUI
+	
+	public boolean exibirQuestao(Questao questao);
+	
+	public void exibirResultadoQuestao(boolean acertou);
 	
 	public void exibirDefault(Jogo jogoAtual, Jogador jogador);	/**exibe GUI Default com todas as informações do tabuleiro, cartas na mão do jogador, opções do jogo.*/
 	

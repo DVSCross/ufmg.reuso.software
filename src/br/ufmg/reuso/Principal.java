@@ -50,13 +50,13 @@ public class Principal {
 	      
 	      //#ifdef GTK
 	//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-	      //#endif
-	      
+	      //#endif	      
+
 	      RepositorioOnline repo = new RepositorioOnline();	     
 	    }
 	    catch (Exception e) { }
 
-    Jogo jogo = Jogo.getJogo();	//instanciando um objeto da classe jogo ou chamando o existente.
+	    Jogo jogo = Jogo.getJogo();	//instanciando um objeto da classe jogo ou chamando o existente.
 		jogo.start(jogo);			//iniciando a parte din?mica do jogo	
 	}
 }

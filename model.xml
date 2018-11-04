@@ -43,6 +43,11 @@
                 <feature mandatory="true" name="CreateArtifact"/>
                 <feature mandatory="true" name="CorrectArtifact"/>
             </and>
+            <alt name="RescueQuestions">
+                <feature name="AllQuestions"/>
+                <feature name="RandomQuestions"/>
+                <feature name="TopicQuestions"/>
+            </alt>
         </and>
     </struct>
     <constraints/>

@@ -32,4 +32,8 @@
     <feature automatic="selected" name="InspectArtifact"/>
     <feature automatic="selected" name="CreateArtifact"/>
     <feature automatic="selected" name="CorrectArtifact"/>
+    <feature automatic="selected" manual="selected" name="RescueQuestions"/>
+    <feature manual="selected" name="AllQuestions"/>
+    <feature automatic="unselected" name="RandomQuestions"/>
+    <feature automatic="unselected" name="TopicQuestions"/>
 </configuration>

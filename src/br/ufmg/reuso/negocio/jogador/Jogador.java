@@ -94,15 +94,18 @@ public class Jogador
 	{
 		int numberCards;
 		numberCards = Dado.contarPontos();
-		Jogo.getJogo().setupController.mostrarPontosObtidosInicial(numberCards);				/**exibe a Gui mostrando pontos obtidos pelo jogador no lançamento de dados*/
 		
-		if ((getNumeroCartasMaoAtual() + numberCards) <= NUMERO_MAX_CARTAS_MAO)
+		/**exibe a Gui mostrando pontos obtidos pelo jogador no lan�amento de dados*/
+		Jogo.getJogo().setupController.mostrarPontosObtidosInicial(numberCards);		
+		
+		if ((getNumeroCartasMaoAtual() + numberCards) <= NUMERO_MAX_CARTAS_MAO) {
 			return numberCards;
-		else
-			{
-			Jogo.getJogo().setupController.mostrarNumberCardasDelivered(NUMERO_MAX_CARTAS_MAO - getNumeroCartasMaoAtual());/**exibe a GUI mostrando o número de cartas recebidas respeito o limite de cartas na mao*/
-				return (NUMERO_MAX_CARTAS_MAO - getNumeroCartasMaoAtual());
-			}
+		}
+		else {			
+			/**exibe a GUI mostrando o numero de cartas recebidas respeito o limite de cartas na mao*/
+		    Jogo.getJogo().setupController.mostrarNumberCardasDelivered(NUMERO_MAX_CARTAS_MAO - getNumeroCartasMaoAtual());
+			return (NUMERO_MAX_CARTAS_MAO - getNumeroCartasMaoAtual());
+		}
 		
 	}
 	

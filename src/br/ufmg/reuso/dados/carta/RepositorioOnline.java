@@ -16,42 +16,42 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class RepositorioOnline {
 	
+	// Builder para obter acesso ao cliente já configurado com as credenciais e região de acesso	
 	final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
-	final static String bucketName = "shared-cards-repository";
+	
+	// Repositório de Cartas compartilhadas online
+	final static String REPOSITORIO = "shared-cards-repository";
 	
 	public RepositorioOnline() {		
-		ListObjectsV2Result result = s3.listObjectsV2(bucketName);
-		List<S3ObjectSummary> objects = result.getObjectSummaries();
-		for (S3ObjectSummary os: objects) {
-			String objectKey = os.getKey();
-			if (objectKey.toLowerCase().contains(".properties")) {			
-				System.out.println("* " + os.getKey());
-				this.downloadCard(objectKey);				
+		ListObjectsV2Result resultado = s3.listObjectsV2(REPOSITORIO);
+		List<S3ObjectSummary> objetos = resultado.getObjectSummaries();
+		for (S3ObjectSummary os: objetos) {
+			String chave = os.getKey();
+			if (chave.toLowerCase().contains(".properties")) {			
+				// System.out.println("* " + os.getKey());
+				this.baixarCarta(chave);				
 			}		        
 		}
 	}
 	
-	public void downloadCard(String name) {
+	public void baixarCarta(String nome) {
 		try {
-		    S3Object o = s3.getObject(bucketName, name);		    
+		    S3Object o = s3.getObject(REPOSITORIO, nome);		    
 		    S3ObjectInputStream s3is = o.getObjectContent();
-		    FileOutputStream fos = new FileOutputStream(new File(name));
-		    byte[] read_buf = new byte[1024];
-		    int read_len = 0;
-		    while ((read_len = s3is.read(read_buf)) > 0) {
-		        fos.write(read_buf, 0, read_len);
+		    FileOutputStream stream = new FileOutputStream(new File(nome));
+		    byte[] buffer = new byte[1024];
+		    int tamanho = 0;
+		    while ((tamanho = s3is.read(buffer)) > 0) {
+		    	stream.write(buffer, 0, tamanho);
 		    }
 		    s3is.close();
-		    fos.close();
+		    stream.close();
 		} catch (AmazonServiceException e) {
-		    System.err.println(e.getErrorMessage());
-		    System.exit(1);
+		    System.err.println(e.getErrorMessage());		    
 		} catch (FileNotFoundException e) {
-		    System.err.println(e.getMessage());
-		    System.exit(1);
+		    System.err.println(e.getMessage());		    
 		} catch (IOException e) {
-		    System.err.println(e.getMessage());
-		    System.exit(1);
+		    System.err.println(e.getMessage());		    
 		}
 	}
 }

@@ -10,6 +10,8 @@
 package br.ufmg.reuso.negocio.jogo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import br.ufmg.reuso.negocio.baralho.BaralhoArtefatosBons;
@@ -30,9 +32,13 @@ import br.ufmg.reuso.negocio.dado.Dado;
 import br.ufmg.reuso.negocio.jogador.Jogador;
 import br.ufmg.reuso.negocio.mesa.Mesa;
 import br.ufmg.reuso.negocio.mesa.Modulo;
+import br.ufmg.reuso.negocio.questao.Questao;
+import br.ufmg.reuso.negocio.questao.factory.BancoQuestoes;
+import br.ufmg.reuso.negocio.questao.factory.TipoConstrucao;
 import br.ufmg.reuso.negocio.tabuleiro.SetupInteraction;
 import br.ufmg.reuso.negocio.tabuleiro.Tabuleiro;
 import br.ufmg.reuso.ui.ScreenInteraction;
+import br.ufmg.reuso.ui.ScreenRescueQuestion;
 /**
  * @author Michael David
  *
@@ -65,6 +71,7 @@ public final class Jogo {
 	private Status gameStatus;
 	private Jogador[] jogadores;
 	private CartaoProjeto projeto;
+	private List<Questao> questoes;
 	private BaralhoCartas[] baralhoCartas;
 	private BaralhoArtefatosBons[] baralhoArtefatosBons;
 	private BaralhoArtefatosRuins[] baralhoArtefatosRuins;
@@ -103,6 +110,14 @@ public final class Jogo {
 
 	public BaralhoArtefatosRuins[] getBaralhoArtefatosRuins() {
 		return baralhoArtefatosRuins;
+	}
+	
+	public List<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
 	}
 
 	public static Jogo getJogo() {
@@ -217,12 +232,30 @@ public final class Jogo {
 			//#endif
 			int[] cartasProblema) {
 
-		/* Fï¿½brica de Baralhos de Artefatos */
+		/* F?brica de Baralhos de Artefatos */
 		AbstractCreatorBaralhoArtefatos fabricaBaralhoArtefatos = new CreatorBaralhoArtefatos();
+		BancoQuestoes fabricaQuestoes = new BancoQuestoes();
 
 		this.baralhoCartas = new BaralhoCartas[2];
 		this.baralhoArtefatosBons = new BaralhoArtefatosBons[2];
 		this.baralhoArtefatosRuins = new BaralhoArtefatosRuins[2];
+		
+		// #ifdef AllQuestions
+		this.questoes = fabricaQuestoes.criarBanco(TipoConstrucao.TODAS, 0, "");
+		// #endif
+		
+		// #ifdef RandomQuestions
+//@		this.questoes = fabricaQuestoes.criarBanco(TipoConstrucao.ALEATORIO, 5, "");
+		// #endif
+		
+		// #ifdef TopicQuestions
+//@		this.questoes = fabricaQuestoes.criarBanco(TipoConstrucao.TOPICO, 0, "Arquitetura de Software");
+		// #endif		
+
+		for (Iterator<Questao> i = this.questoes.iterator(); i.hasNext();) {
+		    Questao questao = i.next();
+		    System.out.println(questao.getEnunciado());
+		}
 
 		// sortearProjeto(facilidade);
 		projeto = new CartaoProjeto(facilidade);
@@ -264,7 +297,7 @@ public final class Jogo {
 			String nomeJogador;
 			nomeJogador = nomeJogadores[i]; // passando nome de jogadores para a
 											// variavel local
-			// construindo o jogador com parÃ¢metros inicias iguais ao projeto
+			// construindo o jogador com par?metros inicias iguais ao projeto
 			jogadores[i] = new Jogador(nomeJogador, projeto.getOrcamento());
 			inserirEngenheiroInicial(jogadores[i]);
 			i++;
@@ -317,7 +350,7 @@ public final class Jogo {
 		}
 		jogador.contratarEngenheiro(novato, 0); // chamando o metodo de
 												// contratar engenheiro passando
-												// como parÃ¢metro o engenheiro
+												// como par?metro o engenheiro
 												// novato e a mesa 0
 
 	}
@@ -460,7 +493,23 @@ public final class Jogo {
 								 * automaticamente
 								 */
 	{
-		int numberCardsDelivered = jogador.analisarPontuacao();
+		int numberCardsDelivered = jogador.analisarPontuacao();		
+		
+		// Feature de Questão de Resgate
+		// Se o jogador tiver sem cartas na mão, e tirar 1 no dado, terá oportunidade
+		// de responder uma questão, caso acerte, irá obter o número máximo de cartas (5)
+		// #ifdef RescueQuestions
+		if (numberCardsDelivered == 1 && jogador.getNumeroCartasMaoAtual() == 0) {
+			int numQuestoes = this.questoes.size();
+			if (numQuestoes > 0) {				
+				boolean acertou =  this.setupController.exibirQuestao(this.questoes.get(new Random().nextInt(numQuestoes)));				
+				setupController.exibirResultadoQuestao(acertou);
+				if (acertou)
+					numberCardsDelivered = 5;
+			}			
+		}
+		// #endif
+		
 		/**
 		 * recebe o numero de cartas a receber conforme pontuacao obtida nos
 		 * dados e limite de carta em maos
@@ -500,7 +549,7 @@ public final class Jogo {
 
 	/**
 	 * Retira cartas da mao do jogador e as coloca no baralho auxiliar. Retorna
-	 * o mesmo jogador do parÃ¢metro
+	 * o mesmo jogador do par?metro
 	 */
 	public Jogador retirarCartas(Jogador jogador, Carta[] cartasRetiradas) {
 		for (int i = 0; i < cartasRetiradas.length; i++) {
@@ -960,7 +1009,7 @@ public final class Jogo {
 			for (int i = 0; i < projeto
 					.getQualidade(); i++) /**
 											 * conferindo x modulos integrados,
-											 * onde x e igual Ã  qualidade do
+											 * onde x e igual ? qualidade do
 											 * projeto
 											 */
 			{

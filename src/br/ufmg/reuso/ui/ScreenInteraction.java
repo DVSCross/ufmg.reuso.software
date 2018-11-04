@@ -22,6 +22,7 @@ import br.ufmg.reuso.negocio.jogador.Jogador;
 import br.ufmg.reuso.negocio.jogo.GameController;
 import br.ufmg.reuso.negocio.jogo.Jogo;
 import br.ufmg.reuso.negocio.mesa.Modulo;
+import br.ufmg.reuso.negocio.questao.Questao;
 import br.ufmg.reuso.negocio.tabuleiro.SetupInteraction;
 
 /**
@@ -647,5 +648,19 @@ public class ScreenInteraction implements SetupInteraction {
 		};
 
 		return adapter;
+	}
+
+	@Override
+	public boolean exibirQuestao(Questao questao) { 
+		ScreenRescueQuestion scr =  ScreenRescueQuestion.exibirQuestao(this.tabuleiro, questao);
+		return scr.getAcertou();
+	}
+
+	@Override
+	public void exibirResultadoQuestao(boolean acertou) {
+		if (acertou)
+			JOptionPane.showMessageDialog(this.tabuleiro, "Parabéns, você acertou! Por isso, você receberá uma mão completa de cartas!");
+		else
+			JOptionPane.showMessageDialog(this.tabuleiro, "Que pena, você errou! Tente estudar mais.");
 	}
 }

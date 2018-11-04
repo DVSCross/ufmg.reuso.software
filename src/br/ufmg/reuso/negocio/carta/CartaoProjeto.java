@@ -162,7 +162,8 @@ public class CartaoProjeto
 			setOrcamento((sorteio.nextInt(21)+230));					// definindo orçamento de 230 a 250
 
 			modulos= new Modulo[getTamanho()];							// criando o número de módulos conforme o tamanho do projeto
-			/*IMP*/		for (int i=0;i<modulos.length;i++)
+			/*IMP*/		
+			for (int i=0;i<modulos.length;i++)
 				modulos[i] = new Modulo();								// construindo os módulos
 			int contador;												// controla o número do módulo para preenchimento
 			for (contador = 0;contador <getTamanho(); contador++)		//preenche o módulo
@@ -177,11 +178,6 @@ public class CartaoProjeto
 		}
 
 	}
-
-
-
-
-
 
 	public int getComplexidade() 
 	{
@@ -276,6 +272,4 @@ public class CartaoProjeto
 	{
 		this.modulos = modulos;
 	}
-
-
 }
