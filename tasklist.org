@@ -1,4 +1,5 @@
-* TODO Readme :daniel:thor:
+* DONE Readme :daniel:thor:
+  CLOSED: [2018-11-03 Sat]
   Installation, configuration and execution of products from the SPL.
 * TODO Documentation :effy:
   - Characteristics diagram
@@ -6,14 +7,17 @@
   - 1 architectural pattern
   - Activities plan
 * TODO Activities plan :thor:
-* TODO Slide
-* TODO Card creation :feature:manoel:
-* TODO Card upload :feature:daniel:
-* TODO Architectural pattern :refactor:furtini:
-* TODO Rescue question :feature:dp:daniel:
+* DONE Slide
+  CLOSED: [2018-11-04 Sun]
+* DONE Card toolkit :feature:manoel:
+  CLOSED: [2018-11-05 Mon]
+* DONE Card download/upload :feature:daniel:
+  CLOSED: [2018-11-04 Sun]
+* DISMISSED Architectural pattern :refactor:furtini:
+  CLOSED: [2018-11-05 Mon]
+* DONE Rescue question :feature:dp:daniel:
+  CLOSED: [2018-11-04 Sun]
 * DISMISSED Java doc :refactor:
-  CLOSED: [2018-11-03 Sat]
-* DONE External card repository :feature:dp:daniel:
   CLOSED: [2018-11-03 Sat]
 * DONE Logging aspect :refactor:aspect:effy:
   CLOSED: [2018-11-02 Fri]
