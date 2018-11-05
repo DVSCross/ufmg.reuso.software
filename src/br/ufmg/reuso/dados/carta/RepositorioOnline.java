@@ -16,21 +16,37 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class RepositorioOnline {
 	
-	// Builder para obter acesso ao cliente já configurado com as credenciais e região de acesso	
-	final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+	// Builder para obter acesso ao cliente j? configurado com as credenciais e regi?o de acesso	
+	final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion("sa-east-1").build();
 	
-	// Repositório de Cartas compartilhadas online
+	// Reposit?rio de Cartas compartilhadas online
 	final static String REPOSITORIO = "shared-cards-repository";
 	
-	public RepositorioOnline() {		
+	public RepositorioOnline() {
 		ListObjectsV2Result resultado = s3.listObjectsV2(REPOSITORIO);
 		List<S3ObjectSummary> objetos = resultado.getObjectSummaries();
 		for (S3ObjectSummary os: objetos) {
 			String chave = os.getKey();
-			if (chave.toLowerCase().contains(".properties")) {			
-				// System.out.println("* " + os.getKey());
-				this.baixarCarta(chave);				
-			}		        
+			if (chave.toLowerCase().contains(".properties")) {
+				if (chave.startsWith("ConceptCards")) {
+					// #ifdef OnlineConceptCard
+//@					this.baixarCarta(chave);				
+//@					System.out.println("Download de " + os.getKey() + " conclu?do.");
+					// #endif
+				}
+				if (chave.startsWith("ProblemCard")) {
+					// #ifdef OnlineProblemCard//	
+//@					this.baixarCarta(chave);				
+//@//					System.out.println("Download de " + os.getKey() + " conclu?do.");
+					// #endif
+				}
+				if (chave.startsWith("SoftwareEngineerCard")) {
+					// #ifdef OnlineSoftwareEngineerCard								
+//@					this.baixarCarta(chave);				
+//@					System.out.println("Download de " + os.getKey() + " conclu?do.");
+					// #endif
+				}				
+			}        
 		}
 	}
 	
