@@ -86,8 +86,8 @@ public class BaralhoCartas
 			// #endif			
 			
 			// #ifdef LocalSoftwareEngineerCard
-//@			CartaEngenheiro[] cartaengenheiro;			//vetor de todas as cartas de engenheiro
-//@			cartaengenheiro = inicializarCartasEngenheiro(ModeGameConstants.PATH_CARTA_ENGENHEIRO_DIFICIL);
+//@			CartaEngenheiro[] cartaEngenheiro;			//vetor de todas as cartas de engenheiro
+//@			cartaEngenheiro = inicializarCartasEngenheiro(ModeGameConstants.PATH_CARTA_ENGENHEIRO_DIFICIL);
 			// #endif
 			
 			// #ifdef OnlineSoftwareEngineerCard
