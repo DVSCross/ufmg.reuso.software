@@ -13,10 +13,10 @@
                     <feature name="Motif"/>
                     <feature name="GTK"/>
                 </alt>
-                <and name="createCard">
-                    <feature name="createSECard"/>
-                    <feature name="createProblemCard"/>
-                    <feature name="createConceptCard"/>
+                <and name="CreateCard">
+                    <feature name="CreateSECard"/>
+                    <feature name="CreateProblemCard"/>
+                    <feature name="CreateConceptCard"/>
                 </and>
             </and>
             <feature mandatory="true" name="Project"/>

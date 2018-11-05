@@ -10,8 +10,9 @@
     <feature automatic="unselected" name="Nimbus"/>
     <feature automatic="unselected" name="Motif"/>
     <feature automatic="unselected" name="GTK"/>
-    <feature automatic="selected" name="createCard"/>
-    <feature manual="selected" name="createSECard"/>
+    <feature automatic="selected" name="CreateCard"/>
+    <feature manual="selected" name="CreateSECard"/>
+    <feature manual="selected" name="CreateProblemCard"/>
     <feature automatic="selected" name="Project"/>
     <feature automatic="selected" name="Board"/>
     <feature automatic="selected" name="Artifacts"/>
