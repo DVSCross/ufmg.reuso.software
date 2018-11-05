@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 
 import br.ufmg.reuso.negocio.carta.CartaEngenheiro;
 
-public class ScreenNewCard extends JDialog implements ActionListener  {
+public class ScreenNewSECard extends JDialog implements ActionListener  {
 
 	/**
 	 * 
@@ -31,7 +31,7 @@ public class ScreenNewCard extends JDialog implements ActionListener  {
 	private JTextArea textTexto;
 	
 	
-	public ScreenNewCard(ScreenTabuleiro tabuleiro) {
+	public ScreenNewSECard(ScreenTabuleiro tabuleiro) {
 		super(tabuleiro);
 
 		this.setLocationRelativeTo(tabuleiro);
@@ -133,7 +133,7 @@ public class ScreenNewCard extends JDialog implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "OK") {
 			createCartaEngenheiro();
-			ScreenNewCard.this.dispose();
+			ScreenNewSECard.this.dispose();
 		}		
 	}
 	
@@ -150,7 +150,7 @@ public class ScreenNewCard extends JDialog implements ActionListener  {
 		UUID uuid = UUID.randomUUID();
         String randomUUIDString = uuid.toString();
 		
-        card.dumpProperties("CartasEngenheiroDificil/" + randomUUIDString + "-SE.properties");
+        card.dumpProperties("online/" + randomUUIDString + "-SE.properties");
 		
 		System.out.println(card);
 	}
@@ -161,10 +161,10 @@ public class ScreenNewCard extends JDialog implements ActionListener  {
 	 * para construção da GUI
 	 * @param tabuleiro - tabueliro do jogo atual
 	 */
-	public static ScreenNewCard createAndShowNewCard(ScreenTabuleiro tabuleiro) {
+	public static ScreenNewSECard createAndShowNewCard(ScreenTabuleiro tabuleiro) {
 
 		// Cria e configura a tela.
-		ScreenNewCard scr = new ScreenNewCard(tabuleiro);
+		ScreenNewSECard scr = new ScreenNewSECard(tabuleiro);
 		scr.rootPane.setOpaque(true);		
 		scr.pack();
 		scr.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

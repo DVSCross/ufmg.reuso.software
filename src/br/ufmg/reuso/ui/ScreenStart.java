@@ -29,8 +29,9 @@ public class ScreenStart extends JDialog implements ActionListener {
 	static String startString = "Start";
 	static String configString = "config";
 	static String criarProjetoString = "Projeto";
-	static String criarCartaString = "Nova carta";
-
+	static String criarCartaESString = "Nova carta ES";
+	static String criarCartaProblemaString = "Nova carta Problema";
+	static String criarCartaConceitoString = "Nova carta Conceito";
 	private String stringReturn;
 
 	// =====================================================================================//
@@ -48,9 +49,9 @@ public class ScreenStart extends JDialog implements ActionListener {
 		Tpanel.setLayout(null);
 
 		Dimension dimensionPanel = new Dimension(300, 150);
-		Tpanel.setPreferredSize(dimensionPanel);
+		Tpanel.setPreferredSize(new Dimension(300, 260));
 
-		Dimension dimensionButton = new Dimension(120, 30);
+		Dimension dimensionButton = new Dimension(250, 30);
 
 		//Cálculo da posição dos botões na tela (centralizados)
 		
@@ -86,13 +87,31 @@ public class ScreenStart extends JDialog implements ActionListener {
 		
 		posY = (5 * (dimensionPanel.height / 5)) - (dimensionButton.height);
 		
-		JButton buttonNovaCarta = new JButton("Nova Carta");
-		buttonNovaCarta.setMnemonic(KeyEvent. VK_P);
-		buttonNovaCarta.setActionCommand(criarCartaString);
-		buttonNovaCarta.setPreferredSize(dimensionButton);
-		buttonNovaCarta.setBounds(posX, posY, dimensionButton.width,
+		JButton buttonNovaCartaSE = new JButton("Nova Carta Eng SW");
+		//buttonNovaCartaSE.setMnemonic(KeyEvent. VK_P);
+		buttonNovaCartaSE.setActionCommand(criarCartaESString);
+		buttonNovaCartaSE.setPreferredSize(dimensionButton);
+		buttonNovaCartaSE.setBounds(posX, posY, dimensionButton.width,
 				dimensionButton.height);
 		
+		
+		posY = (6 * (dimensionPanel.height / 5)) - (dimensionButton.height);
+		
+		JButton buttonNovaCartaProblema = new JButton("Nova Carta Problema");
+		//buttonNovaCartaProblema.setMnemonic(KeyEvent. VK_P);
+		buttonNovaCartaProblema.setActionCommand(criarCartaProblemaString);
+		buttonNovaCartaProblema.setPreferredSize(dimensionButton);
+		buttonNovaCartaProblema.setBounds(posX, posY, dimensionButton.width,
+				dimensionButton.height);
+		
+		posY = (7 * (dimensionPanel.height / 5)) - (dimensionButton.height);
+		
+		JButton buttonNovaCartaConceito = new JButton("Nova Carta Conceito");
+		//buttonNovaCartaConceito.setMnemonic(KeyEvent. VK_P);
+		buttonNovaCartaConceito.setActionCommand(criarCartaConceitoString);
+		buttonNovaCartaConceito.setPreferredSize(dimensionButton);
+		buttonNovaCartaConceito.setBounds(posX, posY, dimensionButton.width,
+				dimensionButton.height);		
 
 
 		// Registra os objetos no controle de eventos.
@@ -100,12 +119,16 @@ public class ScreenStart extends JDialog implements ActionListener {
 		buttonStart.addActionListener(this);
 		buttonConfig.addActionListener(this);
 		buttonProjeto.addActionListener(this);
-		buttonNovaCarta.addActionListener(this);
+		buttonNovaCartaSE.addActionListener(this);
+		buttonNovaCartaProblema.addActionListener(this);
+		buttonNovaCartaConceito.addActionListener(this);
 
 		Tpanel.add(buttonStart);
 		Tpanel.add(buttonConfig);
 		Tpanel.add(buttonProjeto);
-		Tpanel.add(buttonNovaCarta);
+		Tpanel.add(buttonNovaCartaSE);
+		Tpanel.add(buttonNovaCartaProblema);
+		Tpanel.add(buttonNovaCartaConceito);
 		add(Tpanel);
 
 		getRootPane().setDefaultButton(buttonStart);
@@ -135,10 +158,10 @@ public class ScreenStart extends JDialog implements ActionListener {
 			ScreenStart.this.dispose();	
 			stringReturn = e.getActionCommand();
 			
-		} else {
+		} else if (e.getActionCommand() == "Nova carta ES") {
 			stringReturn = e.getActionCommand();
 			ScreenTabuleiro tabuleiro = ScreenTabuleiro.createAndShowTabuleiro(null, null);
-			ScreenNewCard.createAndShowNewCard(tabuleiro);
+			ScreenNewSECard.createAndShowNewCard(tabuleiro);
 		}
 	}
 
