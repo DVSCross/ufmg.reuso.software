@@ -9,6 +9,9 @@
 
 package br.ufmg.reuso.negocio.carta;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * @author Michael David
  *
@@ -104,5 +107,19 @@ public class CartaEngenheiro extends Carta
 		this.habilidadeEngenheiroAtual = habilidadeEngenheiroAtual;
 	}
 	
-	
+	public void dumpProperties(String path) {
+		try {
+			FileWriter writer = new FileWriter(path, true);
+			writer.write("codigo = " + this.codigoCarta + "\n");
+			writer.write("texto = " + this.textoCarta + "\n");
+			writer.write("nome = " + this.nomeEngenheiro + "\n");
+			writer.write("salario = " + this.salarioEngenheiro + "\n");
+			writer.write("habilidade = " + this.habilidadeEngenheiro + "\n");
+			writer.write("maturidade = " + this.maturidadeEngenheiro + "\n");
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

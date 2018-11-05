@@ -76,23 +76,23 @@ public class BaralhoCartas
 			// #endif		
 			
 			// #ifdef LocalProblemCard
-			CartaPenalizacao[] cartaProblema;					//vetor de todas as cartas problema
-			cartaProblema = inicializarCartasProblemas(ModeGameConstants.PATH_CARTA_PROBLEMA_DIFICIL,cartasProblema);
+//@			CartaPenalizacao[] cartaProblema;					//vetor de todas as cartas problema
+//@			cartaProblema = inicializarCartasProblemas(ModeGameConstants.PATH_CARTA_PROBLEMA_DIFICIL,cartasProblema);
 			// #endif
 			
 			// #ifdef OnlineProblemCard
-//@			CartaPenalizacao[] cartaProblema;					//vetor de todas as cartas problema
-//@			cartaProblema = inicializarCartasProblemas(ModeGameConstants.PATH_CARTA_PROBLEMA_ONLINE,cartasProblema);
+			CartaPenalizacao[] cartaProblema;					//vetor de todas as cartas problema
+			cartaProblema = inicializarCartasProblemas(ModeGameConstants.PATH_CARTA_PROBLEMA_ONLINE,cartasProblema);
 			// #endif			
 			
 			// #ifdef LocalSoftwareEngineerCard
-//@			CartaEngenheiro[] cartaengenheiro;			//vetor de todas as cartas de engenheiro
-//@			cartaengenheiro = inicializarCartasEngenheiro(ModeGameConstants.PATH_CARTA_ENGENHEIRO_DIFICIL);
+			CartaEngenheiro[] cartaengenheiro;			//vetor de todas as cartas de engenheiro
+			cartaengenheiro = inicializarCartasEngenheiro(ModeGameConstants.PATH_CARTA_ENGENHEIRO_DIFICIL);
 			// #endif
 			
 			// #ifdef OnlineSoftwareEngineerCard
-			CartaEngenheiro[] cartaEngenheiro;			//vetor de todas as cartas de engenheiro
-			cartaEngenheiro = inicializarCartasEngenheiro(ModeGameConstants.PATH_CARTA_ENGENHEIRO_ONLINE);
+//@			CartaEngenheiro[] cartaEngenheiro;			//vetor de todas as cartas de engenheiro
+//@			cartaEngenheiro = inicializarCartasEngenheiro(ModeGameConstants.PATH_CARTA_ENGENHEIRO_ONLINE);
 			// #endif
 
 			this.currentCard=0;																				/**configura currentCard como primeira carta retirada do baralho ser na posicao 0*/
@@ -110,7 +110,7 @@ public class BaralhoCartas
 			{
 
 				if (i<getNumeroTotalEngenheiro())
-					baralho[i]=cartaEngenheiro[i];															//preenchendo as primeiras posi??es com cartas de engenheiro de software 
+					baralho[i]=cartaengenheiro[i];															//preenchendo as primeiras posi??es com cartas de engenheiro de software 
 				else
 				{
 					//#ifdef ConceptCard

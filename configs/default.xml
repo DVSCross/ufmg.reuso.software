@@ -22,11 +22,11 @@
     <feature manual="selected" name="LocalConceptCard"/>
     <feature automatic="unselected" name="OnlineConceptCard"/>
     <feature automatic="selected" name="ProblemCard"/>
-    <feature manual="selected" name="LocalProblemCard"/>
-    <feature automatic="unselected" name="OnlineProblemCard"/>
+    <feature automatic="unselected" name="LocalProblemCard"/>
+    <feature manual="selected" name="OnlineProblemCard"/>
     <feature automatic="selected" name="SoftwareEngineer"/>
-    <feature automatic="unselected" name="LocalSoftwareEngineerCard"/>
-    <feature manual="selected" name="OnlineSoftwareEngineerCard"/>
+    <feature manual="selected" name="LocalSoftwareEngineerCard"/>
+    <feature automatic="unselected" name="OnlineSoftwareEngineerCard"/>
     <feature automatic="selected" name="ArtifactCards"/>
     <feature automatic="selected" name="SoftwareEngineerActions"/>
     <feature automatic="selected" name="InspectArtifact"/>

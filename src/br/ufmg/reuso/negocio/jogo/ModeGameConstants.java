@@ -9,15 +9,15 @@ public class ModeGameConstants
 	// #endif
 	
 	// #ifdef LocalProblemCard
-	public static final String PATH_CARTA_PROBLEMA_DIFICIL = "CartasProblemaDificil";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
-	public static final String PATH_CARTA_PROBLEMA_MODERADO = "CartasProblemaModerado";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
-	public static final String PATH_CARTA_PROBLEMA_FACIL = "CartasProblemaFacil";						//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
+//@	public static final String PATH_CARTA_PROBLEMA_DIFICIL = "CartasProblemaDificil";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
+//@	public static final String PATH_CARTA_PROBLEMA_MODERADO = "CartasProblemaModerado";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
+//@	public static final String PATH_CARTA_PROBLEMA_FACIL = "CartasProblemaFacil";						//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
 	// #endif
 	
 	// #ifdef LocalSoftwareEngineerCard
-//@	public static final String PATH_CARTA_ENGENHEIRO_DIFICIL = "CartasEngenheiroDificil";				//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro	
-//@	public static final String PATH_CARTA_ENGENHEIRO_MODERADO = "CartasEngenheiroModerado";				//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro
-//@	public static final String PATH_CARTA_ENGENHEIRO_FACIL = "CartasEngenheiroFacil";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro	
+	public static final String PATH_CARTA_ENGENHEIRO_DIFICIL = "CartasEngenheiroDificil";				//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro	
+	public static final String PATH_CARTA_ENGENHEIRO_MODERADO = "CartasEngenheiroModerado";				//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro
+	public static final String PATH_CARTA_ENGENHEIRO_FACIL = "CartasEngenheiroFacil";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro	
 	// #endif
 	
 	// #ifdef OnlineConceptCard
@@ -25,11 +25,11 @@ public class ModeGameConstants
 	// #endif
 	
 	// #ifdef OnlineProblemCard
-//@	public static final String PATH_CARTA_PROBLEMA_ONLINE = "ProblemCards";
+	public static final String PATH_CARTA_PROBLEMA_ONLINE = "ProblemCards";
 	// #endif
 	
 	// #ifdef OnlineSoftwareEngineerCard
-	public static final String PATH_CARTA_ENGENHEIRO_ONLINE = "SoftwareEngineerCards";
+//@	public static final String PATH_CARTA_ENGENHEIRO_ONLINE = "SoftwareEngineerCards";
 	// #endif
 	
 	

@@ -29,6 +29,7 @@ public class ScreenStart extends JDialog implements ActionListener {
 	static String startString = "Start";
 	static String configString = "config";
 	static String criarProjetoString = "Projeto";
+	static String criarCartaString = "Nova carta";
 
 	private String stringReturn;
 
@@ -81,6 +82,17 @@ public class ScreenStart extends JDialog implements ActionListener {
 		buttonProjeto.setPreferredSize(dimensionButton);
 		buttonProjeto.setBounds(posX, posY, dimensionButton.width,
 				dimensionButton.height);
+		
+		
+		posY = (5 * (dimensionPanel.height / 5)) - (dimensionButton.height);
+		
+		JButton buttonNovaCarta = new JButton("Nova Carta");
+		buttonNovaCarta.setMnemonic(KeyEvent. VK_P);
+		buttonNovaCarta.setActionCommand(criarCartaString);
+		buttonNovaCarta.setPreferredSize(dimensionButton);
+		buttonNovaCarta.setBounds(posX, posY, dimensionButton.width,
+				dimensionButton.height);
+		
 
 
 		// Registra os objetos no controle de eventos.
@@ -88,10 +100,12 @@ public class ScreenStart extends JDialog implements ActionListener {
 		buttonStart.addActionListener(this);
 		buttonConfig.addActionListener(this);
 		buttonProjeto.addActionListener(this);
+		buttonNovaCarta.addActionListener(this);
 
 		Tpanel.add(buttonStart);
 		Tpanel.add(buttonConfig);
 		Tpanel.add(buttonProjeto);
+		Tpanel.add(buttonNovaCarta);
 		add(Tpanel);
 
 		getRootPane().setDefaultButton(buttonStart);
@@ -115,12 +129,16 @@ public class ScreenStart extends JDialog implements ActionListener {
 			ScreenStart.this.dispose();	
 			stringReturn = e.getActionCommand();
 			
-		} else {
+		} else if (e.getActionCommand() == "Projeto") {
 			ScreenTabuleiro tabuleiro = ScreenTabuleiro.createAndShowTabuleiro(null, null);
 			ScreenCreateProject.createAndShowGetCProject(tabuleiro);
 			ScreenStart.this.dispose();	
 			stringReturn = e.getActionCommand();
 			
+		} else {
+			stringReturn = e.getActionCommand();
+			ScreenTabuleiro tabuleiro = ScreenTabuleiro.createAndShowTabuleiro(null, null);
+			ScreenNewCard.createAndShowNewCard(tabuleiro);
 		}
 	}
 
