@@ -85,6 +85,8 @@ public class ScreenStart extends JDialog implements ActionListener {
 				dimensionButton.height);
 		
 		
+		
+		//#ifdef createSECard		
 		posY = (5 * (dimensionPanel.height / 5)) - (dimensionButton.height);
 		
 		JButton buttonNovaCartaSE = new JButton("Nova Carta Eng SW");
@@ -94,41 +96,50 @@ public class ScreenStart extends JDialog implements ActionListener {
 		buttonNovaCartaSE.setBounds(posX, posY, dimensionButton.width,
 				dimensionButton.height);
 		
+		buttonNovaCartaSE.addActionListener(this);
+		Tpanel.add(buttonNovaCartaSE);
+		//#endif
 		
-		posY = (6 * (dimensionPanel.height / 5)) - (dimensionButton.height);
 		
-		JButton buttonNovaCartaProblema = new JButton("Nova Carta Problema");
-		//buttonNovaCartaProblema.setMnemonic(KeyEvent. VK_P);
-		buttonNovaCartaProblema.setActionCommand(criarCartaProblemaString);
-		buttonNovaCartaProblema.setPreferredSize(dimensionButton);
-		buttonNovaCartaProblema.setBounds(posX, posY, dimensionButton.width,
-				dimensionButton.height);
+		//#ifdef createProblemCard
+//@		posY = (6 * (dimensionPanel.height / 5)) - (dimensionButton.height);
+//@		
+//@		JButton buttonNovaCartaProblema = new JButton("Nova Carta Problema");
+//@		//buttonNovaCartaProblema.setMnemonic(KeyEvent. VK_P);
+//@		buttonNovaCartaProblema.setActionCommand(criarCartaProblemaString);
+//@		buttonNovaCartaProblema.setPreferredSize(dimensionButton);
+//@		buttonNovaCartaProblema.setBounds(posX, posY, dimensionButton.width,
+//@				dimensionButton.height);
+//@		
+//@		buttonNovaCartaProblema.addActionListener(this);
+//@		Tpanel.add(buttonNovaCartaProblema);
+		//#endif
 		
-		posY = (7 * (dimensionPanel.height / 5)) - (dimensionButton.height);
 		
-		JButton buttonNovaCartaConceito = new JButton("Nova Carta Conceito");
-		//buttonNovaCartaConceito.setMnemonic(KeyEvent. VK_P);
-		buttonNovaCartaConceito.setActionCommand(criarCartaConceitoString);
-		buttonNovaCartaConceito.setPreferredSize(dimensionButton);
-		buttonNovaCartaConceito.setBounds(posX, posY, dimensionButton.width,
-				dimensionButton.height);		
-
+		//#ifdef createConceptCard
+//@		posY = (7 * (dimensionPanel.height / 5)) - (dimensionButton.height);
+//@		
+//@		JButton buttonNovaCartaConceito = new JButton("Nova Carta Conceito");
+//@		//buttonNovaCartaConceito.setMnemonic(KeyEvent. VK_P);
+//@		buttonNovaCartaConceito.setActionCommand(criarCartaConceitoString);
+//@		buttonNovaCartaConceito.setPreferredSize(dimensionButton);
+//@		buttonNovaCartaConceito.setBounds(posX, posY, dimensionButton.width,
+//@				dimensionButton.height);		
+//@		
+//@		buttonNovaCartaConceito.addActionListener(this);
+//@		Tpanel.add(buttonNovaCartaConceito);
+		//#endif
 
 		// Registra os objetos no controle de eventos.
 		
 		buttonStart.addActionListener(this);
 		buttonConfig.addActionListener(this);
 		buttonProjeto.addActionListener(this);
-		buttonNovaCartaSE.addActionListener(this);
-		buttonNovaCartaProblema.addActionListener(this);
-		buttonNovaCartaConceito.addActionListener(this);
-
+		
 		Tpanel.add(buttonStart);
 		Tpanel.add(buttonConfig);
 		Tpanel.add(buttonProjeto);
-		Tpanel.add(buttonNovaCartaSE);
-		Tpanel.add(buttonNovaCartaProblema);
-		Tpanel.add(buttonNovaCartaConceito);
+				
 		add(Tpanel);
 
 		getRootPane().setDefaultButton(buttonStart);
