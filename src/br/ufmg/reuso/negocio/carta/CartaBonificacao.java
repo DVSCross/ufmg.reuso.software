@@ -9,6 +9,9 @@
 
 package br.ufmg.reuso.negocio.carta;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * @author Michael David
  *
@@ -138,5 +141,23 @@ public class CartaBonificacao extends Carta
 		this.tipoSegundoEfeito = tipoSegundoEfeito;
 	}
 	
-	
+	public void dumpProperties(String path) {
+		try {
+			FileWriter writer = new FileWriter(path, true);
+			writer.write("codigo = " + this.codigoCarta + "\n");
+			writer.write("titulo = " + this.tituloCarta + "\n");
+			writer.write("texto = " + this.textoCarta + "\n");
+			writer.write("referenciaBibliografica = " + this.referenciaBibliografica + "\n");
+			writer.write("duracaoEfeito = " + this.duracaoEfeito + "\n");
+			writer.write("custo = " + this.custoEfeito + "\n");
+			writer.write("quantidadePrimeiroEfeito = " + this.quantidadePrimeiroEfeito + "\n");
+			writer.write("quantidadeSegundoEfeito = " + this.quantidadeSegundoEfeito + "\n");
+			writer.write("tipoPrimeiroEfeito = " + this.tipoPrimeiroEfeito + "\n");
+			writer.write("tipoSegundoEfeito = " + this.tipoSegundoEfeito + "\n");
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

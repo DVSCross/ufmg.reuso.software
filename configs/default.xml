@@ -13,6 +13,7 @@
     <feature automatic="selected" name="CreateCard"/>
     <feature manual="selected" name="CreateSECard"/>
     <feature manual="selected" name="CreateProblemCard"/>
+    <feature manual="selected" name="CreateConceptCard"/>
     <feature automatic="selected" name="Project"/>
     <feature automatic="selected" name="Board"/>
     <feature automatic="selected" name="Artifacts"/>

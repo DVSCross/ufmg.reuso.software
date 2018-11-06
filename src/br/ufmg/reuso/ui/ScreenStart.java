@@ -117,17 +117,17 @@ public class ScreenStart extends JDialog implements ActionListener {
 		
 		
 		//#ifdef CreateConceptCard
-//@		posY = (7 * (dimensionPanel.height / 5)) - (dimensionButton.height);
-//@		
-//@		JButton buttonNovaCartaConceito = new JButton("Nova Carta Conceito");
-//@		//buttonNovaCartaConceito.setMnemonic(KeyEvent. VK_P);
-//@		buttonNovaCartaConceito.setActionCommand(criarCartaConceitoString);
-//@		buttonNovaCartaConceito.setPreferredSize(dimensionButton);
-//@		buttonNovaCartaConceito.setBounds(posX, posY, dimensionButton.width,
-//@				dimensionButton.height);		
-//@		
-//@		buttonNovaCartaConceito.addActionListener(this);
-//@		Tpanel.add(buttonNovaCartaConceito);
+		posY = (7 * (dimensionPanel.height / 5)) - (dimensionButton.height);
+		
+		JButton buttonNovaCartaConceito = new JButton("Nova Carta Conceito");
+		//buttonNovaCartaConceito.setMnemonic(KeyEvent. VK_P);
+		buttonNovaCartaConceito.setActionCommand(criarCartaConceitoString);
+		buttonNovaCartaConceito.setPreferredSize(dimensionButton);
+		buttonNovaCartaConceito.setBounds(posX, posY, dimensionButton.width,
+				dimensionButton.height);		
+		
+		buttonNovaCartaConceito.addActionListener(this);
+		Tpanel.add(buttonNovaCartaConceito);
 		//#endif
 
 		// Registra os objetos no controle de eventos.
@@ -173,6 +173,14 @@ public class ScreenStart extends JDialog implements ActionListener {
 			stringReturn = e.getActionCommand();
 			ScreenTabuleiro tabuleiro = ScreenTabuleiro.createAndShowTabuleiro(null, null);
 			ScreenNewSECard.createAndShowNewCard(tabuleiro);
+		} else if (e.getActionCommand() == "Nova carta Problema") {
+			stringReturn = e.getActionCommand();
+			ScreenTabuleiro tabuleiro = ScreenTabuleiro.createAndShowTabuleiro(null, null);
+			ScreenNewProblemCard.createAndShowProblemCard(tabuleiro);
+		} else {
+			stringReturn = e.getActionCommand();
+			ScreenTabuleiro tabuleiro = ScreenTabuleiro.createAndShowTabuleiro(null, null);
+			ScreenNewConceptCard.createAndShowConceptCard(tabuleiro);
 		}
 	}
 

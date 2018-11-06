@@ -9,6 +9,9 @@
 
 package br.ufmg.reuso.negocio.carta;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * @author Michael David
  *
@@ -195,5 +198,27 @@ public class CartaPenalizacao extends Carta
 		this.tipoSegundaCondicao = tipoSegundaCondicao;
 	}
 
-		
+	public void dumpProperties(String path) {
+		try {
+			FileWriter writer = new FileWriter(path, true);
+			writer.write("codigo = " + this.codigoCarta + "\n");
+			writer.write("titulo = " + this.tituloCarta + "\n");
+			writer.write("texto = " + this.textoCarta + "\n");
+			writer.write("referenciaBibliografica = " + this.referenciaBibliografica + "\n");
+			writer.write("duracaoEfeito = " + this.duracaoEfeito + "\n");
+			writer.write("condicao = " + this.condicaoProblema + "\n");
+			writer.write("quantidadePrimeiroEfeito = " + this.quantidadePrimeiroEfeito + "\n");
+			writer.write("quantidadeSegundoEfeito = " + this.quantidadeSegundoEfeito + "\n");
+			writer.write("tipoPrimeiroEfeito = " + this.tipoPrimeiroEfeito + "\n");
+			writer.write("tipoSegundoEfeito = " + this.tipoSegundoEfeito + "\n");
+			writer.write("quantidadePrimeiraCondicao = " + this.quantidadePrimeiraCondicao + "\n");
+			writer.write("quantidadeSegundaCondicao = " + this.quantidadeSegundaCondicao + "\n");
+			writer.write("tipoPrimeiraCondicao = " + this.tipoPrimeiraCondicao + "\n");
+			writer.write("tipoSegundaCondicao = " + this.tipoSegundaCondicao + "\n");
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
