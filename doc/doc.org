@@ -1,0 +1,214 @@
+# -*- after-save-hook: org-latex-export-to-pdf; -*-
+#+language: bt-br
+#+latex_header: \usepackage[a4paper, margin=2cm]{geometry}
+#+latex_header: \usepackage{indentfirst}
+#+latex_header: \usepackage[]{babel}
+#+latex_header: \usepackage[bottom]{footmisc}
+#+latex_header: \usepackage{float}
+#+latex_header: \usepackage{subcaption}
+#+latex_header: \usepackage{titling}
+#+latex_header: \setlength{\droptitle}{-1.5cm}
+#+latex_header: \hypersetup{ colorlinks = true, urlcolor = blue } 
+
+#+begin_export latex
+\begin{titlepage}
+	\begin{center}
+		\Huge{Universidade Federal de Minas Gerais}\\
+		\vspace{15pt}
+    \Large{Reuso de Software}\\
+    \vspace{95pt}
+    \textbf{\LARGE{Trabalho Prático}}\\
+		%\title{{\large{Título}}}
+		\vspace{3,5cm}
+    \begin{figure}[h]
+      \begin{center}
+        \includegraphics[scale = 0.50]{img/ufmg-logo.png}
+      \end{center}
+     \label{fig:graph}
+    \end{figure}
+	\end{center}
+  \begin{flushleft}
+		\begin{tabbing}
+        \textbf{Grupo 2:}\\
+        Daniel Cruz \\
+			  Fernanda Guimarães \\
+        Gabriel Bastos \\
+        Lucas Furtini \\
+        Manoel Júnior
+	    \end{tabbing}
+  \end{flushleft}
+	\vspace{1cm} 
+	\begin{center}
+		\vspace{\fill}
+		Novembro\\
+		2018
+	\end{center}
+\end{titlepage}
+#+end_export
+* Introdução
+  O tema do trabalho são jogos para Simulação de Engenharia de Software. O grupo reusou e
+  reutilizou o projeto do SimulES no github. Além da refatoração do código existente,
+  foram adicionadas novas /features/, tornando o projeto de fato uma linha de produtos de
+  /software/.
+* Linha de Produtos de /Software/ (SPL)
+  #+caption: diagrama de características.
+  #+attr_latex: :height 580px :placement [H]
+  [[./img/features.jpeg]] 
+** Look'n Feel
+   Para que o jogo possa de adequar à diversos temas, foram adicionadas cinco opções de
+   /look'n feel/[fn:3]:
+   #+latex: \begin{figure*}[h] \centering
+   #+latex: \begin{subfigure}[t]{0.33\textwidth} \centering
+   #+attr_latex: :height 150px :center
+   [[./img/ocean.png]]
+   #+latex: \captionsetup{labelformat=empty} \caption{Ocean}
+   #+latex: \end{subfigure}
+   #+latex: \begin{subfigure}[t]{0.33\textwidth} \centering
+   #+attr_latex: :height 150px :center
+   [[./img/nimbus.png]]
+   #+latex: \captionsetup{labelformat=empty} \caption{Nimbus}
+   #+latex: \end{subfigure}
+   #+latex: \begin{subfigure}[t]{0.32\textwidth} \centering
+   #+attr_latex: :height 150px :center
+   [[./img/metal.png]]
+   #+latex: \captionsetup{labelformat=empty} \caption{Metal}
+   #+latex: \end{subfigure}
+   #+latex: \end{figure*}
+   #+latex: \begin{figure*}[h] \centering
+   #+latex: \begin{subfigure}[t]{0.35\textwidth} \centering
+   #+attr_latex: :height 150px :center
+   [[./img/motif.png]]
+   #+latex: \captionsetup{labelformat=empty} \caption{Motif}
+   #+latex: \end{subfigure}
+   #+latex: \begin{subfigure}[t]{0.35\textwidth} \centering
+   #+attr_latex: :height 150px :center
+   [[./img/gtk.png]]
+   #+latex: \captionsetup{labelformat=empty} \caption{GTK}
+   #+latex: \end{subfigure}
+   #+latex: \end{figure*}
+[fn:3][[https://pt.wikipedia.org/wiki/Look_and_Feel][Look'n Feel]]
+** Questão de Resgate
+   A questão de resgate é um artifício de balanceamento baseeado na Teoria dos Jogos. Ela
+   serve para permitir a recuperação de jogadores em situações complicadas. Assim,
+   estende o jogo com uma nova dinâmica de perguntas e respostas.
+
+   Sua configuração possui definição de 3 estratégias de construção do banco de questões:
+   todas as questões, questões aleatórias, e questões de um certo tópico, como por
+   exemplo, arquitetura de /software/.
+   
+   Já a regra de uso da questão de resgate é muito simples: o jogador que não possuir
+   nenhuma carta em mãos e tirar 1 no dado, terá a chance de responder uma questão de
+   resgate. Caso acerte, irá sacar o número máximo de cartas (5).
+   #+begin_center
+   #+attr_latex: :height 0.12\textwidth :center
+   [[./img/unchosen.png]]
+   #+attr_latex: :height 0.12\textwidth :center
+   [[./img/chosen.png]]
+   #+end_center  
+   #+caption: questão de resgate.
+   #+attr_latex: :height 250px :placement [H]
+   [[./img/question.png]] 
+** Criação de cartas
+   Para a criação de novas cartas, implementamos estas opções no menu principal, além das
+   respectivas telas para a entrada dos dados da carta.
+   #+latex: \begin{figure*}[h] \centering
+   #+latex: \begin{subfigure}[t]{0.45\textwidth} \centering
+   #+attr_latex: :height 150px :center
+   [[./img/start.png]]
+   #+latex: \captionsetup{labelformat=empty} \caption{Menu principal.}
+   #+latex: \end{subfigure}
+   #+latex: \begin{subfigure}[t]{0.45\textwidth} \centering
+   #+attr_latex: :height 150px :center
+   [[./img/mcard.png]]
+   #+latex: \captionsetup{labelformat=empty} \caption{Tela de criação de engenheiro de \textit{software}.}
+   #+latex: \end{subfigure}
+   #+latex: \end{figure*}
+   #+caption: carta criada.
+   #+attr_latex: :height 160px :placement [H]
+   [[./img/ccard.png]] 
+** Compartilhamento de cartas
+   Para a /feature/ de cartas compartilhadas, utilizamos como hospedagem para o
+   repositório de cartas o serviço /Amazon AWS/. O repositório é aberto para
+   contribuição. Já o compartilhamento, sendo efetivamente uma /feature/, é configurável
+   por tipo de carta:
+   - Conceito
+   - Problema
+   - Engenheiro de /software/
+   #+latex: \begin{figure*}[h] \centering
+   #+latex: \begin{subfigure}[t]{0.45\textwidth} \centering
+   #+attr_latex: :height 110px :placement [H]
+   [[./img/config.png]] 
+   #+latex: \captionsetup{labelformat=empty} \caption{configuração da \textit{feature}.}
+   #+latex: \end{subfigure}
+   #+latex: \begin{subfigure}[t]{0.45\textwidth} \centering
+   #+attr_latex: :height 85px :placement [H]
+   [[./img/download.png]] 
+   #+latex: \captionsetup{labelformat=empty} \caption{Log de download das cartas.}
+   #+latex: \end{subfigure}
+   #+latex: \end{figure*}
+* Aspecto de Logging
+  O código de logging estava espalhado através de várias partes do código. Havia dois
+  problemas típicos: /tangling/ e /scattering/.  Para resolver tais problemas, foi criado
+  o aspecto de /logging/.
+  #+caption: solução com aspectos.
+  #+attr_latex: :height 160px :placement [H]
+  [[./img/solution.png]] 
+  O aspecto de logging, como o nome já diz, é um aspecto que reúne todos o código de
+  /logging/ do jogo em um módulo, o /LoggingAspect.aj/. Assim, isto resolve os problemas
+  citados anteriormente.
+  #+latex: \pagebreak
+* Padrão Arquitetural
+  O padrão arquitetural do SimuLES é o de três camadas (layers). É muito utilizado em
+  sistemas com interface:
+  - Facilita o desenvolvimento incremental.
+  - Facilita o reuso.
+  - Mudanças só impactam camada superior.
+  - Utilizada no projeto original.
+  #+caption: diagrama de três camadas.
+  #+attr_latex: :height 130px :placement [H]
+  [[./img/layers.png]] 
+* Padrões de Projeto
+  Foram utilizados dois padrões de projeto:
+  - Builder[fn:1]
+  - Factory Method[fn:2]
+  Builder é um padrão de projeto de /software/ criacional que permite a separação da
+  construção de um objeto complexo da sua representação, de forma que o mesmo processo de
+  construção possa criar diferentes representações.   
+
+  Utilizamos este padrão para garantir flexibilidade na construção do cliente responsável
+  pelo acesso ao S3 Bucket, recurso empregado na /feature/ Cartas compartilhadas.
+  #+caption: diagrama de classes do Builder.
+  #+attr_latex: :height 130px :placement [H]
+  [[./img/builder.png]] 
+  #+latex: \pagebreak
+  O padrão de projeto factory method, sendo também criacional, é um dos mais usados em
+  Java. Ele permite a criação de um objeto sem expor a criação lógica para o cliente, e
+  refere-se ao novo objeto usando uma interface comum.
+  #+caption: diagrama de classes do Factory Method.
+  #+attr_latex: :height 130px :placement [H]
+  [[./img/factory.png]] 
+[fn:1][[https://www.geeksforgeeks.org/builder-design-pattern/][Builder design pattern]]
+[fn:2][[https://www.tutorialspoint.com/design_pattern/factory_pattern.htm][Factory design pattern]]
+* Plano de Atividades
+  | Atividade                                   | /Deadline/ | Resposáveis                              |
+  |---------------------------------------------+------------+------------------------------------------|
+  | /Brainstorm/ sobre o jogo                   | 2018-09-12 | Gabriel, Fernanda, Daniel, Manoel, Lucas |
+  | Reunião de /Kick/-/off/ do projeto          | 2018-09-26 | Gabriel, Fernanda, Daniel, Manoel, Lucas |
+  | Definição dos objetivos da SPL              | 2018-10-04 | Daniel                                   |
+  | Definição das técnicas de reuso             | 2018-10-15 | Fernanda, Gabriel                        |
+  | /Design/ da solução                         | 2018-10-22 | Daniel, Lucas, Manoel                    |
+  | Análise arquitetural                        | 2018-10-23 | Lucas                                    |
+  | /Design/ da /feature/ Look'n Feel           | 2018-10-26 | Gabriel                                  |
+  | /Design/ da /feature/ Repositório de cartas | 2018-10-28 | Daniel                                   |
+  | Implementação dos /Look'n Feels/            | 2018-11-01 | Gabriel                                  |
+  | /Design/ da /feature/ Questão de resgate    | 2018-11-01 | Daniel                                   |
+  | /Design/ da /feature/ Criação de cartas     | 2018-11-02 | Manoel, Fernanda                         |
+  | Configuração da solução/projeto             | 2018-11-03 | Daniel, Fernanda                         |
+  | Implementação do Repositório de cartas      | 2018-11-03 | Daniel                                   |
+  | Refatoração do /logging/ em aspecto         | 2018-11-03 | Fernanda                                 |
+  | Atualização do /Readme/ para o projeto      | 2018-11-03 | Gabriel, Daniel                          |
+  | Implementação da Questão de resgate         | 2018-11-04 | Daniel                                   |
+  | Elaboração da apresentação                  | 2018-11-04 | Fernanda, Gabriel, Daniel, Lucas, Manoel |
+  | Implementação da Criação de cartas          | 2018-11-05 | Manoel, Gabriel                          |
+  | Apresentação                                | 2015-11-05 | Fernanda, Gabriel, Daniel, Lucas, Manoel |
+  | Elaboração da documentação                  | 2018-11-08 | Fernanda, Gabriel, Daniel                |
