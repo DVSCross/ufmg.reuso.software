@@ -15,7 +15,7 @@ Para a compilação e execução do código, além da configuração da linha de
 * [AWS Toolkit](https://marketplace.eclipse.org/content/aws-toolkit-eclipse)
 
 Para utilização do AWS Toolkit, que permite uma visualização dentro do próprio eclipse do repositório de cartas online, é necessária a autenticação no serviço AWS.
-As credenciais disponibilizas possuem as duas chaves necessárias:
+As credenciais disponibilizadas possuem as duas chaves necessárias:
 
 * aws_access_key_id
 * aws_secret_access_key
