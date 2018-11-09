@@ -355,7 +355,6 @@ public class ComponentCard extends JPanel {
 
 				ComponentCard.this.mySize = ComponentCard.this.getSize();
 				updateBounds();
-				//System.out.println("resized");
 				ComponentCard.this.repaint();
 
 			}
@@ -495,17 +494,11 @@ public class ComponentCard extends JPanel {
 			if (fl.isFile()) {
 				img = ImageIO.read(fl);
 			} else {
-				System.err.println("Couldn't find file: " + path);
 				return null;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Couldn't find file: " + path);
 			return null;
 		}
-
-		if (img == null)
-			System.err.println("Image da carta  = Null");
 
 		Image menor = null;
 		double fator = 0;
@@ -513,17 +506,14 @@ public class ComponentCard extends JPanel {
 
 			if (x == 0) {
 				fator = (double) y / img.getHeight(null);
-				//System.out.println("fator y= " + fator);
 			} else {
 				fator = (double) x / img.getWidth(null);
-				//System.out.println("fator x = " + fator);
 			}
 
 			x = (int) Math.round(fator * img.getWidth(null));
 			y = (int) Math.round(fator * img.getHeight(null));
 
 		}
-		//System.out.println("fator = " + fator + "; X = " + x + ";  Y = " + y);
 		menor = img.getScaledInstance(x, y, Image.SCALE_SMOOTH);
 
 		return new ImageIcon(menor);

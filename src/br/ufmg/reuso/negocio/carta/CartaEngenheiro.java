@@ -118,8 +118,7 @@ public class CartaEngenheiro extends Carta
 			writer.write("maturidade = " + this.maturidadeEngenheiro + "\n");
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// TODO Auto-generated catch block			
 		}
 	}
 }

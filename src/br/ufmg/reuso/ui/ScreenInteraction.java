@@ -371,7 +371,7 @@ public class ScreenInteraction implements SetupInteraction {
 				mesa = Integer.parseInt(s);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				// printa stack
 			} finally {
 				if (s == null)
 					return 0;
@@ -547,12 +547,10 @@ public class ScreenInteraction implements SetupInteraction {
 	 * cartas conceito o jogo terá, conforme as constantes de ModeGmaeConstants
 	 */
 	{
-		// System.out.println("quantos tipos de cartas de conceito?");
 		// Scanner in = new Scanner(System.in);
 		// int[] cartas = new int [in.nextInt()];
 		// for(int i=0;i<cartas.length;i++)
 		// {
-		// System.out.println("quais tipos de cartas você deseja:\n0: todas\n1: código\n2:comunicação\n3:desenho\n4:gerencia\n5:RH\n6:requisitos");
 		// cartas[i]=in.nextInt();
 		// }
 		// return cartas;
@@ -570,12 +568,10 @@ public class ScreenInteraction implements SetupInteraction {
 	 * cartas problema o jogo terá, conforme as constantes de ModeGmaeConstants
 	 */
 	{
-		// System.out.println("quantos tipos de cartas de problema?");
 		// Scanner in = new Scanner(System.in);
 		// int[] cartas = new int [in.nextInt()];
 		// for(int i=0;i<cartas.length;i++)
 		// {
-		// System.out.println("quais tipos de cartas você deseja:\n0: todas\n1: código\n2:comunicação\n3:desenho\n4:gerencia\n5:RH\n6:requisitos");
 		// cartas[i]=in.nextInt();
 		// }
 		int[] out = (ScreenSelectCards

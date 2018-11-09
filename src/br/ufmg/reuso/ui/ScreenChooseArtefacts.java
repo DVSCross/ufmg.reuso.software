@@ -325,12 +325,10 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 				soma += ((Integer) text.getSelectedItem()).intValue();
 
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
 				text.requestFocus();
 				text.setBorder(BorderFactory.createLineBorder(Color.RED));
 				break;
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.exit(0);
 			} finally {
 
@@ -375,12 +373,10 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 				soma += complexidade * value / 2;
 
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
 				text.requestFocus();
 				text.setBorder(BorderFactory.createLineBorder(Color.RED));
 				break;
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.exit(0);
 			} finally {
 

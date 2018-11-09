@@ -488,7 +488,6 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 
 					ScreenIntegrateModule.this.setPreferredSize(ScreenIntegrateModule.this.getSize());
 					updateBounds();
-					//System.out.println("resized");
 					ScreenIntegrateModule.this.repaint();
 
 				}

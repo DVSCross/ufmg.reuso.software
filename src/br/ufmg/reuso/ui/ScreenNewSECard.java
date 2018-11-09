@@ -149,10 +149,7 @@ public class ScreenNewSECard extends JDialog implements ActionListener  {
 		
 		UUID uuid = UUID.randomUUID();
         String randomUUIDString = uuid.toString();
-		
         card.dumpProperties("online/" + randomUUIDString + "-SE.properties");
-		
-		System.out.println(card);
 	}
 	
 	//=====================================================================================//

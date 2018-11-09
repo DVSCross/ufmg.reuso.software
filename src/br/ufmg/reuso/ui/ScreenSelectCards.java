@@ -90,8 +90,8 @@ public class ScreenSelectCards extends JDialog implements ActionListener {
 	public ScreenSelectCards(String title) {
 		super();
 		names = new Vector<String>(Arrays.asList(new String[] { "Códigos",
-				"Comunicação", "Desenhos", "Gerência", "Recursos Humanos",
-				"Requisitos" }));
+                                                            "Comunicação", "Desenhos", "Gerência", "Recursos Humanos",
+                                                            "Requisitos" }));
 		this.title = title;
 
 		setLayout(new BorderLayout());
@@ -130,7 +130,7 @@ public class ScreenSelectCards extends JDialog implements ActionListener {
 		JCheckBox option = null;
 		String item = null;
 		Dimension dimension = new Dimension((mySize.width / 2) - mySize.width
-				* 10 / 100, 30);
+                                        * 10 / 100, 30);
 		while (it.hasNext()) {
 			item = it.next();
 			option = new JCheckBox(item);
@@ -145,11 +145,11 @@ public class ScreenSelectCards extends JDialog implements ActionListener {
 
 	private ItemListener getItemListener() {
 		ItemListener listener = new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
 
-			}
-		};
+        }
+      };
 		return listener;
 	}
 
@@ -166,7 +166,7 @@ public class ScreenSelectCards extends JDialog implements ActionListener {
 		JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		panel.add(Box
-				.createRigidArea(new Dimension(mySize.width * 70 / 100, 30)));
+              .createRigidArea(new Dimension(mySize.width * 70 / 100, 30)));
 
 		buttonOK = new JButton("OK");
 		buttonOK.addActionListener(this);
@@ -245,7 +245,7 @@ public class ScreenSelectCards extends JDialog implements ActionListener {
 		scr.pack();
 		scr.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		scr.addWindowListener(ScreenInteraction.getScreenInteraction()
-				.windowsExitGame());
+                          .windowsExitGame());
 		scr.setModal(true);
 		scr.setLocationRelativeTo(null);
 		scr.setVisible(true);
@@ -262,18 +262,12 @@ public class ScreenSelectCards extends JDialog implements ActionListener {
 		// apresentá-la na tela.
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				int[] out = (createAndShowSelectCards("Selecione os tipos de carta problema")
-						.getReturn());
-
-				for (int i = 0; i < out.length; i++) {
-					System.out.print(out[i]);
-				}
-			}
-
-		});
-	}
+        @Override
+        public void run() {
+            createAndShowSelectCards("Selecione os tipos de carta problema");
+        }
+    });
+  }
 
 }// Fim da classe
 

@@ -205,7 +205,7 @@ public class GameController implements GameInteraction
 		auxiliar=jogoAtual.integrarModuloJ(jogadorAtual, engenheiroIntegrador, mesaTrabalho,moduloEscolhido,artefatosEscolhidos);
 		jogoAtual.setupController.habilitarTrocarModuloIntegrado(mesaTrabalho); /**habilita o engenheiro situado na mesaTrabalho a trocar modulo integrado de mesa*/
 		
-		//System.out.println("\n validação vai ocorrer se "+ jogoAtual.getProjeto().getTamanho() + " for igual a " + jogadorAtual.contarModuloJaIntegrado()); 
+		
 		if (jogoAtual.validarProjeto(jogadorAtual)==SetupInteraction.PROJETO_CONCLUIDO)
 		{
 			jogoAtual.setupController.exibirVencedor(jogadorAtual);

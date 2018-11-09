@@ -156,8 +156,7 @@ public class CartaBonificacao extends Carta
 			writer.write("tipoSegundoEfeito = " + this.tipoSegundoEfeito + "\n");
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// TODO Auto-generated catch block			
 		}
 	}
 }

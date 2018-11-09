@@ -217,8 +217,7 @@ public class CartaPenalizacao extends Carta
 			writer.write("tipoSegundaCondicao = " + this.tipoSegundaCondicao + "\n");
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// TODO Auto-generated catch block			
 		}
 	}
 }

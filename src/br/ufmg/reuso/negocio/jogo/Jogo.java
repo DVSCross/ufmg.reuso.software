@@ -252,11 +252,6 @@ public final class Jogo {
 //@		this.questoes = fabricaQuestoes.criarBanco(TipoConstrucao.TOPICO, 0, "Arquitetura de Software");
 		// #endif		
 
-		for (Iterator<Questao> i = this.questoes.iterator(); i.hasNext();) {
-		    Questao questao = i.next();
-		    System.out.println(questao.getEnunciado());
-		}
-
 		// sortearProjeto(facilidade);
 		projeto = new CartaoProjeto(facilidade);
 

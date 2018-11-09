@@ -875,21 +875,17 @@ public class Mesa
 		
 
 		for (int i=0;i<ajudas.size();i++)			//TODO teste
-			ajudas.get(i).mostrarArtefato();
+			ajudas.get(i).mostrarArtefato();		
 		
-		System.out.println("\n\nArtefato CODIGOS recebido");
 		for (int i=0;i<codigos.size();i++)			//TODO teste
-			codigos.get(i).mostrarArtefato();
+			codigos.get(i).mostrarArtefato();		
 		
-		System.out.println("\n\nArtefato DESENHOS recebido");
 		for (int i=0;i<desenhos.size();i++)			//TODO teste
-			desenhos.get(i).mostrarArtefato();
+			desenhos.get(i).mostrarArtefato();		
 		
-		System.out.println("\n\nArtefato RASTROS recebido");
 		for (int i=0;i<rastros.size();i++)			//TODO teste
-			rastros.get(i).mostrarArtefato();
+			rastros.get(i).mostrarArtefato();		
 		
-		System.out.println("\n\nArtefato REQUISITOS recebido");
 		for (int i=0;i<requisitos.size();i++)			//TODO teste
 			requisitos.get(i).mostrarArtefato();		//TODO teste
 		

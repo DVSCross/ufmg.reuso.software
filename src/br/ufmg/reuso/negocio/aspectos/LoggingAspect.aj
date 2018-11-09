@@ -19,6 +19,8 @@ import br.ufmg.reuso.negocio.dado.Dado;
 import br.ufmg.reuso.negocio.jogo.Jogo;
 import br.ufmg.reuso.negocio.jogador.Jogador;
 import br.ufmg.reuso.negocio.mesa.Mesa;
+import br.ufmg.reuso.negocio.carta.CartaEngenheiro;
+import auxiliares.Modulo;
 
 public privileged aspect LoggingAspect{
   // ***** pointcut mostrarBaralho ******************************************************* //
@@ -171,9 +173,44 @@ public privileged aspect LoggingAspect{
 		System.out.println("contador = " + jogo.contador + "\tprojeto Requisitos = "
                        + jogo.getProjeto().getModulos()[moduloEscolhido].getRequisitos());
   }
-  // ***** pointcut escolherMesa*************************************************************** //
+  // ***** pointcut escolherMesa********************************************************* //
   pointcut escolherMesa(): call(int escolherMesadeTrabalho());
    before(): escolherMesa(){
     System.out.println("\nEscolhe mesa valida para inserir efeito");
   }
+  // ***** pointcut printaModulo********************************************************* //
+  pointcut printaModulo(Modulo modulo): call(void testRequisitos()) && target(modulo);
+   after(Modulo modulo): printaModulo(modulo){
+    System.out.println(modulo.toString());
+  }
+  // ***** pointcut printaExcecao******************************************************** //
+  pointcut printaExcecao(); 
+  before (Exception e): handler(Exception+) && args(e) {
+    e.printStackTrace();    
+  }
+  // ***** pointcut cartaLn************************************************************** //
+  pointcut cartaLn(CartaEngenheiro card): call(void dumpProperties(..));
+   after(CartaEngenheiro card): cartaLn(card){
+    System.out.println(card);
+  }
+  // ***** pointcut printaExcecaoIO****************************************************** //
+  pointcut printaExcecaoIO(); 
+  before (IOException e): handler(Exception+) && args(e) {
+    e.printStackTrace();    
+  }
+  // ***** pointcut printaExcecaoNF****************************************************** //
+  pointcut printaExcecaoNF(); 
+  before (NumberFormatException e): handler(Exception+) && args(e) {
+    e.printStackTrace();    
+  }
+  // ***** pointcut printaExcecaoF******************************************************* //
+  pointcut printaExcecaoF(); 
+  before (FileNotFoundException e): handler(Exception+) && args(e) {
+    e.printStackTrace();    
+  }
+  // ***** pointcut printaExcecaoAmazon************************************************** //
+  pointcut printaExcecaoAmazon(); 
+  before (AmazonServiceException e): handler(Exception+) && args(e) {
+    System.err.println(e.getErrorMessage());		    
+  }  
 }

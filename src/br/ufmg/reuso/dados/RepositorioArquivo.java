@@ -18,10 +18,9 @@ public class RepositorioArquivo implements IRepositorioArquivo{
 			arquivo = new FileInputStream(nome);
 			arquivoProperties.load(arquivo);
 			arquivo.close();					
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		} catch (FileNotFoundException e) {			
 		} catch (IOException e) {
-			e.printStackTrace();
+			// printa exceções
 		}
 		return arquivoProperties;
 	}

@@ -31,19 +31,16 @@ public class RepositorioOnline {
 				if (chave.startsWith("ConceptCards")) {
 					// #ifdef OnlineConceptCard
 //@					this.baixarCarta(chave);				
-//@					System.out.println("Download de " + os.getKey() + " conclu?do.");
 					// #endif
 				}
 				if (chave.startsWith("ProblemCard")) {
 					// #ifdef OnlineProblemCard//	
 //@					this.baixarCarta(chave);				
-//@//					System.out.println("Download de " + os.getKey() + " conclu?do.");
 					// #endif
 				}
 				if (chave.startsWith("SoftwareEngineerCard")) {
 					// #ifdef OnlineSoftwareEngineerCard								
 //@					this.baixarCarta(chave);				
-//@					System.out.println("Download de " + os.getKey() + " conclu?do.");
 					// #endif
 				}				
 			}        
@@ -63,11 +60,11 @@ public class RepositorioOnline {
 		    s3is.close();
 		    stream.close();
 		} catch (AmazonServiceException e) {
-		    System.err.println(e.getErrorMessage());		    
+		  // printa exceção
 		} catch (FileNotFoundException e) {
-		    System.err.println(e.getMessage());		    
+	    // printa exceção
 		} catch (IOException e) {
-		    System.err.println(e.getMessage());		    
+	    // printa exceção
 		}
 	}
 }

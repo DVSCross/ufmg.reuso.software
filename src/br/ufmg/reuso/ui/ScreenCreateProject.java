@@ -210,7 +210,7 @@ public class ScreenCreateProject extends JDialog implements ActionListener {
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// printa exceção
 		} 
 						
 		return retorno;

@@ -67,7 +67,6 @@ public class ModuloTest {
 		testRastros();
 		testRequisitos();		
 		assertEquals(5*out, modulo.somatorioModulo());
-		System.out.println(modulo.toString());
 	}
 	
 	

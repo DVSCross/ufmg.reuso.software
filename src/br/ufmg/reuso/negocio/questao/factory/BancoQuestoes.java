@@ -40,8 +40,8 @@ public class BancoQuestoes {
 			if(arquivosDiretorio[i].endsWith(".properties")) {				
 				try {
 					this.questoes.add(this.repositorio.obterQuestao(Questao.DIRETORIO + File.separator + arquivosDiretorio[i]));
-				} catch(Exception ex) {
-					ex.printStackTrace();
+				} catch(Exception e) {
+					// printa exceção
 				} 
 			}			
 		}		

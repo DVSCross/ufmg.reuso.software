@@ -297,12 +297,10 @@ public class ScreenInspectArtefacts extends JDialog implements ActionListener {
 				soma += ((Integer) text.getSelectedItem()).intValue();
 
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
 				text.requestFocus();
 				text.setBorder(BorderFactory.createLineBorder(Color.RED));
 				break;
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.exit(0);
 			} finally {
 
