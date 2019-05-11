@@ -4888,143 +4888,123 @@ public final class Jogo {
 		return max;
 	}
 
-	public void allEngineerLoseArtifacts(Jogador jogador, int quantidadeArtefato,
-			int tipoArtefato)/**
-								 * Todos os engenheiros perdem artefatos
-								 */
-	{
+	// Todos os engenheiros perdem artefatos
+	public void allEngineerLoseArtifacts(Jogador jogador, int quantidadeArtefato, int tipoArtefato) {
 		Random sorteio = new Random();
-		for (int i = 0; i < jogador.getTabuleiro()
-				.getMesas().length; i++) /**
-											 * 
-											 * 
-											 * percorrendo mesas dos engenheiros
-											 */
-		{
+		// percorrendo mesas dos engenheiros
+		for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 				/** se mesa nao tem engenheiro, pula iteracao */
 				continue;
 
-			if (quantidadeArtefato == ALL_ARTIFACTS) /**
-														 * se deve-se retirara
-														 * todos os artefatos
-														 */
-			{
-				if (tipoArtefato == ANY_ARTIFACTS) /**
-													 * caso, seja todos os tipos
-													 * de artefatos a serem
-													 * retirados
-													 */
-				{
-					/** retira todos os artefatos */
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_AJUDA);
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_CODIGO);
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_DESENHO);
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_RASTROS);
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
-				}
-
-				if (tipoArtefato == Mesa.ARTEFATOS_AJUDA)
-					/** caso, seja todos os tipos de artefatos de ajuda */
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_AJUDA);
-				/** retira todos os artefatos de ajuda */
-				if (tipoArtefato == Mesa.ARTEFATOS_CODIGO)
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_CODIGO);
-				if (tipoArtefato == Mesa.ARTEFATOS_DESENHO)
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_DESENHO);
-				if (tipoArtefato == Mesa.ARTEFATOS_RASTROS)
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_RASTROS);
-				if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS)
-					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
-			} else /** se nao for todos os artefatos */
-			{
-				for (int j = 0; j < quantidadeArtefato; j++) /**
-																 * ira retirar a
-																 * quantidade de
-																 * artefato de
-																 * cada
-																 * engenheiro
-																 */
-				{
-					if (tipoArtefato == ANY_ARTIFACTS) /**
-														 * se for qualquer tipo
-														 * de de artefato a ser
-														 * retirado
-														 */
-					{
-						boolean retirou = false;
-						while (retirou == false)/**
-												 * enquanto nao se retirar
-												 * artefato e existir artefato
-												 * no tabuleiro, repete-se loop
-												 */
-						{
-							int tipoArtefatoSorteado = sorteio.nextInt(5);
-							/**
-							 * sorteando qual tipo de artefato ira ser retirado
-							 */
-							if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_AJUDA)
-									&& (jogador.getTabuleiro().getMesas()[i].getAjudas().size() > 0)) {
-								retirarArtefato(jogador, i, Mesa.ARTEFATOS_AJUDA);
-								retirou = true;
-							}
-							if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_CODIGO)
-									&& (jogador.getTabuleiro().getMesas()[i].getCodigos().size() > 0)) {
-								retirarArtefato(jogador, i, Mesa.ARTEFATOS_CODIGO);
-								retirou = true;
-							}
-							if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_DESENHO)
-									&& (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() > 0)) {
-								retirarArtefato(jogador, i, Mesa.ARTEFATOS_DESENHO);
-								retirou = true;
-							}
-							if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_RASTROS)
-									&& (jogador.getTabuleiro().getMesas()[i].getRastros().size() > 0)) {
-								retirarArtefato(jogador, i, Mesa.ARTEFATOS_RASTROS);
-								retirou = true;
-							}
-							if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_REQUISITOS)
-									&& (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() > 0)) {
-								retirarArtefato(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
-								retirou = true;
-							}
-							if ((jogador.getTabuleiro().getMesas()[i].getAjudas().size() == 0)
-									&& (jogador.getTabuleiro().getMesas()[i].getCodigos().size() == 0)
-									&& (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() == 0)
-									&& (jogador.getTabuleiro().getMesas()[i].getRastros().size() == 0)
-									&& (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() == 0))
-								/**
-								 * se chegou ate aqui, nao ha mais o que se
-								 * retirar no tabuleiro do jogador
-								 */
-								break;
-							/** sai do while */
-						}
-					}
-
-					if ((tipoArtefato == Mesa.ARTEFATOS_AJUDA)
-							&& (jogador.getTabuleiro().getMesas()[i].getAjudas().size() > 0)) {
-						retirarArtefato(jogador, i, Mesa.ARTEFATOS_AJUDA);
-					}
-					if ((tipoArtefato == Mesa.ARTEFATOS_CODIGO)
-							&& (jogador.getTabuleiro().getMesas()[i].getCodigos().size() > 0)) {
-						retirarArtefato(jogador, i, Mesa.ARTEFATOS_CODIGO);
-					}
-					if ((tipoArtefato == Mesa.ARTEFATOS_DESENHO)
-							&& (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() > 0)) {
-						retirarArtefato(jogador, i, Mesa.ARTEFATOS_DESENHO);
-					}
-					if ((tipoArtefato == Mesa.ARTEFATOS_RASTROS)
-							&& (jogador.getTabuleiro().getMesas()[i].getRastros().size() > 0)) {
-						retirarArtefato(jogador, i, Mesa.ARTEFATOS_RASTROS);
-					}
-					if ((tipoArtefato == Mesa.ARTEFATOS_REQUISITOS)
-							&& (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() > 0)) {
-						retirarArtefato(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
-					}
-				}
+			// se deve-se retirar todos os artefatos
+			if (quantidadeArtefato == ALL_ARTIFACTS) {
+				this.removeAllArtifacts(jogador, tipoArtefato, i);
+			}
+			/** se nao for todos os artefatos */
+			else {
+				this.removeSomeArtifacts(jogador, quantidadeArtefato, tipoArtefato, sorteio, i);
 			}
 		}
+	}
+
+	private void removeSomeArtifacts(Jogador jogador, int quantidadeArtefato, int tipoArtefato, Random sorteio, int i) {
+		// ira retirar a quantidade de artefato de cada engenheiro
+		for (int j = 0; j < quantidadeArtefato; j++) {
+			 // se for qualquer tipo de de artefato a ser retirado
+			if (tipoArtefato == ANY_ARTIFACTS) {
+				boolean retirou = false;
+				// enquanto nao se retirar artefato e existir artefato no tabuleiro, repete-se loop
+				while (retirou == false) {
+					int tipoArtefatoSorteado = sorteio.nextInt(5);
+					/**
+					 * sorteando qual tipo de artefato ira ser retirado
+					 */
+					if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_AJUDA)
+							&& (jogador.getTabuleiro().getMesas()[i].getAjudas().size() > 0)) {
+						retirarArtefato(jogador, i, Mesa.ARTEFATOS_AJUDA);
+						retirou = true;
+					}
+					if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_CODIGO)
+							&& (jogador.getTabuleiro().getMesas()[i].getCodigos().size() > 0)) {
+						retirarArtefato(jogador, i, Mesa.ARTEFATOS_CODIGO);
+						retirou = true;
+					}
+					if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_DESENHO)
+							&& (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() > 0)) {
+						retirarArtefato(jogador, i, Mesa.ARTEFATOS_DESENHO);
+						retirou = true;
+					}
+					if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_RASTROS)
+							&& (jogador.getTabuleiro().getMesas()[i].getRastros().size() > 0)) {
+						retirarArtefato(jogador, i, Mesa.ARTEFATOS_RASTROS);
+						retirou = true;
+					}
+					if ((tipoArtefatoSorteado == Mesa.ARTEFATOS_REQUISITOS)
+							&& (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() > 0)) {
+						retirarArtefato(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
+						retirou = true;
+					}
+					if ((jogador.getTabuleiro().getMesas()[i].getAjudas().size() == 0)
+							&& (jogador.getTabuleiro().getMesas()[i].getCodigos().size() == 0)
+							&& (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() == 0)
+							&& (jogador.getTabuleiro().getMesas()[i].getRastros().size() == 0)
+							&& (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() == 0))
+						/**
+						 * se chegou ate aqui, nao ha mais o que se
+						 * retirar no tabuleiro do jogador
+						 */
+						break;
+					/** sai do while */
+				}
+			}
+
+			if ((tipoArtefato == Mesa.ARTEFATOS_AJUDA)
+					&& (jogador.getTabuleiro().getMesas()[i].getAjudas().size() > 0)) {
+				retirarArtefato(jogador, i, Mesa.ARTEFATOS_AJUDA);
+			}
+			if ((tipoArtefato == Mesa.ARTEFATOS_CODIGO)
+					&& (jogador.getTabuleiro().getMesas()[i].getCodigos().size() > 0)) {
+				retirarArtefato(jogador, i, Mesa.ARTEFATOS_CODIGO);
+			}
+			if ((tipoArtefato == Mesa.ARTEFATOS_DESENHO)
+					&& (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() > 0)) {
+				retirarArtefato(jogador, i, Mesa.ARTEFATOS_DESENHO);
+			}
+			if ((tipoArtefato == Mesa.ARTEFATOS_RASTROS)
+					&& (jogador.getTabuleiro().getMesas()[i].getRastros().size() > 0)) {
+				retirarArtefato(jogador, i, Mesa.ARTEFATOS_RASTROS);
+			}
+			if ((tipoArtefato == Mesa.ARTEFATOS_REQUISITOS)
+					&& (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() > 0)) {
+				retirarArtefato(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
+			}
+		}
+	}
+
+	private void removeAllArtifacts(Jogador jogador, int tipoArtefato, int i) {
+		// caso, seja todos os tipos de artefatos a serem retirados
+		if (tipoArtefato == ANY_ARTIFACTS) {
+			/** retira todos os artefatos */
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_AJUDA);
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_CODIGO);
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_DESENHO);
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_RASTROS);
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
+		}
+
+		if (tipoArtefato == Mesa.ARTEFATOS_AJUDA)
+			/** caso, seja todos os tipos de artefatos de ajuda */
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_AJUDA);
+		/** retira todos os artefatos de ajuda */
+		if (tipoArtefato == Mesa.ARTEFATOS_CODIGO)
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_CODIGO);
+		if (tipoArtefato == Mesa.ARTEFATOS_DESENHO)
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_DESENHO);
+		if (tipoArtefato == Mesa.ARTEFATOS_RASTROS)
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_RASTROS);
+		if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS)
+			retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
 	}
 
 	public void retirarTodosArtefatos(Jogador jogador, int mesa, int tipoArtefato) {
