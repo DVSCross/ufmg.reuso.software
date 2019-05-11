@@ -71,6 +71,8 @@ public class Mesa
 	/**contem o efeito temporario de o engenheiro produzir somente artefatos brancos*/
 	private int duracaoEfeito_TEMPORARIO_ProduceOnlyWhiteArtifacts;
 	
+	private ArtifactsInspector artifactsInspector;
+	
 	/*---------------------------------------------------------------------------------------*/
 	@SuppressWarnings("unchecked")
 	public Mesa ()
@@ -97,6 +99,7 @@ public class Mesa
 		especificacaoModuloIntegrado=-1;				/** mesa ainda nao contem modulo integrado*/
 		
 		moduloIntegrado= new ArrayList[5]; 				/** alocando o moduloIntegracao com 5 posicoes*/
+		this.artifactsInspector = new ArtifactsInspector();
 	}
 	
 	
@@ -287,143 +290,49 @@ public class Mesa
 	 * @param ArtefatosB
 	 * @param ArtefatosR
 	 */
-	public void virarArtefatos(Modulo [] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
-	{
+	public void virarArtefatos(Modulo[] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
+	{		
+		if(pedido[ARTEFATOS_BONS].getAjudas() > 0)
+			this.artifactsInspector.virarAjudas(pedido, ARTEFATOS_BONS, ajudas);				
+		if(pedido[ARTEFATOS_BONS].getCodigos() > 0)		
+			this.artifactsInspector.virarCodigos(pedido, ARTEFATOS_BONS, codigos);			
+		if(pedido[ARTEFATOS_BONS].getDesenhos() > 0)
+			this.artifactsInspector.virarDesenhos(pedido, ARTEFATOS_BONS, desenhos);
+		if(pedido[ARTEFATOS_BONS].getRastros() > 0)
+			this.artifactsInspector.virarRastros(pedido, ARTEFATOS_BONS, rastros);			
+		if(pedido[ARTEFATOS_BONS].getRequisitos() > 0)
+			this.artifactsInspector.virarRequisitos(pedido, ARTEFATOS_BONS, requisitos);			
 		
-		if(pedido[ARTEFATOS_BONS].getAjudas()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getAjudas();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((ajudas.get(j).inspected() == true)||(ajudas.get(j).isPoorQuality()== true))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				ajudas.get(j).setArtefatoInspecionado(true);
-			}
-		}
+		if(pedido[ARTEFATOS_RUINS].getAjudas() > 0)
+			this.artifactsInspector.virarAjudas(pedido, ARTEFATOS_RUINS, ajudas);	
+		if(pedido[ARTEFATOS_RUINS].getCodigos() > 0)
+			this.artifactsInspector.virarCodigos(pedido, ARTEFATOS_RUINS, codigos);		
+		if(pedido[ARTEFATOS_RUINS].getDesenhos() > 0)
+			this.artifactsInspector.virarDesenhos(pedido, ARTEFATOS_RUINS, desenhos);		
+		if(pedido[ARTEFATOS_RUINS].getRastros() > 0)
+			this.artifactsInspector.virarRastros(pedido, ARTEFATOS_RUINS, rastros);		
+		if(pedido[ARTEFATOS_RUINS].getRequisitos() > 0)
+			this.artifactsInspector.virarRequisitos(pedido, ARTEFATOS_RUINS, requisitos);
 		
-		if(pedido[ARTEFATOS_BONS].getCodigos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getCodigos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((codigos.get(j).inspected() == true)||(codigos.get(j).isPoorQuality()== true))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				codigos.get(j).setArtefatoInspecionado(true);
-			}
-		}
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<ajudas.size();i++)
+			ajudas.get(i).mostrarArtefato();
 		
-		if(pedido[ARTEFATOS_BONS].getDesenhos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getDesenhos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((desenhos.get(j).inspected() == true)||(desenhos.get(j).isPoorQuality()== true))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				desenhos.get(j).setArtefatoInspecionado(true);
-			}
-		}
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<codigos.size();i++)			
+			codigos.get(i).mostrarArtefato();	
 		
-		if(pedido[ARTEFATOS_BONS].getRastros()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getRastros();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((rastros.get(j).inspected() == true)||(rastros.get(j).isPoorQuality()== true))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				rastros.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_BONS].getRequisitos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getRequisitos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((requisitos.get(j).inspected() == true)||(requisitos.get(j).isPoorQuality()== true))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				requisitos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getAjudas()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getAjudas();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((ajudas.get(j).inspected() == true)||(ajudas.get(j).isPoorQuality()== false))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				ajudas.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getCodigos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getCodigos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((codigos.get(j).inspected() == true)||(codigos.get(j).isPoorQuality()== false))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				codigos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getDesenhos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getDesenhos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((desenhos.get(j).inspected() == true)||(desenhos.get(j).isPoorQuality()== false))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				desenhos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getRastros()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getRastros();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((rastros.get(j).inspected() == true)||(rastros.get(j).isPoorQuality()== false))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				rastros.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getRequisitos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getRequisitos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((requisitos.get(j).inspected() == true)||(requisitos.get(j).isPoorQuality()== false))
-					j++; // TODO lancar excecao em caso de nao haver artefatos a serem virados
-				requisitos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		for (int i=0;i<ajudas.size();i++)			//TODO teste
-				ajudas.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-		
-		for (int i=0;i<codigos.size();i++)			//TODO teste
-				codigos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<desenhos.size();i++)
+			desenhos.get(i).mostrarArtefato();	
 				
-		for (int i=0;i<desenhos.size();i++)			//TODO teste
-				desenhos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				
-		for (int i=0;i<rastros.size();i++)			//TODO teste
-				rastros.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
-				
-		for (int i=0;i<requisitos.size();i++)			//TODO teste
-				requisitos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<rastros.size();i++)
+			rastros.get(i).mostrarArtefato();
+		
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<requisitos.size();i++)			
+			requisitos.get(i).mostrarArtefato();	
 	}
 
 	public void trocarArtefatos(Modulo [] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
