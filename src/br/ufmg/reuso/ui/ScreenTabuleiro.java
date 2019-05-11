@@ -82,7 +82,13 @@ public class ScreenTabuleiro extends JDialog {
 	Carta cartaAtiva = null;
 
 	// Variáveis utilizadas para posicionamento dos paineis.
-	private int x, y, width, height, yInc, xInc;
+	private int x, y, width;
+
+	public int height;
+
+	private int yInc;
+
+	private int xInc;
 	private Dimension dimPanel;
 	private Dimension mySise = new Dimension();
 
@@ -372,7 +378,7 @@ public class ScreenTabuleiro extends JDialog {
 
 								art = it.next();
 
-								img = getImageArtefact(art);
+								img = art.getImageArtefact(this);
 
 								label = new JLabel();
 
@@ -658,64 +664,6 @@ public class ScreenTabuleiro extends JDialog {
 		} //end for
 		
 		return jpanel;
-	}
-
-	// =====================================================================================//
-	/**
-	 * Recebe um artefato a ser pintado e verifica, segundo seu estado qual a
-	 * imagem correspondente
-	 * 
-	 * @param art
-	 *            - Artefato a ser pintado
-	 * 
-	 * @return a imagem no formato ImagIcon a ser pintada em um Label
-	 */
-	private ImageIcon getImageArtefact(Artefato art) {
-		ImageIcon img = null;
-		if (art.isPoorQuality() == true) { // Artifact
-			// Bad
-
-			if (art.inspected() == true) {
-
-				if (art.isBug() == true) {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath
-									+ "artefactBadBugged.png", 0, height);
-				} else {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath + "artefactBadOk.png",
-							0, height);
-				}
-
-			} else { // Artifact Bad not inspectioned
-				img = ComponentCard.getImageScalable(
-						ScreenInteraction.imagePath + "artefactBad.png", 0,
-						height);
-			}
-
-		} else { // Artifact God
-
-			if (art.inspected() == true) {
-
-				if (art.isBug() == true) {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath
-									+ "artefactGoodBugged.png", 0, height);
-				} else {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath + "artefactGoodOk.png",
-							0, height);
-				}
-
-			} else { // Artifact Bad not inspectioned
-				img = ComponentCard.getImageScalable(
-						ScreenInteraction.imagePath + "artefactGood.png", 0,
-						height);
-
-			}
-
-		}
-		return img;
 	}
 
 	// =====================================================================================//

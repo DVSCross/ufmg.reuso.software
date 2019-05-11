@@ -12,6 +12,12 @@
 
 package br.ufmg.reuso.negocio.carta;
 
+import javax.swing.ImageIcon;
+
+import br.ufmg.reuso.ui.ComponentCard;
+import br.ufmg.reuso.ui.ScreenInteraction;
+import br.ufmg.reuso.ui.ScreenTabuleiro;
+
 /**
  * @author Michael David
  * Classe que contém o objeto artefato
@@ -89,5 +95,114 @@ public class Artefato
 	{
 		estado.getEstado(this);
 	}
+
+	/**
+	 * Recebe um artefato a ser pintado e verifica, segundo seu estado qual a
+	 * imagem correspondente
+	 * 
+	 * @param height TODO
+	 * @return a imagem no formato ImagIcon a ser pintada em um Label
+	 */
+	public ImageIcon getImageArtefact(int height) {
+		ImageIcon img = null;
+		if (isPoorQuality() == true) { // Artifact
+			// Bad
 	
+			if (inspected() == true) {
+	
+				if (isBug() == true) {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath
+									+ "artefactBadBugged.png", 0, height);
+				} else {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath + "artefactBadOk.png",
+							0, height);
+				}
+	
+			} else { // Artifact Bad not inspectioned
+				img = ComponentCard.getImageScalable(
+						ScreenInteraction.imagePath + "artefactBad.png", 0,
+						height);
+			}
+	
+		} else { // Artifact God
+	
+			if (inspected() == true) {
+	
+				if (isBug() == true) {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath
+									+ "artefactGoodBugged.png", 0, height);
+				} else {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath + "artefactGoodOk.png",
+							0, height);
+				}
+	
+			} else { // Artifact Bad not inspectioned
+				img = ComponentCard.getImageScalable(
+						ScreenInteraction.imagePath + "artefactGood.png", 0,
+						height);
+	
+			}
+	
+		}
+		return img;
+	}
+
+	/**
+	 * Recebe um artefato a ser pintado e verifica, segundo seu estado qual a
+	 * imagem correspondente
+	 * 
+	 * @param screenTabuleiro TODO
+	 * @return a imagem no formato ImagIcon a ser pintada em um Label
+	 */
+	public ImageIcon getImageArtefact(ScreenTabuleiro screenTabuleiro) {
+		ImageIcon img = null;
+		if (isPoorQuality() == true) { // Artifact
+			// Bad
+	
+			if (inspected() == true) {
+	
+				if (isBug() == true) {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath
+									+ "artefactBadBugged.png", 0, screenTabuleiro.height);
+				} else {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath + "artefactBadOk.png",
+							0, screenTabuleiro.height);
+				}
+	
+			} else { // Artifact Bad not inspectioned
+				img = ComponentCard.getImageScalable(
+						ScreenInteraction.imagePath + "artefactBad.png", 0,
+						screenTabuleiro.height);
+			}
+	
+		} else { // Artifact God
+	
+			if (inspected() == true) {
+	
+				if (isBug() == true) {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath
+									+ "artefactGoodBugged.png", 0, screenTabuleiro.height);
+				} else {
+					img = ComponentCard.getImageScalable(
+							ScreenInteraction.imagePath + "artefactGoodOk.png",
+							0, screenTabuleiro.height);
+				}
+	
+			} else { // Artifact Bad not inspectioned
+				img = ComponentCard.getImageScalable(
+						ScreenInteraction.imagePath + "artefactGood.png", 0,
+						screenTabuleiro.height);
+	
+			}
+	
+		}
+		return img;
+	}	
 }

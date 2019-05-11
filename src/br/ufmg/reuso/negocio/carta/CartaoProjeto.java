@@ -20,8 +20,10 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 
 import br.ufmg.reuso.dados.carta.RepositorioCartaoProjeto;
+import br.ufmg.reuso.negocio.jogador.Jogador;
 import br.ufmg.reuso.negocio.jogo.Jogo;
 import br.ufmg.reuso.negocio.mesa.Modulo;
+import br.ufmg.reuso.negocio.tabuleiro.SetupInteraction;
 import br.ufmg.reuso.ui.ScreenControl;
 
 public class CartaoProjeto 
@@ -271,5 +273,73 @@ public class CartaoProjeto
 	public void setModulos(Modulo[] modulos) 
 	{
 		this.modulos = modulos;
+	}
+
+	/**
+	 * Este metodo e uma proeza. =P 4 loops aninhados
+	 * 
+	 * @param jogo TODO
+	 * @param jogador
+	 * @return
+	 */
+	public int validarProjeto(Jogo jogo, Jogador jogador) {
+		if (jogador.contarModuloJaIntegrado() == getTamanho()) {
+			for (int i = 0; i < getQualidade(); i++) /**
+											 * conferindo x modulos integrados,
+											 * onde x e igual ? qualidade do
+											 * projeto
+											 */
+			{
+				for (int z = 0; z < jogador.getTabuleiro()
+						.getMesas().length; z++)/**
+												 * 
+												 * 
+												 * percorrendo mesas do
+												 * tabuleiro
+												 */
+				{
+					if (jogador.getTabuleiro().getMesas()[z].getModuloJaIntegrado() == false)
+						/** se mesa nao tem modulo integrado */
+						continue;
+					for (int j = 0; j < jogador.getTabuleiro().getMesas()[z]
+							.getModuloIntegrado().length; j++) /**
+																 * Percorrendo
+																 * cada conjunto
+																 * de artefatos
+																 * do modulo
+																 * integrado da
+																 * mesa z do
+																 * jogador
+																 */
+					{// TODO caso tenha efeito de pular modulo integrado, entra
+						// aqui
+						for (int k = 0; k < jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j]
+								.size(); k++) /**
+												 * 
+												 * 
+												 * percorrendo o array de
+												 * artefato da posicao j do
+												 * modulo integrado em analise
+												 */
+						{
+							if (jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j].get(k)
+									.isPoorQuality() == true) /**
+																 * se qualidade
+																 * do artefato
+																 * for ruim, ou
+																 * seja, com bug
+																 */
+							{
+								return SetupInteraction.PROJETO_NAO_CONCLUIDO;
+							}
+						}
+					}
+				}
+			}
+			return SetupInteraction.PROJETO_CONCLUIDO;
+		} else {
+			return SetupInteraction.PROJETO_NAO_CONCLUIDO;
+		}
+	
 	}
 }

@@ -71,7 +71,7 @@ public final class Jogo {
 
 	private Status gameStatus;
 	private Jogador[] jogadores;
-	private CartaoProjeto projeto;
+	public CartaoProjeto projeto;
 	private List<Questao> questoes;
 	private BaralhoCartas[] baralhoCartas;
 	private BaralhoArtefatosBons[] baralhoArtefatosBons;
@@ -991,74 +991,6 @@ public final class Jogo {
 			return jogadorAtual;
 		}
 		return jogadorAtual;
-	}
-
-	/**
-	 * Este metodo e uma proeza. =P 4 loops aninhados
-	 * 
-	 * @param jogador
-	 * @return
-	 */
-	public int validarProjeto(Jogador jogador) {
-		if (jogador.contarModuloJaIntegrado() == projeto.getTamanho()) {
-			for (int i = 0; i < projeto
-					.getQualidade(); i++) /**
-											 * conferindo x modulos integrados,
-											 * onde x e igual ? qualidade do
-											 * projeto
-											 */
-			{
-				for (int z = 0; z < jogador.getTabuleiro()
-						.getMesas().length; z++)/**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
-				{
-					if (jogador.getTabuleiro().getMesas()[z].getModuloJaIntegrado() == false)
-						/** se mesa nao tem modulo integrado */
-						continue;
-					for (int j = 0; j < jogador.getTabuleiro().getMesas()[z]
-							.getModuloIntegrado().length; j++) /**
-																 * Percorrendo
-																 * cada conjunto
-																 * de artefatos
-																 * do modulo
-																 * integrado da
-																 * mesa z do
-																 * jogador
-																 */
-					{// TODO caso tenha efeito de pular modulo integrado, entra
-						// aqui
-						for (int k = 0; k < jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j]
-								.size(); k++) /**
-												 * 
-												 * 
-												 * percorrendo o array de
-												 * artefato da posicao j do
-												 * modulo integrado em analise
-												 */
-						{
-							if (jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j].get(k)
-									.isPoorQuality() == true) /**
-																 * se qualidade
-																 * do artefato
-																 * for ruim, ou
-																 * seja, com bug
-																 */
-							{
-								return SetupInteraction.PROJETO_NAO_CONCLUIDO;
-							}
-						}
-					}
-				}
-			}
-			return SetupInteraction.PROJETO_CONCLUIDO;
-		} else {
-			return SetupInteraction.PROJETO_NAO_CONCLUIDO;
-		}
-
 	}
 
 	//#ifdef ConceptCard
