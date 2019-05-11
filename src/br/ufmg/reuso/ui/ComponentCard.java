@@ -190,7 +190,7 @@ public class ComponentCard extends JPanel {
 				lblFig = new JLabel();
 				lblFig.setBorder(BorderFactory.createTitledBorder(
 						BorderFactory.createEmptyBorder(),
-						cartaEngenheiro.getNomeEngenheiro(), TitledBorder.LEFT,
+						cartaEngenheiro.getEngenheiro().getNomeEngenheiro(), TitledBorder.LEFT,
 						TitledBorder.DEFAULT_POSITION, font));
 				
 				String path = ScreenInteraction.imagePath
@@ -213,7 +213,7 @@ public class ComponentCard extends JPanel {
 			
 			{
 				lblSold = new JLabel("Salário:"
-						+ Integer.toString(cartaEngenheiro
+						+ Integer.toString(cartaEngenheiro.getEngenheiro()
 								.getSalarioEngenheiro()) + "K");
 				
 				lblSold.setHorizontalAlignment(SwingConstants.CENTER);
@@ -230,7 +230,7 @@ public class ComponentCard extends JPanel {
 			}
 
 			{
-				lblHabilitValue = new JLabel(Integer.toString(cartaEngenheiro
+				lblHabilitValue = new JLabel(Integer.toString(cartaEngenheiro.getEngenheiro()
 						.getHabilidadeEngenheiro()));
 				
 				lblHabilitValue.setHorizontalAlignment(SwingConstants.CENTER);
@@ -247,7 +247,7 @@ public class ComponentCard extends JPanel {
 			}
 
 			{
-				lblMaturitValue = new JLabel(Integer.toString(cartaEngenheiro
+				lblMaturitValue = new JLabel(Integer.toString(cartaEngenheiro.getEngenheiro()
 						.getMaturidadeEngenheiro()));
 				
 				lblMaturitValue.setHorizontalAlignment(SwingConstants.CENTER);

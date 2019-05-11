@@ -474,7 +474,7 @@ public class ScreenTabuleiro extends JDialog {
 			// label.setBorder(borderW);
 			panelBoard.add(label);
 
-			label = new JLabel(board.getCartaMesa().getNomeEngenheiro(),
+			label = new JLabel(board.getCartaMesa().getEngenheiro().getNomeEngenheiro(),
 					JLabel.CENTER);
 			y += height;
 			height = yInc / 2;

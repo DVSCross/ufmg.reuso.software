@@ -30,6 +30,7 @@ public class CartaEngenheiro extends Carta
 	{
 		super ("Eng.Software", codigo, texto,ENGENHEIRO);				 //inicializando a superclasse explicitamente
 		
+		this.engenheiro = new Engenheiro();
 		this.engenheiro.setNomeEngenheiro(nomeEng);
 		this.engenheiro.setSalarioEngenheiro(salarioEng);
 		this.engenheiro.setHabilidadeEngenheiro(habilidadeEng);		
@@ -43,6 +44,10 @@ public class CartaEngenheiro extends Carta
 	public void mostrarCarta()
 	{
     // printa a carta
+	}
+	
+	public Engenheiro getEngenheiro() {
+		return this.engenheiro;
 	}
 	
 	public boolean isEngenheiroTrabalhouNestaRodada() 

@@ -34,7 +34,8 @@ import br.ufmg.reuso.negocio.mesa.Mesa;
 import br.ufmg.reuso.negocio.mesa.Modulo;
 import br.ufmg.reuso.negocio.questao.Questao;
 import br.ufmg.reuso.negocio.questao.factory.BancoQuestoes;
-import br.ufmg.reuso.negocio.questao.factory.TipoConstrucao;
+import br.ufmg.reuso.negocio.questao.factory.BancoQuestoesAleatorio;
+import br.ufmg.reuso.negocio.questao.factory.BancoQuestoesTopicos;
 import br.ufmg.reuso.negocio.tabuleiro.SetupInteraction;
 import br.ufmg.reuso.negocio.tabuleiro.Tabuleiro;
 import br.ufmg.reuso.ui.ScreenInteraction;
@@ -233,23 +234,22 @@ public final class Jogo {
 			int[] cartasProblema) {
 
 		/* F?brica de Baralhos de Artefatos */
-		AbstractCreatorBaralhoArtefatos fabricaBaralhoArtefatos = new CreatorBaralhoArtefatos();
-		BancoQuestoes fabricaQuestoes = new BancoQuestoes();
+		AbstractCreatorBaralhoArtefatos fabricaBaralhoArtefatos = new CreatorBaralhoArtefatos();		
 
 		this.baralhoCartas = new BaralhoCartas[2];
 		this.baralhoArtefatosBons = new BaralhoArtefatosBons[2];
 		this.baralhoArtefatosRuins = new BaralhoArtefatosRuins[2];
 		
-		// #ifdef AllQuestions
-		this.questoes = fabricaQuestoes.criarBanco(TipoConstrucao.TODAS, 0, "");
+		// #ifdef AllQuestions		
+		this.questoes = new BancoQuestoes().criarBanco();
 		// #endif
 		
 		// #ifdef RandomQuestions
-//@		this.questoes = fabricaQuestoes.criarBanco(TipoConstrucao.ALEATORIO, 5, "");
+//@		this.questoes = new BancoQuestoesAleatorio(5).criarBanco();
 		// #endif
 		
 		// #ifdef TopicQuestions
-//@		this.questoes = fabricaQuestoes.criarBanco(TipoConstrucao.TOPICO, 0, "Arquitetura de Software");
+//@		this.questoes = new BancoQuestoesTopicos("Arquitetura de Software").criarBanco();
 		// #endif		
 
 		// sortearProjeto(facilidade);
@@ -1100,7 +1100,7 @@ public final class Jogo {
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiro[0])) /**
 												 * encontra engenheiro que
 												 * recebera efeito
@@ -1134,7 +1134,7 @@ public final class Jogo {
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
-					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[j])) /**
 													 * 
 													 * 
@@ -1165,7 +1165,7 @@ public final class Jogo {
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiro[0])) /**
 												 * encontra engenheiro que
 												 * recebera efeito
@@ -1210,7 +1210,7 @@ public final class Jogo {
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiro[0])) /**
 												 * encontra engenheiro que
 												 * recebera efeito
@@ -1322,7 +1322,7 @@ public final class Jogo {
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiro[0])) /**
 												 * encontra engenheiro que
 												 * recebera efeito
@@ -1356,7 +1356,7 @@ public final class Jogo {
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
-					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[j])) /**
 													 * 
 													 * 
@@ -1387,7 +1387,7 @@ public final class Jogo {
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiro[0])) /**
 												 * encontra engenheiro que
 												 * recebera efeito
@@ -1432,7 +1432,7 @@ public final class Jogo {
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiro[0])) /**
 												 * encontra engenheiro que
 												 * recebera efeito
@@ -1534,7 +1534,7 @@ public final class Jogo {
 		{
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 				continue;
-			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro().equals(
+			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro().equals(
 					engenheiro[0])) /**
 									 * encontra engenheiro que recebera efeito
 									 */
@@ -1605,7 +1605,7 @@ public final class Jogo {
 		{
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 				continue;
-			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro().equals(
+			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro().equals(
 					engenheiro)) /**
 									 * encontra engenheiro que recebera efeito
 									 */
@@ -1922,7 +1922,7 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_ENGINEERS_WITH_SKILL_LESS_THAN_2_NOT_INSPECT_ARTIFACTS): {
 			for (int i = 0; i < jogadorAlvo.getTabuleiro().getMesas().length; i++) {
-				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() < 2)
+				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() < 2)
 					jogadorAlvo.getTabuleiro().getMesas()[i].setDuracaoEfeito_TEMPORARIO_EnginnersNotProduceArtifacts(
 							cartaUtilizada.getDuracaoEfeito());
 			}
@@ -2106,7 +2106,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2161,7 +2161,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2197,7 +2197,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2231,7 +2231,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2264,7 +2264,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2300,7 +2300,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2330,7 +2330,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2360,7 +2360,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2392,7 +2392,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[j])) /**
 													 * 
 													 * 
@@ -2424,7 +2424,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2581,10 +2581,10 @@ public final class Jogo {
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
-						.getMaturidadeEngenheiro() <= maturidadeMinima) {
+						.getEngenheiro().getMaturidadeEngenheiro() <= maturidadeMinima) {
 					/** encontrando qual a maturidade minima */
 					maturidadeMinima = jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
-							.getMaturidadeEngenheiro();
+							.getEngenheiro().getMaturidadeEngenheiro();
 				}
 			}
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
@@ -2596,10 +2596,10 @@ public final class Jogo {
 			{
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
+				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro()
 						.getMaturidadeEngenheiro() == maturidadeMinima) {
 					/** encontrando engenheiros com maturidade minima */
-					engenheiros.add(jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro());
+					engenheiros.add(jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro());
 				}
 			}
 			Random sorteio = new Random();
@@ -2615,7 +2615,7 @@ public final class Jogo {
 												 * percorre mesa
 												 */
 			{
-				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiroDemitido)) /**
 														 * acha engenheiro
 														 */
@@ -2705,7 +2705,7 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_ENGINEERS_WITH_SKILL_LESS_THAN_2_NOT_INSPECT_ARTIFACTS): {
 			for (int i = 0; i < jogadorAlvo.getTabuleiro().getMesas().length; i++) {
-				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() < 2)
+				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() < 2)
 					jogadorAlvo.getTabuleiro().getMesas()[i].setDuracaoEfeito_TEMPORARIO_EnginnersNotProduceArtifacts(
 							cartaUtilizada.getDuracaoEfeito());
 			}
@@ -2883,7 +2883,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2937,7 +2937,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -2973,7 +2973,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -3007,7 +3007,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -3040,7 +3040,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -3076,7 +3076,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -3106,7 +3106,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -3136,7 +3136,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -3168,7 +3168,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[j])) /**
 													 * 
 													 * 
@@ -3200,7 +3200,7 @@ public final class Jogo {
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
-					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
+					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
 													 * acha engenheiro
 													 */
@@ -3357,10 +3357,10 @@ public final class Jogo {
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
-						.getMaturidadeEngenheiro() <= maturidadeMinima) {
+						.getEngenheiro().getMaturidadeEngenheiro() <= maturidadeMinima) {
 					/** encontrando qual a maturidade minima */
 					maturidadeMinima = jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
-							.getMaturidadeEngenheiro();
+							.getEngenheiro().getMaturidadeEngenheiro();
 				}
 			}
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
@@ -3373,9 +3373,9 @@ public final class Jogo {
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
-						.getMaturidadeEngenheiro() == maturidadeMinima) {
+						.getEngenheiro().getMaturidadeEngenheiro() == maturidadeMinima) {
 					/** encontrando engenheiros com maturidade minima */
-					engenheiros.add(jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro());
+					engenheiros.add(jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro());
 				}
 			}
 			Random sorteio = new Random();
@@ -3391,7 +3391,7 @@ public final class Jogo {
 												 * percorre mesa
 												 */
 			{
-				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 						.equals(engenheiroDemitido)) /**
 														 * acha engenheiro
 														 */
@@ -3783,7 +3783,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 1)
 					return false;
 			}
 
@@ -3793,7 +3793,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 2)
 					return false;
 			}
 
@@ -3803,7 +3803,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 3)
 					return false;
 			}
 
@@ -3813,7 +3813,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 4)
 					return false;
 			}
 
@@ -3823,7 +3823,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 5)
 					return false;
 			}
 
@@ -3833,7 +3833,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 6)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 6)
 					return false;
 			}
 
@@ -3927,7 +3927,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 1)
 					return false;
 			}
 		}
@@ -3935,7 +3935,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 2)
 					return false;
 			}
 		}
@@ -3943,7 +3943,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 3)
 					return false;
 			}
 		}
@@ -3951,7 +3951,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 4)
 					return false;
 			}
 		}
@@ -3959,7 +3959,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 5)
 					return false;
 			}
 		}
@@ -3967,7 +3967,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 1)
 					return false;
 			}
 		}
@@ -3975,7 +3975,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 2)
 					return false;
 			}
 		}
@@ -3983,7 +3983,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 3)
 					return false;
 			}
 		}
@@ -3991,7 +3991,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 4)
 					return false;
 			}
 		}
@@ -3999,7 +3999,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 5)
 					return false;
 			}
 		}
@@ -4143,7 +4143,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 1)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4155,7 +4155,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 2)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4167,7 +4167,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 3)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4179,7 +4179,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 4)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4191,7 +4191,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 5)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4552,7 +4552,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 1)
 					return false;
 			}
 
@@ -4562,7 +4562,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 2)
 					return false;
 			}
 
@@ -4572,7 +4572,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 3)
 					return false;
 			}
 
@@ -4582,7 +4582,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 4)
 					return false;
 			}
 
@@ -4592,7 +4592,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 5)
 					return false;
 			}
 
@@ -4602,7 +4602,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 6)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 6)
 					return false;
 			}
 
@@ -4696,7 +4696,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 1)
 					return false;
 			}
 		}
@@ -4704,7 +4704,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 2)
 					return false;
 			}
 		}
@@ -4712,7 +4712,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 3)
 					return false;
 			}
 		}
@@ -4720,7 +4720,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 4)
 					return false;
 			}
 		}
@@ -4728,7 +4728,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() <= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() <= 5)
 					return false;
 			}
 		}
@@ -4736,7 +4736,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 1)
 					return false;
 			}
 		}
@@ -4744,7 +4744,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 2)
 					return false;
 			}
 		}
@@ -4752,7 +4752,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 3)
 					return false;
 			}
 		}
@@ -4760,7 +4760,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 4)
 					return false;
 			}
 		}
@@ -4768,7 +4768,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro() >= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro() >= 5)
 					return false;
 			}
 		}
@@ -4912,7 +4912,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 1)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 1)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4924,7 +4924,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 2)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 2)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4936,7 +4936,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 3)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 3)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4948,7 +4948,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 4)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 4)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -4960,7 +4960,7 @@ public final class Jogo {
 			for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) {
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
-				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getMaturidadeEngenheiro() >= 5)
+				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getMaturidadeEngenheiro() >= 5)
 					contador++;
 			}
 			if (contador > (Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO - 2))
@@ -5862,7 +5862,7 @@ public final class Jogo {
 					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
 
-					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(getJogadores()[j].getTabuleiro().getEfeitoAumentarHabilidadeEngenheiroLater()
 									.get(0)[0])) /**
 													 * encontra engenheiro que
@@ -5900,7 +5900,7 @@ public final class Jogo {
 					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
 
-					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
+					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getNomeEngenheiro()
 							.equals(getJogadores()[j].getTabuleiro().getEfeitoDemitirEngenheiroLater()
 									.get(0))) /**
 												 * 
