@@ -51,9 +51,18 @@ public class CartaBonificacao extends Carta
 		setTipoSegundoEfeito(0);
 	}
 	
-        //construindo a carta de conceito
-	public CartaBonificacao (String titulo, String codigo, String texto,				
-			String referencia, int duracao, int custo,int efeito1,int efeito2, int quantidade1, int quantidade2)
+	//construindo a carta de conceito
+	public CartaBonificacao (String titulo,
+			                 String codigo,
+			                 String texto,
+			                 String referencia,
+			                 int duracao, 
+			                 int custo,
+			                 int efeito1,
+			                 int efeito2,
+			                 int quantidade1,
+			                 int quantidade2)
+
 	{
 		//inicializando a superclasse explicitamente, texto significa a descricao do efeito ao utlizar a carta
 		super (titulo, codigo, texto,CONCEITO);												

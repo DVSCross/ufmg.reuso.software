@@ -52,7 +52,7 @@ public class Principal {
 	//@      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 	      //#endif	      
 
-	      RepositorioOnline repo = new RepositorioOnline();	     
+	      // RepositorioOnline repo = new RepositorioOnline();	     
 	    }
 	    catch (Exception e) { }
 

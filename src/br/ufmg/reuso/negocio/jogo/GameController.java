@@ -69,8 +69,15 @@ public class GameController implements GameInteraction
 			else
 			{
 				/**Restaura pontos de habilidade das cartas de engenheiro na mesas do tabuleiro do jogador*/
+
 				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setHabilidadeEngenheiroAtual
 					(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro()); 
+
+        /**codigo particionado: Início*/
+				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setHabilidadeEngenheiroAtual 
+        
+        /**codigo particionado: Fim*/
+					(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro()); 
 			
 				/**Atualiza que o engenheiro não trabalhou na rodada para a próxima rodada que virá*/
 				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setEngenheiroTrabalhouNestaRodada(false);
@@ -220,12 +227,12 @@ public class GameController implements GameInteraction
 		jogoAtual.setupController.habilitarTrocarModuloIntegrado(mesaTrabalho);
 		
 		
-		if (jogoAtual.validarProjeto(jogadorAtual)==SetupInteraction.PROJETO_CONCLUIDO)
+		if (jogoAtual.getProjeto().validarProjeto(jogoAtual, jogadorAtual) ==SetupInteraction.PROJETO_CONCLUIDO)
 		{
 			jogoAtual.setupController.exibirVencedor(jogadorAtual);
 			jogoAtual.setGameStatus(Jogo.Status.WINNER_END);
-		}
-			
+		}		
+		
 		return auxiliar;
 	}
 	 

@@ -325,7 +325,7 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 
 							art = it.next();
 
-							img = getImageArtefact(art, height*2);
+							img = art.getImageArtefact(height*2);
 
 							label = new JLabel();
 							label.setIcon(img);
@@ -414,66 +414,7 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 
 
 		}
-
-	}
-
-	// =====================================================================================//
-		/**
-		 * Recebe um artefato a ser pintado e verifica, segundo seu estado qual a
-		 * imagem correspondente
-		 * 
-		 * @param art
-		 *            - Artefato a ser pintado
-		 * 
-		 * @return a imagem no formato ImagIcon a ser pintada em um Label
-		 */
-		private ImageIcon getImageArtefact(Artefato art, int height) {
-			ImageIcon img = null;
-			if (art.isPoorQuality() == true) { 
-				
-
-				if (art.inspected() == true) {
-
-					if (art.isBug() == true) {
-						img = ComponentCard.getImageScalable(
-								ScreenInteraction.imagePath
-										+ "artefactBadBugged.png", 0, height);
-					} else {
-						img = ComponentCard.getImageScalable(
-								ScreenInteraction.imagePath + "artefactBadOk.png",
-								0, height);
-					}
-
-				} else { 
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath + "artefactBad.png", 0,
-							height);
-				}
-
-			} else { 
-
-				if (art.inspected() == true) {
-
-					if (art.isBug() == true) {
-						img = ComponentCard.getImageScalable(
-								ScreenInteraction.imagePath
-										+ "artefactGoodBugged.png", 0, height);
-					} else {
-						img = ComponentCard.getImageScalable(
-								ScreenInteraction.imagePath + "artefactGoodOk.png",
-								0, height);
-					}
-
-				} else {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath + "artefactGood.png", 0,
-							height);
-
-				}
-
-			}
-			return img;
-		}
+	}	
 		
 
 		//=====================================================================================//	

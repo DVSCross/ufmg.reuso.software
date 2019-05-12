@@ -84,6 +84,8 @@ public class Mesa
 	/**contem o efeito temporario de o engenheiro produzir somente artefatos brancos*/
 	private int duracaoEfeito_TEMPORARIO_ProduceOnlyWhiteArtifacts;
 	
+	private ArtifactsInspector artifactsInspector;
+	
 	/*---------------------------------------------------------------------------------------*/
 	@SuppressWarnings("unchecked")
 	public Mesa ()
@@ -112,7 +114,10 @@ public class Mesa
                 /** mesa ainda nao contem modulo integrado*/
 		especificacaoModuloIntegrado=-1;				
 		
+    /** alocando o moduloIntegracao com 5 posicoes*/
 		moduloIntegrado= new ArrayList[5]; 				
+		this.artifactsInspector = new ArtifactsInspector();
+
 	}
 	
 	
@@ -303,145 +308,50 @@ public class Mesa
 	 * @param ArtefatosB
 	 * @param ArtefatosR
 	 */
-	public void virarArtefatos(Modulo [] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
-	{
+
+	public void virarArtefatos(Modulo[] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
+	{		
+		if(pedido[ARTEFATOS_BONS].getAjudas() > 0)
+			this.artifactsInspector.virarAjudas(pedido, ARTEFATOS_BONS, ajudas);				
+		if(pedido[ARTEFATOS_BONS].getCodigos() > 0)		
+			this.artifactsInspector.virarCodigos(pedido, ARTEFATOS_BONS, codigos);			
+		if(pedido[ARTEFATOS_BONS].getDesenhos() > 0)
+			this.artifactsInspector.virarDesenhos(pedido, ARTEFATOS_BONS, desenhos);
+		if(pedido[ARTEFATOS_BONS].getRastros() > 0)
+			this.artifactsInspector.virarRastros(pedido, ARTEFATOS_BONS, rastros);			
+		if(pedido[ARTEFATOS_BONS].getRequisitos() > 0)
+			this.artifactsInspector.virarRequisitos(pedido, ARTEFATOS_BONS, requisitos);			
 		
-		if(pedido[ARTEFATOS_BONS].getAjudas()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getAjudas();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((ajudas.get(j).inspected() == true)||(ajudas.get(j).isPoorQuality()== true))
-					j++;
-				ajudas.get(j).setArtefatoInspecionado(true);
-			}
-		}
+		if(pedido[ARTEFATOS_RUINS].getAjudas() > 0)
+			this.artifactsInspector.virarAjudas(pedido, ARTEFATOS_RUINS, ajudas);	
+		if(pedido[ARTEFATOS_RUINS].getCodigos() > 0)
+			this.artifactsInspector.virarCodigos(pedido, ARTEFATOS_RUINS, codigos);		
+		if(pedido[ARTEFATOS_RUINS].getDesenhos() > 0)
+			this.artifactsInspector.virarDesenhos(pedido, ARTEFATOS_RUINS, desenhos);		
+		if(pedido[ARTEFATOS_RUINS].getRastros() > 0)
+			this.artifactsInspector.virarRastros(pedido, ARTEFATOS_RUINS, rastros);		
+		if(pedido[ARTEFATOS_RUINS].getRequisitos() > 0)
+			this.artifactsInspector.virarRequisitos(pedido, ARTEFATOS_RUINS, requisitos);
 		
-		if(pedido[ARTEFATOS_BONS].getCodigos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getCodigos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((codigos.get(j).inspected() == true)||(codigos.get(j).isPoorQuality()== true))
-					j++; 
-				codigos.get(j).setArtefatoInspecionado(true);
-			}
-		}
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<ajudas.size();i++)
+			ajudas.get(i).mostrarArtefato();
 		
-		if(pedido[ARTEFATOS_BONS].getDesenhos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getDesenhos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((desenhos.get(j).inspected() == true)||(desenhos.get(j).isPoorQuality()== true))
-					j++; 
-				desenhos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_BONS].getRastros()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getRastros();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((rastros.get(j).inspected() == true)||(rastros.get(j).isPoorQuality()== true))
-					j++; 
-				rastros.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_BONS].getRequisitos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getRequisitos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((requisitos.get(j).inspected() == true)||(requisitos.get(j).isPoorQuality()== true))
-					j++; 
-				requisitos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getAjudas()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getAjudas();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((ajudas.get(j).inspected() == true)||(ajudas.get(j).isPoorQuality()== false))
-					j++; 
-				ajudas.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getCodigos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getCodigos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((codigos.get(j).inspected() == true)||(codigos.get(j).isPoorQuality()== false))
-					j++; 
-				codigos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getDesenhos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getDesenhos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((desenhos.get(j).inspected() == true)||(desenhos.get(j).isPoorQuality()== false))
-					j++; 
-				desenhos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getRastros()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getRastros();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((rastros.get(j).inspected() == true)||(rastros.get(j).isPoorQuality()== false))
-					j++; 
-				rastros.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		if(pedido[ARTEFATOS_RUINS].getRequisitos()>0)
-		{
-			int j=0;
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getRequisitos();i++)
-			{
-				/**Enquanto artefato estiver inspecionado ou artefato ser ruim, procura proximo artefato*/
-				while((requisitos.get(j).inspected() == true)||(requisitos.get(j).isPoorQuality()== false))
-                                    
-                                         // TODO lancar excecao em caso de nao haver artefatos a serem virados
-					j++;
-				requisitos.get(j).setArtefatoInspecionado(true);
-			}
-		}
-		
-		for (int i=0;i<ajudas.size();i++)			
-				ajudas.get(i).mostrarArtefato();	
-		
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
 		for (int i=0;i<codigos.size();i++)			
-				codigos.get(i).mostrarArtefato();	
+			codigos.get(i).mostrarArtefato();	
+		
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<desenhos.size();i++)
+			desenhos.get(i).mostrarArtefato();	
 				
-		for (int i=0;i<desenhos.size();i++)			
-				desenhos.get(i).mostrarArtefato();	
-				
-		for (int i=0;i<rastros.size();i++)			
-				rastros.get(i).mostrarArtefato();	
-				
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<rastros.size();i++)
+			rastros.get(i).mostrarArtefato();
+		
+		//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
 		for (int i=0;i<requisitos.size();i++)			
-				requisitos.get(i).mostrarArtefato();	
+			requisitos.get(i).mostrarArtefato();	
 	}
 
 	public void trocarArtefatos(Modulo [] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
@@ -784,147 +694,123 @@ public class Mesa
 		return artefatosSeparados;
 	}
 	
-	public void receberArtefatos(Modulo [] pedido, BaralhoArtefatosBons[] artefatosB,BaralhoArtefatosRuins[] ArtefatosR)
-	{
+	public void receberArtefatos(Modulo [] pedido, BaralhoArtefatosBons[] artefatosB,BaralhoArtefatosRuins[] ArtefatosR) 
+	{		
+		int[] tiposParaVerificar = new int[] { ARTEFATOS_BONS, ARTEFATOS_RUINS };		
 		
-		if(pedido[ARTEFATOS_BONS].getAjudas()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getAjudas();i++)
-			{
-				ajudas.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosBons(artefatosB);
-				}
-			}
-		}	
+		for(int tipo : tiposParaVerificar) {		
+			if(pedido[tipo].getAjudas() > 0) 
+				this.receberAjudas(pedido, artefatosB, ArtefatosR, tipo);
+			if(pedido[tipo].getCodigos() > 0) 
+				this.receberCodigos(pedido, artefatosB, ArtefatosR, tipo);
+			if(pedido[tipo].getDesenhos() > 0) 		
+				this.receberDesenhos(pedido, artefatosB, ArtefatosR, tipo);
+			if(pedido[tipo].getRastros() > 0)			
+				this.receberRastros(pedido, artefatosB, ArtefatosR, tipo);
+			if(pedido[tipo].getRequisitos() > 0)
+				this.receberRequisitos(pedido, artefatosB, ArtefatosR, tipo);
+		}
 		
-		if(pedido[ARTEFATOS_BONS].getCodigos()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getCodigos();i++)
-			{
-				codigos.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosBons(artefatosB);
-				}
-			}
-		}	
-			
-		if(pedido[ARTEFATOS_BONS].getDesenhos()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getDesenhos();i++)
-			{
-				desenhos.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosBons(artefatosB);
-				}
-			}
-		}	
-		
-		if(pedido[ARTEFATOS_BONS].getRastros()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getRastros();i++)
-			{
-				rastros.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosBons(artefatosB);
-				}
-			}
-		}	
-		
-		if(pedido[ARTEFATOS_BONS].getRequisitos()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_BONS].getRequisitos();i++)
-			{
-				requisitos.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosBons(artefatosB);
-				}
-			}
-		}	
-		
-		if(pedido[ARTEFATOS_RUINS].getAjudas()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getAjudas();i++)
-			{
-				ajudas.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosRuins(ArtefatosR);
-				}
-			}
-		}	
-		
-		if(pedido[ARTEFATOS_RUINS].getCodigos()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getCodigos();i++)
-			{
-				codigos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosRuins(ArtefatosR);
-				}
-			}
-		}	
-		
-		if(pedido[ARTEFATOS_RUINS].getDesenhos()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getDesenhos();i++)
-			{
-				desenhos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosRuins(ArtefatosR);
-				}
-			}
-		}	
-		
-		if(pedido[ARTEFATOS_RUINS].getRastros()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getRastros();i++)
-			{
-				rastros.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosRuins(ArtefatosR);
-				}
-			}
-		}	
-		
-		if(pedido[ARTEFATOS_RUINS].getRequisitos()>0)
-		{
-			for (int i=0;i<pedido[ARTEFATOS_RUINS].getRequisitos();i++)
-			{
-				requisitos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());
-				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
-				{
-					trocarBaralhoArtefatosRuins(ArtefatosR);
-				}
-			}
-		}	
-		
-                //TODO teste
+		//TODO teste
 		for (int i=0;i<ajudas.size();i++)			
-			ajudas.get(i).mostrarArtefato();		
+			ajudas.get(i).mostrarArtefato();
 		
+		//TODO teste
 		for (int i=0;i<codigos.size();i++)			
 			codigos.get(i).mostrarArtefato();		
 		
+		//TODO teste
 		for (int i=0;i<desenhos.size();i++)			
 			desenhos.get(i).mostrarArtefato();		
 		
+		//TODO teste
 		for (int i=0;i<rastros.size();i++)			
 			rastros.get(i).mostrarArtefato();		
 		
+		//TODO teste
 		for (int i=0;i<requisitos.size();i++)			
-			requisitos.get(i).mostrarArtefato();		
-		
-				
+			requisitos.get(i).mostrarArtefato();
 	}
-	
-	
+
+	private void receberRequisitos(Modulo[] pedido,
+			                       BaralhoArtefatosBons[] artefatosB,
+			                       BaralhoArtefatosRuins[] artefatosR,
+					               int tipoArtefatos) 
+	{		
+		for (int i=0;i<pedido[ARTEFATOS_BONS].getRequisitos();i++){
+			requisitos.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
+			if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0) {		
+				if (tipoArtefatos == ARTEFATOS_BONS)
+					trocarBaralhoArtefatosBons(artefatosB);		
+				else if (tipoArtefatos == ARTEFATOS_RUINS)
+					trocarBaralhoArtefatosRuins(artefatosR);
+			}
+		}
+	}
+
+	private void receberRastros(Modulo[] pedido, 
+			                   BaralhoArtefatosBons[] artefatosB,
+			                   BaralhoArtefatosRuins[] artefatosR,
+				               int tipoArtefatos)
+	{
+		for (int i=0;i<pedido[ARTEFATOS_BONS].getRastros();i++) {
+			rastros.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
+			if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0) {
+				if (tipoArtefatos == ARTEFATOS_BONS)
+					trocarBaralhoArtefatosBons(artefatosB);
+				else if(tipoArtefatos == ARTEFATOS_RUINS)
+					trocarBaralhoArtefatosRuins(artefatosR);
+			}
+		}
+	}
+
+	private void receberDesenhos(Modulo[] pedido,
+			                     BaralhoArtefatosBons[] artefatosB,
+			                     BaralhoArtefatosRuins[] artefatosR,
+				                 int tipoArtefatos) 
+	{
+		
+		for (int i=0;i<pedido[tipoArtefatos].getDesenhos();i++) {
+			desenhos.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
+			if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0) {			
+				if (tipoArtefatos == ARTEFATOS_BONS)
+					trocarBaralhoArtefatosBons(artefatosB);
+				else if(tipoArtefatos == ARTEFATOS_RUINS)
+					trocarBaralhoArtefatosRuins(artefatosR);
+			}
+		}	
+	}
+
+	private void receberCodigos(Modulo[] pedido,
+			                    BaralhoArtefatosBons[] artefatosB,
+			                    BaralhoArtefatosRuins[] artefatosR,
+			                    int tipoArtefatos) 
+	{		
+		for (int i=0;i<pedido[tipoArtefatos].getCodigos();i++) {		
+			codigos.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
+			if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0) {
+				if (tipoArtefatos == ARTEFATOS_BONS)
+					trocarBaralhoArtefatosBons(artefatosB);
+				else if(tipoArtefatos == ARTEFATOS_RUINS);
+					trocarBaralhoArtefatosRuins(artefatosR);
+			}
+		}	
+
+	}
+
+	private void receberAjudas(Modulo[] pedido,
+			                   BaralhoArtefatosBons[] artefatosB,
+			                   BaralhoArtefatosRuins[] artefatosR,
+			                   int tipoArtefatos)
+	{
+		for (int i=0;i<pedido[tipoArtefatos].getAjudas();i++) {
+			ajudas.add(artefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());
+			if (artefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual() <= 0) {		
+				if (tipoArtefatos == ARTEFATOS_BONS)
+					trocarBaralhoArtefatosBons(artefatosB);
+				else if(tipoArtefatos == ARTEFATOS_RUINS);
+					trocarBaralhoArtefatosRuins(artefatosR);
+			}
+		}				
+	}
 }

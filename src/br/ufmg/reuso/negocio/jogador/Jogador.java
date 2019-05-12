@@ -23,23 +23,23 @@ import br.ufmg.reuso.negocio.tabuleiro.Tabuleiro;
 
 public class Jogador 
 {
-        //numero maximo de cartas que o jogador pode ter em mãos.
+        //numero maximo de cartas que o jogador pode ter em mÃ£os.
 	public static final int NUMERO_MAX_CARTAS_MAO = 5;
         
-	//contém o nome do jogador
+	//contÃ©m o nome do jogador
         private String nome;	
         
-	//contém o saldo que o jogador tem para utilizar (limite é orcamento do projeto)
+	//contÃ©m o saldo que o jogador tem para utilizar (limite Ã© orcamento do projeto)
         private int saldo;														
 	private Tabuleiro tabuleiro;
         
-        //se true, jogador jogou dados, senão nao jogou
+        //se true, jogador jogou dados, senÃ£o nao jogou
 	private boolean dadoJogado; 											
 	
         //conjunto de cartas na mao do jogador
 	private Carta[] cartas = new Carta[NUMERO_MAX_CARTAS_MAO];				 
 	
-        //numero real de cartas em mãos no decorrer do jogo
+        //numero real de cartas em mÃ£os no decorrer do jogo
         private int numeroCartasMaoAtual;										
 	
 	
@@ -48,13 +48,13 @@ public class Jogador
                 // inserindo nome de jogadores
 		setNome(nomeJogador);												
 		
-                // inserindo saldo inicial do jogador que é igual orcamento do projeto
+                // inserindo saldo inicial do jogador que Ã© igual orcamento do projeto
                 setSaldo(orcamentoInicial);
                 
-		// numero de cartas na mão inicial é zero
+		// numero de cartas na mÃ£o inicial Ã© zero
                 setNumeroCartasMaoAtual(0);
                 
-		//jogador ainda não jogou dados
+		//jogador ainda nÃ£o jogou dados
                 setDadoJogado(false);												
 		for (int i=0; i<NUMERO_MAX_CARTAS_MAO; i++)
 		{
@@ -68,7 +68,7 @@ public class Jogador
 	
 	public void contratarEngenheiro(Carta novato, int posicaoMesa)
 	{
-                /** Utilizando uma verificação se novato está instanciando uma carta de entenheiro*/
+                /** Utilizando uma verificaÃ§Ã£o se novato estÃ¡ instanciando uma carta de entenheiro*/
 		if(novato instanceof CartaEngenheiro) 											
 		{
 	
@@ -77,41 +77,43 @@ public class Jogador
 				Jogo.getJogo().setupController.exibirExcessoPessoal();
 			}
 			
-                        /** Verificando se não há engenheiro na mesa, ou seja, se a mesa está vazia*/
+                        /** Verificando se nÃ£o hÃ¡ engenheiro na mesa, ou seja, se a mesa estÃ¡ vazia*/
 			if(tabuleiro.getMesas()[posicaoMesa].getCartaMesa()==null)					
 			{	
                             
-                                /** se sim, acontece uma coreção (downcast)*/
+                                /** se sim, acontece uma coreÃ§Ã£o (downcast)*/
 				CartaEngenheiro Contratado = (CartaEngenheiro) novato;					
 				
-				if (getSaldo() < Contratado.getSalarioEngenheiro())
+				if (getSaldo() < Contratado.getEngenheiro().getSalarioEngenheiro())
 				{
 					Jogo.getJogo().setupController.exibirFaltaDinheiro();
 				}
                                 
-				/** Verificando se há saldo suficiente*/
-				if (getSaldo() >= Contratado.getSalarioEngenheiro())										
+				/** Verificando se hÃ¡ saldo suficiente*/
+				if (getSaldo() >= Contratado.getEngenheiro().getSalarioEngenheiro())									
 				{
                                     
                                         /** atualizando saldo do jogador devido ao salario do engenheiro*/
-					setSaldo(this.saldo - Contratado.getSalarioEngenheiro());			
+					setSaldo(this.saldo - Contratado.getEngenheiro().getSalarioEngenheiro());			
 					
                                         /** Contrata engenheiro*/
-                                        tabuleiro.alocarMesa(Contratado,posicaoMesa);						
+                                       tabuleiro.alocarMesa(Contratado,posicaoMesa);							
+
+
 					
 					for (int i=0;i<getCartas().length;i++)
 					{
 						if (getCartas()[i]==null)
 							continue;
                                                 
-                                                /**Se a na mao de jogador e a carta de engenheeiro a ser contratado são iguais*/
+                                                /**Se a na mao de jogador e a carta de engenheeiro a ser contratado sÃ£o iguais*/
 						if (getCartas()[i].getCodigoCarta().compareTo(novato.getCodigoCarta())==0)	
 						{
                                                     
-                                                        /**Retira-se a carta da mão do jogador, pois ela agora está no tabuleiro*/
+                                                        /**Retira-se a carta da mÃ£o do jogador, pois ela agora estÃ¡ no tabuleiro*/
 							getCartas()[i]=null;											
 							
-                                                        /**Atualiza o número de cartas na mao do jogador*/
+                                                        /**Atualiza o nÃºmero de cartas na mao do jogador*/
                                                         setNumeroCartasMaoAtual(getNumeroCartasMaoAtual() -1);			
 						}
 							
@@ -129,7 +131,7 @@ public class Jogador
 		int numberCards;
 		numberCards = Dado.contarPontos();
 		
-		/**exibe a Gui mostrando pontos obtidos pelo jogador no lan�amento de dados*/
+		/**exibe a Gui mostrando pontos obtidos pelo jogador no lançamento de dados*/
 		Jogo.getJogo().setupController.mostrarPontosObtidosInicial(numberCards);		
 		
 		if ((getNumeroCartasMaoAtual() + numberCards) <= NUMERO_MAX_CARTAS_MAO) {
@@ -148,11 +150,11 @@ public class Jogador
 	{
 		int i = 0;
 		
-                /**verificando se já existe carta na posição i*/
+                /**verificando se jÃ¡ existe carta na posiÃ§Ã£o i*/
 		while (cartas[i]!= null)										
 			i++;
 		
-                /**Se a posição no vetor de cartas ultrapassar o número de cartas limite, há erro*/
+                /**Se a posiÃ§Ã£o no vetor de cartas ultrapassar o nÃºmero de cartas limite, hÃ¡ erro*/
                 if (i > NUMERO_MAX_CARTAS_MAO)									
 		{
 			System.exit(1);
@@ -161,7 +163,7 @@ public class Jogador
                 /**jogador recebe a carta*/
 		cartas[i]=cartaRecebida;										
 		
-                /**atualizando o número de carta na mão do jogador*/
+                /**atualizando o nÃºmero de carta na mÃ£o do jogador*/
                 setNumeroCartasMaoAtual(getNumeroCartasMaoAtual() +1);			
 	}
 	
@@ -174,7 +176,7 @@ public class Jogador
 			if (cartas[i]==null)
 				continue;
                         
-                        /**comparando a variável código das cartas, caso elas sejam iguais, retira-se a carta do jogador*/
+                        /**comparando a variÃ¡vel cÃ³digo das cartas, caso elas sejam iguais, retira-se a carta do jogador*/
 			if(cartas[i].getCodigoCarta().compareTo(cartaRetirada.getCodigoCarta())==0)  
 			{	
                             
@@ -189,19 +191,20 @@ public class Jogador
 	public boolean removerCarta(CartaEngenheiro engenheiroDemitido)
 	{
             
-                /**se true, significa que engenheiro foi demitido (ele não trabalhou na rodada)*/ 
+                /**se true, significa que engenheiro foi demitido (ele nÃ£o trabalhou na rodada)*/ 
 		if (tabuleiro.despedirEngenheiro(engenheiroDemitido) == true)			
 		{	
-			setSaldo(getSaldo()+engenheiroDemitido.getSalarioEngenheiro());
+			setSaldo(getSaldo()+engenheiroDemitido.getEngenheiro().getSalarioEngenheiro());
                         
                         /**se retorna true, significa que o jogo pode remover a carta para baralho auxiliar*/
 			return true;														
+
 		}
 		
 		return false;
 	}
 	
-        //TODO usado só pra teste
+        //TODO usado sÃ³ pra teste
 	public void mostrarCartaMao() 			
 	{
              // printa cartas

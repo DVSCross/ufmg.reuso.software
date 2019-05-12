@@ -83,7 +83,13 @@ public class ScreenTabuleiro extends JDialog {
     public int x;
 
 	// Variáveis utilizadas para posicionamento dos paineis.
-	private int y, width, height, yInc, xInc;
+	private int x, y, width;
+
+	public int height;
+
+	private int yInc;
+
+	private int xInc;
 	private Dimension dimPanel;
 	private Dimension mySise = new Dimension();
 
@@ -312,138 +318,123 @@ public class ScreenTabuleiro extends JDialog {
 
 		// Desenha os títulos das mesas
 		jpanel.add(getPanelTitleBoards());
+		this.desenharTabuleiro(jpanel);
+		return jpanel;
+	}
 
-		{
-			JPanel panelBoard;
-			JScrollPane scrollBoard;		
-			Jogador jogadorAtual = (oponent == null ? jogador : oponent);
-			
-			
+	private void desenharTabuleiro(JPanel jpanel) {
+		JPanel panelBoard;
+		JScrollPane scrollBoard;		
+		Jogador jogadorAtual = (oponent == null ? jogador : oponent);
 
-			for (int i = 0; i < jogadorAtual.getTabuleiro().getMesas().length; i++) {
+		for (int i = 0; i < jogadorAtual.getTabuleiro().getMesas().length; i++) {
+			board = jogadorAtual.getTabuleiro().getMesas()[i];
+			panelBoard = new JPanel();
+			panelBoard.setLayout(null);
+			y = 0;
+			height = yInc;
+			width = xInc;
+			x = 0;
+			int maxBoardSize = 0;
 
-				board = jogadorAtual.getTabuleiro().getMesas()[i];
+			JLabel label = null;
 
-				panelBoard = new JPanel();
-				panelBoard.setLayout(null);
-				
-				y = 0;
-				height = yInc;
-				width = xInc;
-				x = 0;
-				int maxBoardSize = 0;
+			// Desenha os engenheiros na mesa
+			panelBoard = getEnginerLabel(i, panelBoard);
+			// ScreenInteraction.getScreenInteraction().exibirMensagem(Integer.toString(x),
+			// "");
 
-				JLabel label = null;
+			maxBoardSize = this.colocarMatrizArtefatos(panelBoard, i, maxBoardSize);
+			x = 0;
+			JButton buttonIntegrate = new JButton("Integrar");
+			y += height;
+			height = yInc / 2;
+      
+			//width = (maxBoardSize > width ? maxBoardSize : width); 
+			buttonIntegrate.setBounds(x, y, width, height);
+			buttonIntegrate.setActionCommand(Integer.toString(i));
+			buttonIntegrate.addActionListener(getActionIntegrate());
+			buttonIntegrate.setEnabled(oponent == null);
 
-				// Desenha os engenheiros na mesa
-				panelBoard = getEnginerLabel(i, panelBoard);
+			panelBoard.add(buttonIntegrate);
+			panelBoard.setBounds(width * (i + 1), 0, maxBoardSize,dimPanel.height);
+			panelBoard.setPreferredSize(new Dimension(maxBoardSize,dimPanel.height));
+			scrollBoard = new JScrollPane();
+			scrollBoard.setBorder(null);
+			scrollBoard.setBounds(width * (i + 1), 0, width,dimPanel.height);
+			scrollBoard.setViewportView(panelBoard);
+			jpanel.add(scrollBoard);
+		}		
+	}
 
-				// ScreenInteraction.getScreenInteraction().exibirMensagem(Integer.toString(x),
-				// "");
+	private int colocarMatrizArtefatos(JPanel panelBoard, int i, int maxBoardSize) {
+		JLabel label;
+		
+		// Inicio do colocação da matriz de artefatos
+		ArrayList<ArrayList<Artefato>> modulo = new ArrayList<ArrayList<Artefato>>();
+		modulo.add(board.getRequisitos());
+		modulo.add(board.getDesenhos());
+		modulo.add(board.getCodigos());
+		modulo.add(board.getRastros());
+		modulo.add(board.getAjudas());
 
-				{// Inicio do colocação da matriz de artefatos
-					ArrayList<ArrayList<Artefato>> modulo = new ArrayList<ArrayList<Artefato>>();
-					modulo.add(board.getRequisitos());
-					modulo.add(board.getDesenhos());
-					modulo.add(board.getCodigos());
-					modulo.add(board.getRastros());
-					modulo.add(board.getAjudas());
+		Vector<String> names = new Vector<String>(
+					Arrays.asList(new String[] { "Requisitos",
+							"Desenhos", "Códigos", "Rastros", "Ajudas" }));
+		int j = 0;
+		int mesa = i;
 
-					Vector<String> names = new Vector<String>(
-							Arrays.asList(new String[] { "Requisitos",
-									"Desenhos", "Códigos", "Rastros", "Ajudas" }));
-					int j = 0;
+		// Para cada tipo de artefato
+		Iterator<ArrayList<Artefato>> itModulo = modulo.iterator();
+		while (itModulo.hasNext()) {
+			ArrayList<Artefato> artefatos = itModulo.next();
+			x = 0;
 
-					int mesa = i;
-
-					// Para cada tipo de artefato
-					Iterator<ArrayList<Artefato>> itModulo = modulo.iterator();
-					while (itModulo.hasNext()) {
-
-						ArrayList<Artefato> artefatos = itModulo.next();
-						x = 0;
-
-						if (artefatos.size() > 0) {
-							Iterator<Artefato> it = artefatos.iterator();
-							Artefato art = null;
-							ImageIcon img = null;
-							y += height;
-							height = yInc / 2;
-							while (it.hasNext()) {
-
-								art = it.next();
-
-								img = getImageArtefact(art);
-
-								label = new JLabel();
-
-								label.setIcon(img);
-
-								label.setBounds(x + 2, y + (height / 2),
-										img.getIconWidth(), img.getIconHeight());
-
-								if (it.hasNext() == true) {
-									x += img.getIconWidth();
-									maxBoardSize = (x > maxBoardSize ? x
-											: maxBoardSize);
-								}
-
-								// label.setBorder(borderW);
-								panelBoard.add(label);
-
-							} // Fim do while sobre os artafatos de um tipo
-
-							// y += height/2;
-							height = yInc;
-
-						} else { // Se não há artefatos do tipo atual
-							label = new JLabel(names.elementAt(j) + " mesa "
-									+ Integer.toString(mesa + 1));
-							label.setOpaque(false);
-
-							y += height;
-							height = yInc;
-							label.setBounds(x, y, width, height);
-							// label.setBorder(borderW);
-							panelBoard.add(label);
-						}
-						
-                                                // Fim do while sobre tipos de artefatos
-						j++;
-					} 
-
-					// Inserir Requisitos
-
-				} 
-                                // Fim do colocação da matriz de artefatos
-				x = 0;
-
-				JButton buttonIntegrate = new JButton("Integrar");
+			if (artefatos.size() > 0) {
+				Iterator<Artefato> it = artefatos.iterator();
+				Artefato art = null;
+				ImageIcon img = null;
 				y += height;
 				height = yInc / 2;
-				//width = (maxBoardSize > width ? maxBoardSize : width); 
-				buttonIntegrate.setBounds(x, y, width, height);
-				buttonIntegrate.setActionCommand(Integer.toString(i));
-				buttonIntegrate.addActionListener(getActionIntegrate());
-				buttonIntegrate.setEnabled(oponent == null);
+				while (it.hasNext()) {
+					art = it.next();
+					img = art.getImageArtefact(this);
+					label = new JLabel();
+					label.setIcon(img);
+					label.setBounds(x + 2, y + (height / 2),
+    				img.getIconWidth(), img.getIconHeight());
 
-				panelBoard.add(buttonIntegrate);
+					if (it.hasNext() == true) {
+						x += img.getIconWidth();
+						maxBoardSize = (x > maxBoardSize ? x : maxBoardSize);
+					}
 
-				panelBoard.setBounds(width * (i + 1), 0, maxBoardSize,
-						dimPanel.height);
-				panelBoard.setPreferredSize(new Dimension(maxBoardSize,dimPanel.height));
+					// label.setBorder(borderW);
+					panelBoard.add(label);
+        
+        // Fim do while sobre os artafatos de um tipo
+				} 
 
-				scrollBoard = new JScrollPane();
-				scrollBoard.setBorder(null);
-				scrollBoard.setBounds(width * (i + 1), 0, width,
-						dimPanel.height);
-				scrollBoard.setViewportView(panelBoard);
-				jpanel.add(scrollBoard);
+				// y += height/2;
+				height = yInc;
+      
+        // Se não há artefatos do tipo atual
+			} else { 
+				label = new JLabel(names.elementAt(j) + " mesa "
+							+ Integer.toString(mesa + 1));
+				label.setOpaque(false);
 
+				y += height;
+				height = yInc;
+				label.setBounds(x, y, width, height);
+				// label.setBorder(borderW);
+				panelBoard.add(label);
 			}
-
+			j++;
+      
+      // Fim do while sobre tipos de artefatos
 		}
-		return jpanel;
+		return maxBoardSize;
 	}
 
 	// =====================================================================================//
@@ -475,7 +466,7 @@ public class ScreenTabuleiro extends JDialog {
 			// label.setBorder(borderW);
 			panelBoard.add(label);
 
-			label = new JLabel(board.getCartaMesa().getNomeEngenheiro(),
+			label = new JLabel(board.getCartaMesa().getEngenheiro().getNomeEngenheiro(),
 					JLabel.CENTER);
 			y += height;
 			height = yInc / 2;
@@ -659,64 +650,6 @@ public class ScreenTabuleiro extends JDialog {
 		} //end for
 		
 		return jpanel;
-	}
-
-	// =====================================================================================//
-	/**
-	 * Recebe um artefato a ser pintado e verifica, segundo seu estado qual a
-	 * imagem correspondente
-	 * 
-	 * @param art
-	 *            - Artefato a ser pintado
-	 * 
-	 * @return a imagem no formato ImagIcon a ser pintada em um Label
-	 */
-	private ImageIcon getImageArtefact(Artefato art) {
-		ImageIcon img = null;
-		if (art.isPoorQuality() == true) { // Artifact
-			// Bad
-
-			if (art.inspected() == true) {
-
-				if (art.isBug() == true) {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath
-									+ "artefactBadBugged.png", 0, height);
-				} else {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath + "artefactBadOk.png",
-							0, height);
-				}
-
-			} else { // Artifact Bad not inspectioned
-				img = ComponentCard.getImageScalable(
-						ScreenInteraction.imagePath + "artefactBad.png", 0,
-						height);
-			}
-
-		} else { // Artifact God
-
-			if (art.inspected() == true) {
-
-				if (art.isBug() == true) {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath
-									+ "artefactGoodBugged.png", 0, height);
-				} else {
-					img = ComponentCard.getImageScalable(
-							ScreenInteraction.imagePath + "artefactGoodOk.png",
-							0, height);
-				}
-
-			} else { // Artifact Bad not inspectioned
-				img = ComponentCard.getImageScalable(
-						ScreenInteraction.imagePath + "artefactGood.png", 0,
-						height);
-
-			}
-
-		}
-		return img;
 	}
 
 	// =====================================================================================//
