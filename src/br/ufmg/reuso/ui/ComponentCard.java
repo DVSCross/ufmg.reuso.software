@@ -141,7 +141,6 @@ public class ComponentCard extends JPanel {
 	 * @return JPanel  - painel com a pintura da carta
 	 */
 	JPanel getPanelCenter() {
-
 		Carta carta = card;
 
 		JPanel panel = new JPanel();
@@ -156,15 +155,14 @@ public class ComponentCard extends JPanel {
 			lblType.setFont(font);
 			panel.add(lblType);
 		}
+		
 		{
 			lblCode = new JLabel(carta.getCodigoCarta(), JLabel.CENTER);
 			lblCode.setBorder(border);
 			lblCode.setFont(font);
 			panel.add(lblCode);
 		}
-
 		{
-
 			paneDesc = new JTextPane();
 			SimpleAttributeSet bSet = new SimpleAttributeSet();
 			StyleConstants.setAlignment(bSet, StyleConstants.ALIGN_JUSTIFIED);
@@ -182,160 +180,163 @@ public class ComponentCard extends JPanel {
 		}
 		
 		if (card instanceof CartaEngenheiro) {
-			CartaEngenheiro cartaEngenheiro = (CartaEngenheiro) card;
-
-			lblType.setText("Engenheiro");
-
-			{
-				lblFig = new JLabel();
-				lblFig.setBorder(BorderFactory.createTitledBorder(
-						BorderFactory.createEmptyBorder(),
-						cartaEngenheiro.getEngenheiro().getNomeEngenheiro(), TitledBorder.LEFT,
-						TitledBorder.DEFAULT_POSITION, font));
-				
-				String path = ScreenInteraction.imagePath
-						+ carta.getCodigoCarta() + ".png";
-				
-				lblFig.setHorizontalAlignment(SwingConstants.CENTER);
-				
-				ImageIcon img = null;
-				img = (getImageScalable(path, 0, mySize.height * 24 / 100));
-				
-				if (img == null) {
-					img = getImageScalable(ScreenInteraction.imagePath
-							+ "smile.png", 0, mySize.height * 24 / 100);
-				}
-				
-				lblFig.setIcon(img);
-
-				panel.add(lblFig);
-			}
-			
-			{
-				lblSold = new JLabel("Salário:"
-						+ Integer.toString(cartaEngenheiro.getEngenheiro()
-								.getSalarioEngenheiro()) + "K");
-				
-				lblSold.setHorizontalAlignment(SwingConstants.CENTER);
-				lblSold.setBackground(Color.LIGHT_GRAY);
-				lblSold.setBorder(border);
-				lblSold.setOpaque(true);
-				panel.add(lblSold);
-			}
-
-			{
-				lblHabilit = new JLabel("Habilidade");
-				lblHabilit.setHorizontalAlignment(SwingConstants.RIGHT);
-				panel.add(lblHabilit);
-			}
-
-			{
-				lblHabilitValue = new JLabel(Integer.toString(cartaEngenheiro.getEngenheiro()
-						.getHabilidadeEngenheiro()));
-				
-				lblHabilitValue.setHorizontalAlignment(SwingConstants.CENTER);
-				lblHabilitValue.setBackground(Color.LIGHT_GRAY);
-				lblHabilitValue.setOpaque(true);
-				lblHabilitValue.setBorder(BorderFactory.createEmptyBorder());
-				panel.add(lblHabilitValue);
-			}
-
-			{
-				lblMaturit = new JLabel("Maturidade");
-				lblMaturit.setHorizontalAlignment(SwingConstants.RIGHT);
-				panel.add(lblMaturit);
-			}
-
-			{
-				lblMaturitValue = new JLabel(Integer.toString(cartaEngenheiro.getEngenheiro()
-						.getMaturidadeEngenheiro()));
-				
-				lblMaturitValue.setHorizontalAlignment(SwingConstants.CENTER);
-				lblMaturitValue.setBackground(Color.LIGHT_GRAY);
-				lblMaturitValue.setOpaque(true);
-				lblMaturitValue.setBorder(BorderFactory.createEmptyBorder());
-				panel.add(lblMaturitValue);
-			}
-
+			this.getEngenheiroPanel(carta, panel, font, border);
 		}
 		//#ifdef ConceptCard
-		else if (card instanceof CartaBonificacao) {
-			{
-				CartaBonificacao cartaConceito = (CartaBonificacao) card;
-
-				lblType.setText("Conceito");
-
-				paneRef = new JTextPane();
-				SimpleAttributeSet bSet = new SimpleAttributeSet();
-				StyleConstants.setAlignment(bSet,
-						StyleConstants.ALIGN_JUSTIFIED);
-				
-				StyledDocument doc = paneRef.getStyledDocument();
-				doc.setParagraphAttributes(0, doc.getLength(), bSet, false);
-				paneRef.setText(cartaConceito.getReferenciaBibliografica());
-				paneRef.setInheritsPopupMenu(true);
-				paneRef.setAlignmentX(CENTER_ALIGNMENT);
-				paneRef.setFont(font);
-				paneRef.setBorder(BorderFactory.createTitledBorder(
-						BorderFactory.createLineBorder(Color.LIGHT_GRAY),
-						cartaConceito.getTituloCarta(), TitledBorder.LEFT,
-						TitledBorder.DEFAULT_POSITION, font));
-				
-				paneRef.setEditable(false);
-				sliderPaneRef = new JScrollPane();
-				sliderPaneRef.setViewportView(paneRef);
-				panel.add(sliderPaneRef);
-			}
-
+		else if (card instanceof CartaBonificacao) {			
+			this.getBonificacaoPanel(panel, font);
 		}
 		//#endif
-		else if (card instanceof CartaPenalizacao) {
-
-			{
-				CartaPenalizacao cartaProblema = (CartaPenalizacao) card;
-
-				lblType.setText("Problema");
-
-				paneRef = new JTextPane();
-				SimpleAttributeSet bSet = new SimpleAttributeSet();
-				StyleConstants.setAlignment(bSet,
-						StyleConstants.ALIGN_JUSTIFIED);
-				
-				StyledDocument doc = paneRef.getStyledDocument();
-				doc.setParagraphAttributes(0, doc.getLength(), bSet, false);
-				paneRef.setText(cartaProblema.getReferenciaBibliografica());
-				paneRef.setInheritsPopupMenu(true);
-				paneRef.setAlignmentX(CENTER_ALIGNMENT);
-				paneRef.setFont(font);				
-				paneRef.setBorder(BorderFactory.createTitledBorder(
-						BorderFactory.createLineBorder(Color.LIGHT_GRAY),
-						cartaProblema.getTituloCarta(), TitledBorder.LEFT,
-						TitledBorder.DEFAULT_POSITION, font));
-				
-				paneRef.setEditable(false);
-				sliderPaneRef = new JScrollPane();
-				sliderPaneRef.setViewportView(paneRef);
-
-				panel.add(sliderPaneRef);
-
-				paneCondition = new JTextPane();
-				doc = paneCondition.getStyledDocument();
-				doc.setParagraphAttributes(0, doc.getLength(), bSet, false);
-				paneCondition.setText(cartaProblema.getCondicaoProblema());
-				paneCondition.setInheritsPopupMenu(true);
-				paneCondition.setAlignmentX(CENTER_ALIGNMENT);
-				paneCondition.setFont(font);
-				paneCondition.setBorder(BorderFactory.createEmptyBorder());
-				paneCondition.setEditable(false);
-				sliderPaneCondition = new JScrollPane();
-				sliderPaneCondition.setViewportView(paneCondition);
-				panel.add(sliderPaneCondition);
-
-			}
-
+		else if (card instanceof CartaPenalizacao) {			
+			this.getPenalizacaoPanel(panel, font);
 		}
 
 		return panel;
+	}
+
+	private void getPenalizacaoPanel(JPanel panel, Font font) {
+		CartaPenalizacao cartaProblema = (CartaPenalizacao) card;
+
+		lblType.setText("Problema");
+
+		paneRef = new JTextPane();
+		SimpleAttributeSet bSet = new SimpleAttributeSet();
+		StyleConstants.setAlignment(bSet,
+				StyleConstants.ALIGN_JUSTIFIED);
+		
+		StyledDocument doc = paneRef.getStyledDocument();
+		doc.setParagraphAttributes(0, doc.getLength(), bSet, false);
+		paneRef.setText(cartaProblema.getReferenciaBibliografica());
+		paneRef.setInheritsPopupMenu(true);
+		paneRef.setAlignmentX(CENTER_ALIGNMENT);
+		paneRef.setFont(font);				
+		paneRef.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.LIGHT_GRAY),
+				cartaProblema.getTituloCarta(), TitledBorder.LEFT,
+				TitledBorder.DEFAULT_POSITION, font));
+		
+		paneRef.setEditable(false);
+		sliderPaneRef = new JScrollPane();
+		sliderPaneRef.setViewportView(paneRef);
+
+		panel.add(sliderPaneRef);
+
+		paneCondition = new JTextPane();
+		doc = paneCondition.getStyledDocument();
+		doc.setParagraphAttributes(0, doc.getLength(), bSet, false);
+		paneCondition.setText(cartaProblema.getCondicaoProblema());
+		paneCondition.setInheritsPopupMenu(true);
+		paneCondition.setAlignmentX(CENTER_ALIGNMENT);
+		paneCondition.setFont(font);
+		paneCondition.setBorder(BorderFactory.createEmptyBorder());
+		paneCondition.setEditable(false);
+		sliderPaneCondition = new JScrollPane();
+		sliderPaneCondition.setViewportView(paneCondition);
+		panel.add(sliderPaneCondition);
+	}
+
+	private void getBonificacaoPanel(JPanel panel, Font font) {
+		CartaBonificacao cartaConceito = (CartaBonificacao) card;
+
+		lblType.setText("Conceito");
+
+		paneRef = new JTextPane();
+		SimpleAttributeSet bSet = new SimpleAttributeSet();
+		StyleConstants.setAlignment(bSet,
+				StyleConstants.ALIGN_JUSTIFIED);
+		
+		StyledDocument doc = paneRef.getStyledDocument();
+		doc.setParagraphAttributes(0, doc.getLength(), bSet, false);
+		paneRef.setText(cartaConceito.getReferenciaBibliografica());
+		paneRef.setInheritsPopupMenu(true);
+		paneRef.setAlignmentX(CENTER_ALIGNMENT);
+		paneRef.setFont(font);
+		paneRef.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.LIGHT_GRAY),
+				cartaConceito.getTituloCarta(), TitledBorder.LEFT,
+				TitledBorder.DEFAULT_POSITION, font));
+		
+		paneRef.setEditable(false);
+		sliderPaneRef = new JScrollPane();
+		sliderPaneRef.setViewportView(paneRef);
+		panel.add(sliderPaneRef);
+	}
+
+	private void getEngenheiroPanel(Carta carta, JPanel panel, Font font, Border border) {
+		CartaEngenheiro cartaEngenheiro = (CartaEngenheiro) card;
+
+		lblType.setText("Engenheiro");
+
+		{
+			lblFig = new JLabel();
+			lblFig.setBorder(BorderFactory.createTitledBorder(
+					BorderFactory.createEmptyBorder(),
+					cartaEngenheiro.getEngenheiro().getNomeEngenheiro(), TitledBorder.LEFT,
+					TitledBorder.DEFAULT_POSITION, font));
+			
+			String path = ScreenInteraction.imagePath
+					+ carta.getCodigoCarta() + ".png";
+			
+			lblFig.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			ImageIcon img = null;
+			img = (getImageScalable(path, 0, mySize.height * 24 / 100));
+			
+			if (img == null) {
+				img = getImageScalable(ScreenInteraction.imagePath
+						+ "smile.png", 0, mySize.height * 24 / 100);
+			}
+			
+			lblFig.setIcon(img);
+
+			panel.add(lblFig);
+		}
+		
+		{
+			lblSold = new JLabel("Salário:"
+					+ Integer.toString(cartaEngenheiro.getEngenheiro()
+							.getSalarioEngenheiro()) + "K");
+			
+			lblSold.setHorizontalAlignment(SwingConstants.CENTER);
+			lblSold.setBackground(Color.LIGHT_GRAY);
+			lblSold.setBorder(border);
+			lblSold.setOpaque(true);
+			panel.add(lblSold);
+		}
+
+		{
+			lblHabilit = new JLabel("Habilidade");
+			lblHabilit.setHorizontalAlignment(SwingConstants.RIGHT);
+			panel.add(lblHabilit);
+		}
+
+		{
+			lblHabilitValue = new JLabel(Integer.toString(cartaEngenheiro.getEngenheiro()
+					.getHabilidadeEngenheiro()));
+			
+			lblHabilitValue.setHorizontalAlignment(SwingConstants.CENTER);
+			lblHabilitValue.setBackground(Color.LIGHT_GRAY);
+			lblHabilitValue.setOpaque(true);
+			lblHabilitValue.setBorder(BorderFactory.createEmptyBorder());
+			panel.add(lblHabilitValue);
+		}
+
+		{
+			lblMaturit = new JLabel("Maturidade");
+			lblMaturit.setHorizontalAlignment(SwingConstants.RIGHT);
+			panel.add(lblMaturit);
+		}
+
+		{
+			lblMaturitValue = new JLabel(Integer.toString(cartaEngenheiro.getEngenheiro()
+					.getMaturidadeEngenheiro()));
+			
+			lblMaturitValue.setHorizontalAlignment(SwingConstants.CENTER);
+			lblMaturitValue.setBackground(Color.LIGHT_GRAY);
+			lblMaturitValue.setOpaque(true);
+			lblMaturitValue.setBorder(BorderFactory.createEmptyBorder());
+			panel.add(lblMaturitValue);
+		}
 	}
 
 	//=====================================================================================//	
