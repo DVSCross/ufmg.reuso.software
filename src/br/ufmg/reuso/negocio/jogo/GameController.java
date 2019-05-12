@@ -71,7 +71,7 @@ public class GameController implements GameInteraction
 				/**Restaura pontos de habilidade das cartas de engenheiro na mesas do tabuleiro do jogador*/
 
 				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setHabilidadeEngenheiroAtual
-					(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro()); 
+					(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro()); 
 
         /**codigo particionado: Início*/
 				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setHabilidadeEngenheiroAtual 

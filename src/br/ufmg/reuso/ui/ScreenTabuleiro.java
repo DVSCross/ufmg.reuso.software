@@ -80,7 +80,6 @@ public class ScreenTabuleiro extends JDialog {
 	Jogo jogo = null;
 	Mesa board = null;
 	Carta cartaAtiva = null;
-    public int x;
 
 	// Variáveis utilizadas para posicionamento dos paineis.
 	private int x, y, width;
