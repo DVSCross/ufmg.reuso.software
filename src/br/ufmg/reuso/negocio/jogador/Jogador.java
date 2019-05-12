@@ -61,14 +61,14 @@ public class Jogador
 			{	
 				CartaEngenheiro Contratado = (CartaEngenheiro) novato;					/** se sim, acontece uma coreção (downcast)*/
 				
-				if (getSaldo() < Contratado.getSalarioEngenheiro())
+				if (getSaldo() < Contratado.getEngenheiro().getSalarioEngenheiro())
 				{
 					Jogo.getJogo().setupController.exibirFaltaDinheiro();
 				}
 				
-				if (getSaldo() >= Contratado.getSalarioEngenheiro())					/** Verificando se há saldo suficiente*/					
+				if (getSaldo() >= Contratado.getEngenheiro().getSalarioEngenheiro())					/** Verificando se há saldo suficiente*/					
 				{
-					setSaldo(this.saldo - Contratado.getSalarioEngenheiro());			/** atualizando saldo do jogador devido ao salario do engenheiro*/
+					setSaldo(this.saldo - Contratado.getEngenheiro().getSalarioEngenheiro());			/** atualizando saldo do jogador devido ao salario do engenheiro*/
 					tabuleiro.alocarMesa(Contratado,posicaoMesa);						/** Contrata engenheiro*/
 					
 					for (int i=0;i<getCartas().length;i++)
@@ -142,7 +142,7 @@ public class Jogador
 	{
 		if (tabuleiro.despedirEngenheiro(engenheiroDemitido) == true)			/**se true, significa que engenheiro foi demitido (ele não trabalhou na rodada)*/ 
 		{	
-			setSaldo(getSaldo()+engenheiroDemitido.getSalarioEngenheiro());
+			setSaldo(getSaldo()+engenheiroDemitido.getEngenheiro().getSalarioEngenheiro());
 			return true;														/**se retorna true, significa que o jogo pode remover a carta para baralho auxiliar*/
 		}
 		
