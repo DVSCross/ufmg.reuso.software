@@ -63,7 +63,7 @@ public class ScreenSelectCards extends JDialog implements ActionListener {
 	ArrayList<JCheckBox> options = new ArrayList<JCheckBox>();
 
 	@SuppressWarnings("unused")
-	private static int TODAS = 0;
+	private static int TODAS;
 	@SuppressWarnings("unused")
 	private static int CODIGO = 1;
 	@SuppressWarnings("unused")

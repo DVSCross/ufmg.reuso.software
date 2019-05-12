@@ -46,8 +46,8 @@ import br.ufmg.reuso.ui.ScreenRescueQuestion;
  */
 
 public final class Jogo {
-  private int contador = 0;
-  private int habilidadeTemporaria = 0;
+  private int contador;
+  private int habilidadeTemporaria;
 
 	private static Jogo jogo;
 

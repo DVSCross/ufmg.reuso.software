@@ -24,7 +24,7 @@ public class ScreenChangePlayer extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private Jogador jogador = null;
+	private Jogador jogador;
 
 	/**
 	 * Launch the application.

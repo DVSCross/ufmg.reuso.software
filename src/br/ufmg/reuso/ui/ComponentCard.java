@@ -56,8 +56,8 @@ public class ComponentCard extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private JPanel panelCenter = null;	
-	private Carta card = null;
+	private JPanel panelCenter;	
+	private Carta card;
 	
 	//Define o tamanho da carta e dos demais objetos
 	private Dimension mySize = new Dimension(190, 240);
@@ -66,24 +66,25 @@ public class ComponentCard extends JPanel {
 	//=====================================================================================//
 	//Variáveis para pintura dos componentes na tela.	
 	// Todos
-	JLabel lblType = null;
-	JLabel lblCode = null;
-	JTextPane paneDesc = null;
-	JScrollPane sliderPaneDesc = null;
+	JLabel lblType;
+	JLabel lblCode;
+	JTextPane paneDesc;
+	JScrollPane sliderPaneDesc;
+        
+        // Conceito e Problema
+	JTextPane paneRef; 
+	JScrollPane sliderPaneRef;
 
-	JTextPane paneRef = null; // Conceito e Problema
-	JScrollPane sliderPaneRef = null;
-
-	JTextPane paneCondition = null;
-	JScrollPane sliderPaneCondition = null;
+	JTextPane paneCondition;
+	JScrollPane sliderPaneCondition;
 
 	// Engenheiro
-	JLabel lblFig = null;
-	JLabel lblSold = null;
-	JLabel lblHabilit = null;
-	JLabel lblMaturit = null;
-	JLabel lblHabilitValue = null;
-	JLabel lblMaturitValue = null;
+	JLabel lblFig;
+	JLabel lblSold;
+	JLabel lblHabilit;
+	JLabel lblMaturit;
+	JLabel lblHabilitValue;
+	JLabel lblMaturitValue;
 
 	//=====================================================================================//	
 	/**

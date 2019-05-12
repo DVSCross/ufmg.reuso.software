@@ -67,7 +67,7 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 
 	private JButton buttonOK;
 	
-	private boolean returnOk = false;
+	private boolean returnOk;
 		
 	Border border = BorderFactory.createLineBorder(Color.BLACK);
 
@@ -179,7 +179,8 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 
 		int valor = 0;
 
-		ArrayList<Integer> arr;
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+                list = new JComboBox(arr.toArray());
 
 		for (int i = 0; i < nomes.length; i++) {
 
@@ -204,12 +205,12 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 			}else{
 				valor = 4;
 			}
-			arr = new ArrayList<Integer>();
+			
 			for (int j = 0; j <= valor; j++) {
 				arr.add(j);
 			}
 
-			list = new JComboBox(arr.toArray());
+			
 			list.setName(nomes[i]);
 			list.setBorder(BorderFactory.createEmptyBorder());
 			list.addActionListener(getActionListener());
@@ -233,8 +234,6 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 			}else{	
 				valor = 4;				
 			}
-			
-			arr = new ArrayList<Integer>();
 			for (int j = 0; j <= valor; j++) {
 				arr.add(j);
 			}

@@ -75,11 +75,11 @@ public class ScreenTabuleiro extends JDialog {
 	Color colorBack = Color.LIGHT_GRAY;
 
 	// Variáveis que fazem ligação com o jogo
-	Jogador jogador = null;
-	Jogador oponent = null;
-	Jogo jogo = null;
-	Mesa board = null;
-	Carta cartaAtiva = null;
+	Jogador jogador;
+	Jogador oponent;
+	Jogo jogo;
+	Mesa board;
+	Carta cartaAtiva;
 
 	// Variáveis utilizadas para posicionamento dos paineis.
 	private int x, y, width;
@@ -322,13 +322,13 @@ public class ScreenTabuleiro extends JDialog {
 	}
 
 	private void desenharTabuleiro(JPanel jpanel) {
-		JPanel panelBoard;
-		JScrollPane scrollBoard;		
+		JPanel panelBoard  = new JPanel();
+                JButton buttonIntegrate = new JButton("Integrar");
+		JScrollPane scrollBoard = new JScrollPane();		
 		Jogador jogadorAtual = (oponent == null ? jogador : oponent);
 
 		for (int i = 0; i < jogadorAtual.getTabuleiro().getMesas().length; i++) {
 			board = jogadorAtual.getTabuleiro().getMesas()[i];
-			panelBoard = new JPanel();
 			panelBoard.setLayout(null);
 			y = 0;
 			height = yInc;
@@ -345,7 +345,7 @@ public class ScreenTabuleiro extends JDialog {
 
 			maxBoardSize = this.colocarMatrizArtefatos(panelBoard, i, maxBoardSize);
 			x = 0;
-			JButton buttonIntegrate = new JButton("Integrar");
+			
 			y += height;
 			height = yInc / 2;
       
@@ -358,7 +358,7 @@ public class ScreenTabuleiro extends JDialog {
 			panelBoard.add(buttonIntegrate);
 			panelBoard.setBounds(width * (i + 1), 0, maxBoardSize,dimPanel.height);
 			panelBoard.setPreferredSize(new Dimension(maxBoardSize,dimPanel.height));
-			scrollBoard = new JScrollPane();
+			
 			scrollBoard.setBorder(null);
 			scrollBoard.setBounds(width * (i + 1), 0, width,dimPanel.height);
 			scrollBoard.setViewportView(panelBoard);
