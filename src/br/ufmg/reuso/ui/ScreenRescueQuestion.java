@@ -26,7 +26,7 @@ public class ScreenRescueQuestion extends JDialog implements ActionListener{
 	
 	private Questao questao;
 	private JPanel panelQuestao;
-	private boolean acertou = false;
+	private boolean acertou;
 
 	private Dimension dim = new Dimension(800, 600);
 

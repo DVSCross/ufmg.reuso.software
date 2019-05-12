@@ -39,7 +39,7 @@ public class ScreenCard extends JDialog {
 	public static final int DISCARD = 1;
 	public static final int BACK = 2;
 
-	private ComponentCard componentCard = null;
+	private ComponentCard componentCard;
 
 	// =====================================================================================//
 

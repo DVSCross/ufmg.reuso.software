@@ -161,7 +161,8 @@ public class ScreenInspectArtefacts extends JDialog implements ActionListener {
 
 		int valor = 0;
 
-		ArrayList<Integer> arr;
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+                
 
 		for (int i = 0; i < nomes.length; i++) {
 
@@ -182,7 +183,7 @@ public class ScreenInspectArtefacts extends JDialog implements ActionListener {
 			} else if (nomes[i].equalsIgnoreCase("Ajudas")) {
 				valor = modulo[bons].getAjudas();
 			}
-			arr = new ArrayList<Integer>();
+			
 			for (int j = 0; j <= valor; j++) {
 				arr.add(j);
 			}
@@ -209,7 +210,7 @@ public class ScreenInspectArtefacts extends JDialog implements ActionListener {
 				valor = modulo[ruins].getAjudas();
 			}
 
-			arr = new ArrayList<Integer>();
+			
 			for (int j = 0; j <= valor; j++) {
 				arr.add(j);
 			}

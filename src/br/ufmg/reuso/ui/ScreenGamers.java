@@ -74,8 +74,7 @@ public class ScreenGamers extends JDialog implements ActionListener {
 
 		Dimension dim = new Dimension(100, 30);
 		JLabel label;
-		JTextField text;
-
+		JTextField text = new JTextField();
 		for (int i = 0; i < jogadores.size(); i++) {
 
 			label = new JLabel(jogadores.elementAt(i));
@@ -83,7 +82,7 @@ public class ScreenGamers extends JDialog implements ActionListener {
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			panel.add(label);
 
-			text = new JTextField();
+			
 			text.setBounds(dim.width + 30, i * dim.height + 10, dim.width,
 					dim.height);
 			text.addActionListener(this);

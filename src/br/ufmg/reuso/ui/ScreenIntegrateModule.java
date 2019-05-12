@@ -62,7 +62,7 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	JList listModules = null;
+	JList listModules;
 
 	protected Dimension mySize = new Dimension(500, 600);
 
@@ -73,21 +73,21 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 	private String[] data;
 	private JButton buttonOK;
 
-	private int[][] artefactsReturn = null;
-	private JCheckBox [][] listCheck = null;
+	private int[][] artefactsReturn;
+	private JCheckBox [][] listCheck;
 	
 
 	Border border = BorderFactory.createLineBorder(Color.BLACK);
 	
 	FlowLayout flw = new FlowLayout(FlowLayout.CENTER,0,0);
 	
-	JPanel panelInfo = null;
+	JPanel panelInfo;
 	
-	JPanel panelArteracts = null;
+	JPanel panelArteracts;
 	
-	JPanel panelBase = null;
+	JPanel panelBase;
 	
-	JPanel panelModules = null;
+	JPanel panelModules;
 	
 	
 

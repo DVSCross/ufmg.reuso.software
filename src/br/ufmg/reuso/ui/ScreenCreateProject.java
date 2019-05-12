@@ -74,14 +74,13 @@ public class ScreenCreateProject extends JDialog implements ActionListener {
 		JLabel label;
 		JTextField text;
 		
-
+                text = new JTextField();
 		for (int i = 0; i < jogadores.size(); i++) {
 
 			label = new JLabel(jogadores.elementAt(i));
 			label.setBounds(10, i * dim.height + 10, dim.width, dim.height);
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
-			panel.add(label);
-			text = new JTextField();
+			panel.add(label);			
 			text.setBounds(dim.width + 50, i * dim.height + 10, dim.width,
 						dim.height);
 			text.addActionListener(this);

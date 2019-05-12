@@ -38,14 +38,14 @@ public class ScreenInteraction implements SetupInteraction {
 	/**
 	 * Este array deve conter os artefatos escolhidos pelo usuário.
 	 */
-	int[][] artefatosEscolhidos = null;
+	int[][] artefatosEscolhidos;
 	private int moduloEscolhido = -1;
 
 	private ScreenTabuleiro tabuleiro;
 
 	@SuppressWarnings("unused")
-	private Jogo jogoAtual = null;
-	private Jogador jogadorAtual = null;
+	private Jogo jogoAtual;
+	private Jogador jogadorAtual;
 
 	private static ScreenInteraction instance;
 
