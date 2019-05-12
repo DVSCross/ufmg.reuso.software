@@ -34,6 +34,7 @@ public class BaralhoArtefatosBons extends BaralhoArtefatos {
 	public Artefato[] iniciarArtefatos() {
 		Artefato[] bons = new Artefato[getNumeroArtefatosAtual()];
 		for (int i = 0; i < ((int) (PERCENTUAL_ARTEFATOS_RUINS_QUALIDADE_BOA * getNumeroArtefatosAtual())); i++) {
+                    
 			/*
 			 * iniciando o comeco do vetor com artefatos bons com bug (20%
 			 * deles)
@@ -43,6 +44,7 @@ public class BaralhoArtefatosBons extends BaralhoArtefatos {
 
 		for (int i = ((int) (PERCENTUAL_ARTEFATOS_RUINS_QUALIDADE_BOA
 				* getNumeroArtefatosAtual())); i < getNumeroArtefatosAtual(); i++) {
+                    
 			/*
 			 * iniciando o final do vetor com artefatos bons sem bug (80% deles)
 			 */
@@ -68,8 +70,10 @@ public class BaralhoArtefatosBons extends BaralhoArtefatos {
 	 */
 	@Override
 	public Artefato darArtefato() {
+            
 		/* Determina se ainda ha artefato a ser distribuido */
 		if (listaArtefatos[currentArtifact] != null) {
+                    
 			/* Diminui o numero de artefatos que o baralho contem */
 			setNumeroArtefatosAtual(getNumeroArtefatosAtual() - 1);
 
@@ -81,6 +85,7 @@ public class BaralhoArtefatosBons extends BaralhoArtefatos {
 
 			return temporario;
 		} else {
+                    
 			/* Retorna nulo para indicar que baralho esta vazio */
 			return null;
 		}
@@ -89,6 +94,7 @@ public class BaralhoArtefatosBons extends BaralhoArtefatos {
 
 	@Override
 	public void recolherArtefato(Artefato artefatoDevolvido) {
+            
 		/* atualizando variavel do artefato para entrada no baralho auxiliar */
 		artefatoDevolvido.setArtefatoInspecionado(false);
 

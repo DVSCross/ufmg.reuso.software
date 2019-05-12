@@ -103,8 +103,9 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 		getRootPane().setDefaultButton(buttonOK);
 		
 		setResizable(false);
-		
-		returnOk = true; //TODO [ARS] - true PARA TESTE, ACEITA QUALQUER QUANTIDADE DE ARTEFATOS.
+                
+		//TODO [ARS] - true PARA TESTE, ACEITA QUALQUER QUANTIDADE DE ARTEFATOS.
+		returnOk = true; 
 
 	}
 

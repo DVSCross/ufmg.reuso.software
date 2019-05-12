@@ -97,6 +97,7 @@ public class ScreenLaunchDice extends JDialog implements ActionListener{
 		else {
 			Mensagem1 = Mensagem;
 		}
+                
 		// Rótulo com a mensagem
 		JLabel LabelInfo = new JLabel(Mensagem1,JLabel.CENTER);
 		LabelInfo.setPreferredSize(dimensionButton);		

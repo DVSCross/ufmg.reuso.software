@@ -22,9 +22,12 @@ import br.ufmg.reuso.negocio.mesa.Mesa;
 
 
 public class Tabuleiro 
-{
-	public static final int NUMERO_MAX_MESAS_TABULEIRO = 5;				/** definindo número máximo de mesas no tabuleiro*/
-	private Mesa[] mesas = new Mesa[NUMERO_MAX_MESAS_TABULEIRO];		/** criando as mesas do tabuleiro*/
+{   
+        /** definindo número máximo de mesas no tabuleiro*/
+	public static final int NUMERO_MAX_MESAS_TABULEIRO = 5;	
+        
+        /** criando as mesas do tabuleiro*/
+	private Mesa[] mesas = new Mesa[NUMERO_MAX_MESAS_TABULEIRO];		
 	
 	/*----------------------EFEITOS DA CARTA CONCEITO PERMANENTES---------------------------------*/
 	
@@ -73,15 +76,16 @@ public class Tabuleiro
 	/*---------------------------------------------------------------------------------------*/
 	public Tabuleiro ()
 	{
-		this.efeitoPositivoOrcamento=0;								/**não há efeito algum no início do jogo*/
+		this.efeitoPositivoOrcamento=0;								
 		
 		efeitoAumentarHabilidadeEngenheiroLater= new ArrayList <String[]>();		
 		
-		efeitoModuloIntegradoNeutralizadoValidacao = false;	/**não há efeito algum no início do jogo*/
-		efeitoHelpArtifactsNeutralizadoValidacao = false;	/**não há efeito algum no início do jogo*/
-		efeitoProblemaArtefatoRequisitosNeutralizado = false;/**não há efeito algum no início do jogo*/
-		efeitoProblemaArtefatoRastroNeutralizado = false;	/**não há efeito algum no início do jogo*/
-		efeitoProblemaArtefatoCodigoNeutralizado = false;	/**não há efeito algum no início do jogo*/
+                /**não há efeito algum no início do jogo*/
+		efeitoModuloIntegradoNeutralizadoValidacao = false;	
+		efeitoHelpArtifactsNeutralizadoValidacao = false;	
+		efeitoProblemaArtefatoRequisitosNeutralizado = false;
+		efeitoProblemaArtefatoRastroNeutralizado = false;	
+		efeitoProblemaArtefatoCodigoNeutralizado = false;	
 		
 		efeitoAdicionaDificuldadeInspecionarArtefatos = 0;
 		efeitoAdicionaDificuldadeCorrigirArtefatos = 0;
@@ -94,7 +98,8 @@ public class Tabuleiro
 		
 		for (int i=0;i<NUMERO_MAX_MESAS_TABULEIRO;i++)
 		{
-			mesas [i]= new Mesa();							//inicializando mesas
+                        //inicializando mesas
+			mesas [i]= new Mesa();							
 		}
 		
 	}
@@ -241,10 +246,10 @@ public class Tabuleiro
 
 	public void alocarMesa(CartaEngenheiro novato, int posicaoMesa)
 	{
-		mesas[posicaoMesa].setCartaMesa(novato);				//inserindo engenheiro novato na mesa conforme a posição escolhida
+		mesas[posicaoMesa].setCartaMesa(novato);				
 		
 		
-		mesas[posicaoMesa].getCartaMesa().mostrarCarta();		// TODO utilizado para mostrar a carta de engenheiro de software deste jogador -> ok
+		mesas[posicaoMesa].getCartaMesa().mostrarCarta();		
 	}
 	
 	public boolean despedirEngenheiro(CartaEngenheiro engDemitido)
@@ -254,19 +259,30 @@ public class Tabuleiro
 		{
 			if (mesas[i].getCartaMesa()==null)
 				continue;
+                        
 			/**comparando a variável código das cartas, caso elas sejam iguais, tenta-se retirar a carta de engenheiro do jogador*/
 			if (mesas[i].getCartaMesa().getCodigoCarta().compareTo(engDemitido.getCodigoCarta())==0)
 			{
-				if (mesas[i].getCartaMesa().isEngenheiroTrabalhouNestaRodada()==true)/**se o engenheiro já trabalhou na rodada, ele não pode ser demitido nessa rodada*/
+                            
+                                //**se o engenheiro já trabalhou na rodada, ele não pode ser demitido nessa rodada*/
+				if (mesas[i].getCartaMesa().isEngenheiroTrabalhouNestaRodada()==true)
 				{
 					Jogo.getJogo().setupController.exibirNaoDemiteEngenheiro();
-					return false;						/**retorna que jogador não pode demitir engenheiro*/								
+                                        
+                                        /**retorna que jogador não pode demitir engenheiro*/
+					return false;														
 				}
-				mesas[i].setCartaMesa(null);			/**carta da mesa do jogador retirada, logo demitiu-se o engenheiro*/ 		
-				return true;							/**retorna que jogador deve demitir engenheiro*/
+                                
+                                /**carta da mesa do jogador retirada, logo demitiu-se o engenheiro*/
+				mesas[i].setCartaMesa(null);			 		
+				
+                                /**retorna que jogador deve demitir engenheiro*/
+                                return true;							
 			}	
 		}
-		return false;									/**retorna que jogador não pode demitir engenheiro*/
+                
+                /**retorna que jogador não pode demitir engenheiro*/
+		return false;									
 	}
 	
 }

@@ -340,27 +340,32 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 							//check.setSelected(true);
 							listCheck[i][j].setActionCommand(Integer.toBinaryString(i));
 							panelBoard.add(listCheck[i][j]);
+                                                        
 							//Vai ter que verificar o estado de cada check para ver.
 						    if (it.hasNext() == true) {
 								y += img.getIconHeight();
 							}
 						    j++;
 							
-						} // Fim do while sobre os artafatos de um tipo
+						} 
+                                                // Fim do while sobre os artafatos de um tipo
 
 						// y += height/2;
 						height = yInc;
 
-					} else { // Se não há artefatos do tipo atual
+					} else { 
+                                        // Se não há artefatos do tipo atual
 
 					}
 					x += xInc;
 					i++;
-				} // Fim do while sobre tipos de artefatos
+				} 
+                                    // Fim do while sobre tipos de artefatos
 
 				// Inserir Requisitos
 
-			} // Fim do colocação da matriz de artefatos
+			} 
+                        // Fim do colocação da matriz de artefatos
 			
 			return panelBoard;
 
@@ -424,8 +429,8 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 		 */
 		private ImageIcon getImageArtefact(Artefato art, int height) {
 			ImageIcon img = null;
-			if (art.isPoorQuality() == true) { // Artifact
-				// Bad
+			if (art.isPoorQuality() == true) { 
+				
 
 				if (art.inspected() == true) {
 
@@ -439,13 +444,13 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 								0, height);
 					}
 
-				} else { // Artifact Bad not inspectioned
+				} else { 
 					img = ComponentCard.getImageScalable(
 							ScreenInteraction.imagePath + "artefactBad.png", 0,
 							height);
 				}
 
-			} else { // Artifact God
+			} else { 
 
 				if (art.inspected() == true) {
 
@@ -459,7 +464,7 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 								0, height);
 					}
 
-				} else { // Artifact Bad not inspectioned
+				} else {
 					img = ComponentCard.getImageScalable(
 							ScreenInteraction.imagePath + "artefactGood.png", 0,
 							height);
@@ -506,6 +511,7 @@ public class ScreenIntegrateModule extends JDialog implements ActionListener {
 						
 			//xgap = x = dim.width * 2 / 100; // 2% para borda esquerda
 			//ygap = y = dim.height * 3 / 100;
+                        
 			width = mySize.width * 96 / 100;
 			height = mySize.height * 5 / 100;
 			x =y =0;

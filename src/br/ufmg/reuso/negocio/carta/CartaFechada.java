@@ -23,11 +23,13 @@ public class CartaFechada implements EstadoCarta {
 	
 	@Override
 	public void setEstado(Artefato carta) {
+            
 		//define que o artefato ainda nao foi inspecionado
 		carta.setArtefatoInspecionado(false);
 	}
 	
 	public void virarCarta(Artefato carta) {
+            
 		//opcao para inspecionar o artefato
 		carta.setArtefatoInspecionado(true);
 	}

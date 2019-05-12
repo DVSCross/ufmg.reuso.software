@@ -80,9 +80,10 @@ public class ScreenTabuleiro extends JDialog {
 	Jogo jogo = null;
 	Mesa board = null;
 	Carta cartaAtiva = null;
+    public int x;
 
 	// Variáveis utilizadas para posicionamento dos paineis.
-	private int x, y, width, height, yInc, xInc;
+	private int y, width, height, yInc, xInc;
 	private Dimension dimPanel;
 	private Dimension mySise = new Dimension();
 
@@ -407,14 +408,14 @@ public class ScreenTabuleiro extends JDialog {
 							panelBoard.add(label);
 						}
 						
-
+                                                // Fim do while sobre tipos de artefatos
 						j++;
-					} // Fim do while sobre tipos de artefatos
+					} 
 
 					// Inserir Requisitos
 
-				} // Fim do colocação da matriz de artefatos
-
+				} 
+                                // Fim do colocação da matriz de artefatos
 				x = 0;
 
 				JButton buttonIntegrate = new JButton("Integrar");
@@ -901,7 +902,7 @@ public class ScreenTabuleiro extends JDialog {
 							oponent = null;
 						}
 						ScreenTabuleiro.this.refresh();
-					}// FIM DO TESTE VER OPONENTE
+					}
 
 				}
 			}
@@ -927,6 +928,7 @@ public class ScreenTabuleiro extends JDialog {
 							.getCartaMesa();
 					jogador = GameController.getGameController()
 							.integrarModuloI(jogo, jogador, carta, numMesa);
+                                        
 					// ScreenInteraction.getScreenInteraction().exibirMensagem("Mesa a integra "
 					// + Integer.toString(numMesa) , "");
 					ScreenTabuleiro.this.refresh();
@@ -1005,6 +1007,7 @@ public class ScreenTabuleiro extends JDialog {
 	 */
 	public static ScreenTabuleiro createAndShowTabuleiro(Jogador jogador,
 			Jogo jogo) {
+            
 		// Cria e configura a tela.
 		ScreenTabuleiro scr = new ScreenTabuleiro(jogador, jogo);
 		scr.rootPane.setOpaque(true);
@@ -1020,6 +1023,7 @@ public class ScreenTabuleiro extends JDialog {
 	/**************************** TEST FUNCTION *********************************/
 	/****************************************************************************/
 	public static void main(String[] args) {
+            
 		// O uso da Thread com a utilização de invokeLater tem a
 		// função da construção total da GUI para somente então
 		// apresentá-la na tela.

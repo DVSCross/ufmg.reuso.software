@@ -128,28 +128,28 @@ public final class Jogo {
 	}
 
 	private void init() {
-		int mode = setupController.exibirStart(); // exibe GUI(tela) para
-													// iniciar o jogo. Retorna 1
-													// caso ha a necessidade de
-													// configurar o jogo.
-													// Retorna 0 caso contrario
+                
+                // exibe GUI(tela) para
+		int mode = setupController.exibirStart(); 
+		
+                
+                // iniciar o jogo. Retorna 1
+		// caso ha a necessidade de
+		// configurar o jogo.
+		// Retorna 0 caso contrario
 		int dificuldade;
 		//#ifdef ConceptCard
 		int[] cartasConceito;
 		//#endif
 		int[] cartasProblema;
-
-		if (mode != ModeGameConstants.MODE_DEFAULT) // caso mode seja diferente
-													// do default
+                
+                // caso mode seja diferente do default
+		if (mode != ModeGameConstants.MODE_DEFAULT) 
+													
 		{
-			dificuldade = setupController.inserirDificuldadeJogo(); // modo de
-																	// jogo
-																	// escolhido
-																	// e
-																	// inserido
-																	// na
-																	// variavel
-																	// dificuldade
+                        //modo de jogo escolhido e inserido na variavel dificuldade
+			dificuldade = setupController.inserirDificuldadeJogo(); 
+																	
 			//#ifdef ConceptCard
 			cartasConceito = setupController.inserirCartasConceitoSelecionadas();
 			//#endif
@@ -163,15 +163,9 @@ public final class Jogo {
 			cartasProblema = new int[1];
 			cartasProblema[0] = ModeGameConstants.ALL_CARDS_PROBLEMA;
 		}
-
-		String[] nomeJogadores = setupController.inserirNomesJogadores(); // insere
-																			// nome
-																			// dos
-																			// jogadores
-																			// no
-																			// vetor
-																			// de
-																			// string
+                
+                //insere nome dos jogadores no vetor de string
+		String[] nomeJogadores = setupController.inserirNomesJogadores(); 
 		switch (dificuldade) {
 		case 1:
 			configurarJogo(FACIL, nomeJogadores, 
@@ -202,24 +196,18 @@ public final class Jogo {
 		int jogador = 0;
 		jogo.init();
 
-		while (getGameStatus() == Status.CONTINUE) // ** Enquanto o status do
-													// jogo for continuar, esse
-													// metodo e executado*//*
+		while (getGameStatus() == Status.CONTINUE) 
 		{
-			setupController.exibirDefault(jogoAtual, getJogadores()[jogador]); // **Exibe
-																				// GUI
-																				// default
-																				// do
-																				// jogador
-																				// i*//*
+			setupController.exibirDefault(jogoAtual, getJogadores()[jogador]);
 			diminuirDuracaoEfeitosTemporario(jogador);
-			jogador++; // **Acrescentando jogador, ha a troca de jogador *//*
-			if (jogador >= getJogadores().length) // **Caso jogador ultrapasse
-													// vetor de jogadores, ja
-													// esta no ultimo
-													// jogador*//*
+                        
+                         // **Acrescentando jogador, ha a troca de jogador *//*
+			jogador++;
+			if (jogador >= getJogadores().length) 
 			{
-				jogador = 0; // **Logo, retorna-se ao jogador inicial*//*
+                            
+                                 // **Logo, retorna-se ao jogador inicial*//*
+				jogador = 0;
 				adicionarEfeitosFimTurno();
 			}
 		}
@@ -278,20 +266,20 @@ public final class Jogo {
 		ordenarJogadores();
 		embaralharCartaseArtefatos();
 		setupController.exibirProjeto(projeto);
+                
 		// baralhoCartas[BARALHO_PRINCIPAL].mostrarBaralho(); //TODO so pra
 		// teste -> mostra baralho ja na ordem de distribuicao -> ok
 
 	}
 
 	public void cadastrarJogadores(String[] nomeJogadores) {
-		jogadores = new Jogador[nomeJogadores.length]; // criando o vetor de
-														// jogadores
+		jogadores = new Jogador[nomeJogadores.length]; 
 
-		int i = 0; // i e uma variavel auxiliar
+		int i = 0; 
 		while (i < jogadores.length) {
 			String nomeJogador;
-			nomeJogador = nomeJogadores[i]; // passando nome de jogadores para a
-											// variavel local
+			nomeJogador = nomeJogadores[i]; 
+                        
 			// construindo o jogador com par?metros inicias iguais ao projeto
 			jogadores[i] = new Jogador(nomeJogador, projeto.getOrcamento());
 			inserirEngenheiroInicial(jogadores[i]);
@@ -303,83 +291,30 @@ public final class Jogo {
 		Random sorteioEngenheiro = new Random();
 		Carta novato = null;
 		while (novato == null) {
-			int sorteado = sorteioEngenheiro.nextInt(baralhoCartas[BARALHO_PRINCIPAL].getNumeroTotalEngenheiro()); // gera
-																													// numeros
-																													// aleatorios
-																													// de
-																													// 0
-																													// ate
-																													// o
-																													// numero
-																													// de
-																													// engenheiros
-																													// do
-																													// baralho
-			novato = baralhoCartas[BARALHO_PRINCIPAL].darCartaInicial(sorteado); // concerteza
-																					// sera
-																					// um
-																					// selecionado
-																					// um
-																					// engenheiro
-																					// no
-																					// baralho,
-																					// ja
-																					// que
-																					// as
-																					// cartas
-																					// de
-																					// engenheiro
-																					// ocupam
-																					// a
-																					// primeira
-																					// posicao
-																					// do
-																					// baralho
-																					// devido
-																					// ao
-																					// modo
-																					// de
-																					// construcao
-																					// do
-																					// baralho
+			int sorteado = sorteioEngenheiro.nextInt(baralhoCartas[BARALHO_PRINCIPAL].getNumeroTotalEngenheiro()); 
+			novato = baralhoCartas[BARALHO_PRINCIPAL].darCartaInicial(sorteado); 
 		}
-		jogador.contratarEngenheiro(novato, 0); // chamando o metodo de
-												// contratar engenheiro passando
-												// como par?metro o engenheiro
-												// novato e a mesa 0
+		jogador.contratarEngenheiro(novato, 0); 
 
 	}
-
-	public void ordenarJogadores() // ordena jogada dos jogadores
+        
+        // ordena jogada dos jogadores
+	public void ordenarJogadores() 
 	{
-		int[] pontuacaoJogador = new int[jogadores.length]; // vetor que tera a
-															// pontuacao de cada
-															// jogador
+		int[] pontuacaoJogador = new int[jogadores.length]; 
 		for (int i = 0; i < pontuacaoJogador.length; i++) {
-			pontuacaoJogador[i] = 0; // inicializando vetor com pontuacao de
-										// jogadores
+			pontuacaoJogador[i] = 0; 
 		}
 		for (int i = 0; i < jogadores.length; i++) {
+                    
 			// passando o nome do jogador i para que a GUI exiba o nome dele
 			// pedindo rolagem de dados,serve para dar interatividade com
 			// usuario
 			setupController.pedirRolarDadosInicial(jogadores[i].getNome());
 
-			pontuacaoJogador[i] = Dado.sortearValor(); // jogando dados e
-														// guardando os pontos
-														// do jogadores
+			pontuacaoJogador[i] = Dado.sortearValor(); 
 
-			while (desempatarPontuacao(pontuacaoJogador[i], pontuacaoJogador) == true) // caso
-																						// da
-																						// empate
-																						// com
-																						// outro
-																						// jogador,
-																						// a
-																						// funcao
-																						// empatePontuacao
-																						// retorna
-																						// true
+			while (desempatarPontuacao(pontuacaoJogador[i], pontuacaoJogador) == true)
 			{
 				// passando pontuacao obtida por sorteio para que a GUI exiba
 				// tal pontuacao
@@ -388,17 +323,12 @@ public final class Jogo {
 				// passando o nome do jogador i para que a GUI exiba o nome dele
 				// pedindo nova rolagem de dados devido e empate.
 				setupController.mostrarEmpatePontosObtidosInicial(jogadores[i].getNome());
-				pontuacaoJogador[i] = Dado.sortearValor(); // tenta desempatar a
-															// pontuacao obtida
+				pontuacaoJogador[i] = Dado.sortearValor(); 
 			}
 
 			// passando pontuacao obtida por sorteio para que a GUI exiba tal
 			// pontuacao
-			setupController.mostrarPontosObtidosInicial(pontuacaoJogador[i]); // mostra
-																				// pontos
-																				// obtidos
-																				// pelo
-																				// jogador
+			setupController.mostrarPontosObtidosInicial(pontuacaoJogador[i]);
 		}
 
 		// metodo de ordencacao
@@ -406,35 +336,23 @@ public final class Jogo {
 		int posicao = 0;
 		for (int j = 0; j < jogadores.length; j++) {
 			for (int i = j; i < jogadores.length; i++) {
-				if (pontuacaoJogador[i] > max) // caso a pontuacao no vetor de
-												// pontos seja maior que max ha
-												// atualizacao
+				if (pontuacaoJogador[i] > max) 
 				{
 					posicao = i;
 					max = pontuacaoJogador[i];
 				}
 			}
 			max = 0;
-			pontuacaoJogador[posicao] = pontuacaoJogador[j]; // aqui ha uma
-																// troca de
-																// posicao no
-																// vetor de
-																// pontos para
-																// que na
-																// proxima
-																// iteracao i
-																// nao precisa
-																// comecar de 0
+			pontuacaoJogador[posicao] = pontuacaoJogador[j]; 
 			trocarOrdem(j, posicao);
 
 		}
-		mostrarOrdemJogo(); // mostra ordem do jogo
+                
+                // mostra ordem do jogo
+		mostrarOrdemJogo(); 
 	}
 
-	public void trocarOrdem(int posicao1, int posicao2) // metodo utilizado pelo
-														// ordenarJogadores()
-														// para trocar de
-														// jogdaores
+	public void trocarOrdem(int posicao1, int posicao2) 
 	{
 		Jogador temporaria = jogadores[posicao1];
 		jogadores[posicao1] = jogadores[posicao2];
@@ -442,31 +360,26 @@ public final class Jogo {
 
 	}
 
-	public boolean desempatarPontuacao(int valor, int[] pontuacao) // metodo
-																	// utilizado
-																	// pelo
-																	// ordenarJogadores()
-																	// para
-																	// verificiar
-																	// se ha
-																	// empate de
-																	// pontos
-																	// entre
-																	// jogadores
+	public boolean desempatarPontuacao(int valor, int[] pontuacao) 
 	{
 		int repeticao = 0;
 		for (int i = 0; i < pontuacao.length; i++) {
 			if (pontuacao[i] == valor)
 				repeticao++;
 		}
-		if (repeticao < 2)
-			return false; // este retorno significa que nao ha empate na
+                
+                // este retorno significa que nao ha empate na
 							// pontuacao entre os jogadores
-		return true; // este retorno significa que ha empate na pontuacao entre
+		if (repeticao < 2)
+			return false; 
+		
+                // este retorno significa que ha empate na pontuacao entre
 						// os jogadores
+                return true; 
 	}
-
-	public void mostrarOrdemJogo() // mostra ordem do jogo
+        
+        // mostra ordem do jogo
+	public void mostrarOrdemJogo() 
 	{
 		String[] nomeJogadoresOrdenados = new String[jogadores.length];
 
@@ -483,10 +396,7 @@ public final class Jogo {
 	}
 
 	public Jogador jogarDado(
-			Jogador jogador) /**
-								 * Jogou dados, jogador recebe cartas do baralho
-								 * automaticamente
-								 */
+			Jogador jogador) 
 	{
 		int numberCardsDelivered = jogador.analisarPontuacao();		
 		
@@ -512,33 +422,35 @@ public final class Jogo {
 
 		for (int i = 0; i < numberCardsDelivered; i++) {
 			if (baralhoCartas[BARALHO_PRINCIPAL].getNumeroCartasBaralhoAtual() > 0)
+                            
 				/** verifica se ainda ha cartas no baralho principal */
 				jogador.receberCarta(baralhoCartas[BARALHO_PRINCIPAL].darCarta());
-			/** concede carta ao jogador */
+                        
 			else {
 				trocarBaralhoCartas();
 				jogador.receberCarta(baralhoCartas[BARALHO_PRINCIPAL].darCarta());
+                                
 				/** concede carta ao jogador */
 			}
 		}
 		jogador.mostrarCartaMao();
+                
 		/*************/
 		// TODO so pra teste -> mostra carta do jogador recebida
 
 		return jogador;
 	}
 
-	public void trocarBaralhoCartas() /**
-										 * troca o baralho principal pelo
-										 * auxiliar
-										 */
+	public void trocarBaralhoCartas() 
 	{
 		BaralhoCartas temporario = baralhoCartas[BARALHO_PRINCIPAL];
 		baralhoCartas[BARALHO_AUXILIAR].embaralhar();
+                
 		/** embaralhando as cartas que foram retiradas */
 		baralhoCartas[BARALHO_PRINCIPAL] = baralhoCartas[BARALHO_AUXILIAR];
 		baralhoCartas[BARALHO_AUXILIAR] = temporario;
 		baralhoCartas[BARALHO_AUXILIAR].setCurrentCard(0);
+                
 		/** o novo baralho auxiliar tem o indice retornada para zero */
 	}
 
@@ -560,6 +472,7 @@ public final class Jogo {
 
 	public Jogador admitirEngenheiro(Jogador jogador, CartaEngenheiro engenheiroContratado, int posicaoMesa) {
 		jogador.contratarEngenheiro(engenheiroContratado, posicaoMesa);
+                
 		/** Tenta contratar o engenheiro */
 
 		mostrarCartasDasMesasDoTabuleiro(jogador);
@@ -569,48 +482,38 @@ public final class Jogo {
 
 	public Jogador despedirEngenheiro(Jogador jogador, CartaEngenheiro engenheiroDemitido) {
 		if (jogador.removerCarta(engenheiroDemitido) == true)
+                    
 			/** se pode demitir engenheiro */
 			baralhoCartas[BARALHO_AUXILIAR].recolherCarta(engenheiroDemitido);
 																							// teste
 		mostrarCartasDasMesasDoTabuleiro(jogador);
 
 		return jogador;
+                
 	}// TODO tem que conferir se o engenheiro a ser demitido ainda nao trabalhou
 		// na rodade.
 
 	/**
 	 * @param jogador
 	 */
+        // TODO teste
 	private void mostrarCartasDasMesasDoTabuleiro(Jogador jogador) {
-		for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) // TODO
+		for (int i = 0; i < jogador.getTabuleiro().getMesas().length; i++) 
 																			// teste
-		{ // TODO teste
-			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)// TODO
+		{ 
+			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 																			// teste
-				continue; // TODO teste
-			else // TODO TESTE
-			{ // TODO teste
-				jogador.getTabuleiro().getMesas()[i].getCartaMesa().mostrarCarta(); // utilizado
-																					// para
-																					// mostrar
-																					// a
-																					// carta
-																					// de
-																					// engenheiro
-																					// de
-																					// software
-																					// no
-																					// tabuleiro
-																					// deste
-																					// jogador
-																					// ->
-																					// ok
-			} // TODO teste
-		} // TODO teste
+				continue; 
+			else 
+			{ 
+				jogador.getTabuleiro().getMesas()[i].getCartaMesa().mostrarCarta();
+			} 
+		} 
 	}
 
 	public Jogador inserirArtefato(Jogador jogador, CartaEngenheiro engenheiroProduzindo, int mesaTrabalho) {
 		this.habilidadeTemporaria = engenheiroProduzindo.getHabilidadeEngenheiroAtual();
+                
 		/**
 		 * Se engenheiro for trabalhar em mesa distinta da sua, codigo das
 		 * cartas das mesas comparadas sao disintas
@@ -618,16 +521,17 @@ public final class Jogo {
 		if (jogador.getTabuleiro().getMesas()[mesaTrabalho].getCartaMesa().getCodigoCarta()
 				.compareTo(engenheiroProduzindo.getCodigoCarta()) != 0)
 			habilidadeTemporaria--;
+                
 		/** Se engenheiro ajuda outro engenheiro, habilidade decresce 1 */
 
 
 
 		Modulo[] pedido = setupController.exibirTabelaProducao(habilidadeTemporaria, projeto.getComplexidade());
 
-		if (pedido == null) // cancelou pedido
+		if (pedido == null) 
 		{			
 			return jogador;
-		} else // ha pedido valido
+		} else 
 		{			
 			int numeroArtefatoBons = pedido[Mesa.ARTEFATOS_BONS].somatorioModulo();
 			int numeroArtefatosRuins = pedido[Mesa.ARTEFATOS_RUINS].somatorioModulo();
@@ -657,6 +561,7 @@ public final class Jogo {
 		if (jogador.getTabuleiro().getMesas()[mesaTrabalho].getCartaMesa().getCodigoCarta()
 				.compareTo(engenheiroInspecionando.getCodigoCarta()) != 0)
 			habilidadeTemporaria--;
+                
 		/** Se engenheiro ajuda outro engenheiro, habilidade decresce 1 */
 
 
@@ -696,10 +601,10 @@ public final class Jogo {
 
 		Modulo[] pedido = setupController.exibirTabelaInspecao(habilidadeTemporaria, artefatosNotInspecionados);
 
-		if (pedido == null) // TODO cancelou pedido
+		if (pedido == null) 
 		{
 			return jogador;
-		} else // TODO ha pedido valido
+		} else 
 		{
 			int numeroArtefatoBons = pedido[Mesa.ARTEFATOS_BONS].somatorioModulo();
 			int numeroArtefatosRuins = pedido[Mesa.ARTEFATOS_RUINS].somatorioModulo();
@@ -729,6 +634,7 @@ public final class Jogo {
 		if (jogador.getTabuleiro().getMesas()[mesaTrabalho].getCartaMesa().getCodigoCarta()
 				.compareTo(engenheiroCorrigindo.getCodigoCarta()) != 0)
 			habilidadeTemporaria--;
+                
 		/** Se engenheiro ajuda outro engenheiro, habilidade decresce 1 */
 
 
@@ -768,10 +674,10 @@ public final class Jogo {
 
 		Modulo[] pedido = setupController.exibirTabelaCorrecao(habilidadeTemporaria, artefatosInspecionadosBug);
 
-		if (pedido == null) // cancelou pedido
+		if (pedido == null) 
 		{
 			return jogador;
-		} else // ha pedido valido
+		} else 
     {
 			int numeroArtefatoBons = pedido[Mesa.ARTEFATOS_BONS].somatorioModulo();
 			int numeroArtefatosRuins = pedido[Mesa.ARTEFATOS_RUINS].somatorioModulo();
@@ -802,15 +708,11 @@ public final class Jogo {
 		if (jogador.getTabuleiro().getMesas()[mesaTrabalho].getCartaMesa().getCodigoCarta()
 				.compareTo(engenheiroCorrigindo.getCodigoCarta()) != 0)
 			habilidadeTemporaria--;
+                
 		/** Se engenheiro ajuda outro engenheiro, habilidade decresce 1 */
 
 		for (int i = 0; i < jogador.getTabuleiro()
-				.getMesas().length; i++) /**
-											 * 
-											 * 
-											 * verifica se o modulo ja foi
-											 * integrado
-											 */
+				.getMesas().length; i++) 
 		{
 			if (jogador.getTabuleiro().getMesas()[i].getEspecificacaoModuloIntegrado() == moduloEscolhido) {
 				setupController.exibirModuloJaIntegrado(i + 1);
@@ -837,6 +739,7 @@ public final class Jogo {
 
 		/** atualizando habilidade atual do engenheiro */
 		engenheiroCorrigindo.setHabilidadeEngenheiroAtual(0);
+                
 		/** Engenheiro nao faz mais nada na rodada depois de integrar modulo */
 
 		/** engenheiro trabalhou na rodada, logo atualizando isso */
@@ -912,9 +815,11 @@ public final class Jogo {
 			if (artefatosEscolhidos[Mesa.ARTEFATOS_AJUDA][i] == GameController.ARTEFATOS_SELECIONADO) {
 				Artefato temporario = jogador.getTabuleiro().getMesas()[mesaTrabalho].getAjudas()
 						.get(artefatosEscolhidos[Mesa.ARTEFATOS_AJUDA][i]);
+                                
 				/** copiando um artefato escolhido numa variavel temporaria */
 				jogador.getTabuleiro().getMesas()[mesaTrabalho].getAjudas()
 						.remove(artefatosEscolhidos[Mesa.ARTEFATOS_AJUDA][i]);
+                                
 				/** retira artefato da mesa para o modulo a ser integrado */
 				moduloIntegrado[Mesa.ARTEFATOS_AJUDA].add(temporario);
 			}
@@ -974,13 +879,16 @@ public final class Jogo {
 			if (!(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getCodigoCarta()
 					.equals(engenheiroTransferindo.getCodigoCarta())))
 				continue;
+                        
 			/** encontrando a mesa do engenheiro que transfere o modulo */
 			if (jogadorAtual.getTabuleiro().getMesas()[i].getModuloJaIntegrado() == false)
+                            
 				/** so por seguranca */
 				return jogadorAtual;
 
 			ArrayList<Artefato>[] temporario = jogadorAtual.getTabuleiro().getMesas()[mesaEscolhida]
 					.getModuloIntegrado();
+                        
 			/** trocando os modulos das mesas */
 			jogadorAtual.getTabuleiro().getMesas()[mesaEscolhida]
 					.setModuloIntegrado(jogadorAtual.getTabuleiro().getMesas()[i].getModuloIntegrado());
@@ -1002,51 +910,25 @@ public final class Jogo {
 	public int validarProjeto(Jogador jogador) {
 		if (jogador.contarModuloJaIntegrado() == projeto.getTamanho()) {
 			for (int i = 0; i < projeto
-					.getQualidade(); i++) /**
-											 * conferindo x modulos integrados,
-											 * onde x e igual ? qualidade do
-											 * projeto
-											 */
+					.getQualidade(); i++) 
 			{
 				for (int z = 0; z < jogador.getTabuleiro()
-						.getMesas().length; z++)/**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
+						.getMesas().length; z++)
 				{
 					if (jogador.getTabuleiro().getMesas()[z].getModuloJaIntegrado() == false)
+                                            
 						/** se mesa nao tem modulo integrado */
 						continue;
 					for (int j = 0; j < jogador.getTabuleiro().getMesas()[z]
-							.getModuloIntegrado().length; j++) /**
-																 * Percorrendo
-																 * cada conjunto
-																 * de artefatos
-																 * do modulo
-																 * integrado da
-																 * mesa z do
-																 * jogador
-																 */
+							.getModuloIntegrado().length; j++) 
+                                            
 					{// TODO caso tenha efeito de pular modulo integrado, entra
 						// aqui
 						for (int k = 0; k < jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j]
-								.size(); k++) /**
-												 * 
-												 * 
-												 * percorrendo o array de
-												 * artefato da posicao j do
-												 * modulo integrado em analise
-												 */
+								.size(); k++)
 						{
 							if (jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j].get(k)
-									.isPoorQuality() == true) /**
-																 * se qualidade
-																 * do artefato
-																 * for ruim, ou
-																 * seja, com bug
-																 */
+									.isPoorQuality() == true) 
 							{
 								return SetupInteraction.PROJETO_NAO_CONCLUIDO;
 							}
@@ -1064,10 +946,7 @@ public final class Jogo {
 	//#ifdef ConceptCard
 	public Jogador usarConceito(Jogador jogador, CartaBonificacao cartaUtilizada) {
 		switch (cartaUtilizada
-				.getTipoPrimeiroEfeito()) /**
-											 * insere PRIMEIRO efeito no
-											 * tabuleiro do jogador
-											 */
+				.getTipoPrimeiroEfeito()) 
 		{
 		case (CardsConstants.NO_BENEFITS):
 			break;
@@ -1091,20 +970,12 @@ public final class Jogo {
 			if (engenheiro[0] == null)
 				break;
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiro[0])) /**
-												 * encontra engenheiro que
-												 * recebera efeito
-												 */
+						.equals(engenheiro[0]))
 				{
 					jogador.getTabuleiro().getMesas()[i]
 							.setEfeitoAumentarMaturidadeEngenheiro(cartaUtilizada.getQuantidadePrimeiroEfeito());
@@ -1125,22 +996,12 @@ public final class Jogo {
 				if (engenheiro[j] == null)
 					continue;
 				for (int i = 0; i < jogador.getTabuleiro()
-						.getMesas().length; i++) /**
-													 * 
-													 * 
-													 * percorrendo mesas do
-													 * tabuleiro
-													 */
+						.getMesas().length; i++) 
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
 					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[j])) /**
-													 * 
-													 * 
-													 * encontra engenheiro que
-													 * recebera efeito
-													 */
+							.equals(engenheiro[j]))
 					{
 						String[] auxiliar = new String[2];
 						auxiliar[0] = engenheiro[j];
@@ -1156,20 +1017,12 @@ public final class Jogo {
 			if (engenheiro[0] == null)
 				break;
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiro[0])) /**
-												 * encontra engenheiro que
-												 * recebera efeito
-												 */
+						.equals(engenheiro[0])) 
 				{
 					jogador.getTabuleiro().getMesas()[i]
 							.setEfeitoAumentarMaturidadeEngenheiro(cartaUtilizada.getQuantidadePrimeiroEfeito());
@@ -1201,20 +1054,12 @@ public final class Jogo {
 			if (engenheiro[0] == null)
 				break;
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
+					.getMesas().length; i++)
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiro[0])) /**
-												 * encontra engenheiro que
-												 * recebera efeito
-												 */
+						.equals(engenheiro[0])) 
 				{
 					inspecionarArtefatoByEfeito(jogador, cartaUtilizada.getQuantidadePrimeiroEfeito());
 				}
@@ -1286,10 +1131,7 @@ public final class Jogo {
 		}
 
 		switch (cartaUtilizada
-				.getTipoSegundoEfeito()) /**
-											 * insere SEGUNDO efeito no
-											 * tabuleiro do jogador
-											 */
+				.getTipoSegundoEfeito()) 
 		{
 		case (CardsConstants.NO_BENEFITS):
 			break;
@@ -1313,20 +1155,12 @@ public final class Jogo {
 			if (engenheiro[0] == null)
 				break;
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
+					.getMesas().length; i++)
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiro[0])) /**
-												 * encontra engenheiro que
-												 * recebera efeito
-												 */
+						.equals(engenheiro[0])) 
 				{
 					jogador.getTabuleiro().getMesas()[i]
 							.setEfeitoAumentarMaturidadeEngenheiro(cartaUtilizada.getQuantidadeSegundoEfeito());
@@ -1347,22 +1181,12 @@ public final class Jogo {
 				if (engenheiro[j] == null)
 					continue;
 				for (int i = 0; i < jogador.getTabuleiro()
-						.getMesas().length; i++) /**
-													 * 
-													 * 
-													 * percorrendo mesas do
-													 * tabuleiro
-													 */
+						.getMesas().length; i++) 
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
 					if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[j])) /**
-													 * 
-													 * 
-													 * encontra engenheiro que
-													 * recebera efeito
-													 */
+							.equals(engenheiro[j]))
 					{
 						String[] auxiliar = new String[2];
 						auxiliar[0] = engenheiro[j];
@@ -1378,20 +1202,12 @@ public final class Jogo {
 			if (engenheiro[0] == null)
 				break;
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiro[0])) /**
-												 * encontra engenheiro que
-												 * recebera efeito
-												 */
+						.equals(engenheiro[0])) 
 				{
 					jogador.getTabuleiro().getMesas()[i]
 							.setEfeitoAumentarMaturidadeEngenheiro(cartaUtilizada.getQuantidadeSegundoEfeito());
@@ -1423,20 +1239,12 @@ public final class Jogo {
 			if (engenheiro[0] == null)
 				break;
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas do
-												 * tabuleiro
-												 */
+					.getMesas().length; i++)
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiro[0])) /**
-												 * encontra engenheiro que
-												 * recebera efeito
-												 */
+						.equals(engenheiro[0])) 
 				{
 					inspecionarArtefatoByEfeito(jogador, cartaUtilizada.getQuantidadeSegundoEfeito());
 				}
@@ -1514,6 +1322,7 @@ public final class Jogo {
 		Carta[] carta = new Carta[1];
 		carta[0] = cartaUtilizada;
 		retirarCartas(jogador, carta);
+                
 		/** removendo carta utilizada */
 		setupController.exibirEfeitoinserido(jogador, cartaUtilizada);
 		return jogador;
@@ -1523,29 +1332,22 @@ public final class Jogo {
 	public void insertArtifactByEffect(Jogador jogador, int quantidade, int tipoArtefato, int sorteado) {
 		String[] engenheiro = setupController.escolherEngenheiro(jogador, 1);
 		if (engenheiro[0] == null)
+                    
 			return;
 		/** encerra metodo */
 		for (int i = 0; i < jogador.getTabuleiro()
-				.getMesas().length; i++) /**
-											 * 
-											 * 
-											 * percorrendo mesas do tabuleiro
-											 */
+				.getMesas().length; i++) 
 		{
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 				continue;
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro().equals(
-					engenheiro[0])) /**
-									 * encontra engenheiro que recebera efeito
-									 */
+					engenheiro[0])) 
 			{
-				for (int j = 0; j < quantidade; j++) /**
-														 * cedendo a quantidade
-														 * de efeito da carta
-														 */
+				for (int j = 0; j < quantidade; j++) 
 				{
 					if (tipoArtefato == Mesa.ARTEFATOS_AJUDA) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getAjudas()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1555,6 +1357,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_CODIGO) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getCodigos()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1564,6 +1367,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_DESENHO) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getDesenhos()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1573,6 +1377,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_RASTROS) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getRastros()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1582,6 +1387,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getRequisitos()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1597,26 +1403,18 @@ public final class Jogo {
 	public void insertArtifactByEffect(Jogador jogador, int quantidade, int tipoArtefato, int sorteado,
 			String engenheiro) {
 		for (int i = 0; i < jogador.getTabuleiro()
-				.getMesas().length; i++) /**
-											 * 
-											 * 
-											 * percorrendo mesas do tabuleiro
-											 */
+				.getMesas().length; i++) 
 		{
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 				continue;
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro().equals(
-					engenheiro)) /**
-									 * encontra engenheiro que recebera efeito
-									 */
+					engenheiro))
 			{
-				for (int j = 0; j < quantidade; j++) /**
-														 * cedendo a quantidade
-														 * de efeito da carta
-														 */
+				for (int j = 0; j < quantidade; j++) 
 				{
 					if (tipoArtefato == Mesa.ARTEFATOS_AJUDA) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getAjudas()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1626,6 +1424,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_CODIGO) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getCodigos()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1635,6 +1434,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_DESENHO) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getDesenhos()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1644,6 +1444,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_RASTROS) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getRastros()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1653,6 +1454,7 @@ public final class Jogo {
 					}
 					if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS) {
 						if (sorteado == Mesa.ARTEFATOS_BONS)
+                                                    
 							/** inserindo efeito */
 							jogador.getTabuleiro().getMesas()[i].getRequisitos()
 									.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
@@ -1667,19 +1469,12 @@ public final class Jogo {
 
 	public void changeGrayArtifactsByWhiteArtifacts(Jogador jogador) {
 		for (int i = 0; i < jogador.getTabuleiro()
-				.getMesas().length; i++) /**
-											 * 
-											 * 
-											 * percorrendo mesas do jogador
-											 */
+				.getMesas().length; i++) 
 		{
 			boolean percorreuTudo = false;
 			while (percorreuTudo == false) {
 				for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getAjudas()
-						.size(); j++) /**
-										 * percorrendo vetor de artefatos de
-										 * ajuda na mesa
-										 */
+						.size(); j++) 
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getAjudas().get(j).isPoorQuality() == true) {
 						baralhoArtefatosRuins[BARALHO_AUXILIAR]
@@ -1687,6 +1482,7 @@ public final class Jogo {
 						jogador.getTabuleiro().getMesas()[i].getAjudas()
 								.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
 						break;
+                                                
 						/**
 						 * nao pode-se percorrer um arrayList por for ja que ha
 						 * reorganizacao do array,logo deve-se retirar somente
@@ -1695,16 +1491,14 @@ public final class Jogo {
 					}
 				}
 				percorreuTudo = true;
+                                
 				/** se percorreu todo o array, nao ha artefatos cinzas nele */
 			}
 
 			percorreuTudo = false;
 			while (percorreuTudo == false) {
 				for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getCodigos()
-						.size(); j++) /**
-										 * percorrendo vetor de artefatos de
-										 * codigos na mesa
-										 */
+						.size(); j++) 
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getCodigos().get(j).isPoorQuality() == true) {
 						baralhoArtefatosRuins[BARALHO_AUXILIAR]
@@ -1712,6 +1506,7 @@ public final class Jogo {
 						jogador.getTabuleiro().getMesas()[i].getCodigos()
 								.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
 						break;
+                                                
 						/**
 						 * nao pode-se percorrer um arrayList por for ja que ha
 						 * reorganizacao do array,logo deve-se retirar somente
@@ -1720,16 +1515,14 @@ public final class Jogo {
 					}
 				}
 				percorreuTudo = true;
+                                
 				/** se percorreu todo o array, nao ha artefatos cinzas nele */
 			}
 
 			percorreuTudo = false;
 			while (percorreuTudo == false) {
 				for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getDesenhos()
-						.size(); j++) /**
-										 * percorrendo vetor de artefatos de
-										 * desenhos na mesa
-										 */
+						.size(); j++)
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getDesenhos().get(j).isPoorQuality() == true) {
 						baralhoArtefatosRuins[BARALHO_AUXILIAR]
@@ -1737,6 +1530,7 @@ public final class Jogo {
 						jogador.getTabuleiro().getMesas()[i].getDesenhos()
 								.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
 						break;
+                                                
 						/**
 						 * nao pode-se percorrer um arrayList por for ja que ha
 						 * reorganizacao do array,logo deve-se retirar somente
@@ -1745,16 +1539,14 @@ public final class Jogo {
 					}
 				}
 				percorreuTudo = true;
+                                
 				/** se percorreu todo o array, nao ha artefatos cinzas nele */
 			}
 
 			percorreuTudo = false;
 			while (percorreuTudo == false) {
 				for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getRastros()
-						.size(); j++) /**
-										 * percorrendo vetor de artefatos de
-										 * rastros na mesa
-										 */
+						.size(); j++) 
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getRastros().get(j).isPoorQuality() == true) {
 						baralhoArtefatosRuins[BARALHO_AUXILIAR]
@@ -1762,6 +1554,7 @@ public final class Jogo {
 						jogador.getTabuleiro().getMesas()[i].getRastros()
 								.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
 						break;
+                                                
 						/**
 						 * nao pode-se percorrer um arrayList por for ja que ha
 						 * reorganizacao do array,logo deve-se retirar somente
@@ -1770,16 +1563,14 @@ public final class Jogo {
 					}
 				}
 				percorreuTudo = true;
+                                
 				/** se percorreu todo o array, nao ha artefatos cinzas nele */
 			}
 
 			percorreuTudo = false;
 			while (percorreuTudo == false) {
 				for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getRequisitos()
-						.size(); j++) /**
-										 * percorrendo vetor de artefatos de
-										 * requisitos na mesa
-										 */
+						.size(); j++) 
 				{
 					if (jogador.getTabuleiro().getMesas()[i].getRequisitos().get(j).isPoorQuality() == true) {
 						baralhoArtefatosRuins[BARALHO_AUXILIAR]
@@ -1787,6 +1578,7 @@ public final class Jogo {
 						jogador.getTabuleiro().getMesas()[i].getRequisitos()
 								.add(baralhoArtefatosBons[BARALHO_PRINCIPAL].darArtefato());
 						break;
+                                                
 						/**
 						 * nao pode-se percorrer um arrayList por for ja que ha
 						 * reorganizacao do array,logo deve-se retirar somente
@@ -1795,6 +1587,7 @@ public final class Jogo {
 					}
 				}
 				percorreuTudo = true;
+                                
 				/** se percorreu todo o array, nao ha artefatos cinzas nele */
 			}
 		}
@@ -1860,15 +1653,13 @@ public final class Jogo {
 			Carta[] carta = new Carta[1];
 			carta[0] = cartaUtilizada;
 			retirarCartas(jogadorAtual, carta);
+                        
 			/** removendo carta utilizada */
 			return jogadorAtual;
 		}
 
 		switch (cartaUtilizada
-				.getTipoPrimeiroEfeito()) /**
-											 * insere PRIMEIRO efeito no
-											 * tabuleiro do jogadorAlvo
-											 */
+				.getTipoPrimeiroEfeito())
 		{
 		case (CardsConstants.NO_PROBLEM):
 			break;
@@ -1905,6 +1696,7 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_ENGINEERS_NO_WORK): {
 			for (int i = 0; i < jogadorAlvo.getTabuleiro().getMesas().length; i++) {
+                            
 				/**
 				 * colocando como se engenheiro ja estivesse trabalhado na
 				 * rodada do jogadorAlvo
@@ -1931,12 +1723,14 @@ public final class Jogo {
 		case (CardsConstants.ALL_LOSES_EFFECTS_CONCEPT_CARDS_ON_BOARD): {
 			for (int i = 0; i < jogadores.length; i++) {
 				jogadores[i].getTabuleiro().setEfeitoPositivoOrcamento(0);
+                                
 				/** retira efeito positivo sobre orcamento */
 
 				String[] vazia = new String[2];
 				vazia[0] = null;
 				vazia[1] = null;
 				jogadores[i].getTabuleiro().getEfeitoAumentarHabilidadeEngenheiroLater().clear();
+                                
 				/**
 				 * retira efeito de ter habilidade de engenheiro aumentada
 				 * depois
@@ -1958,38 +1752,31 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_PLAYERS_WITH_MORE_2_ENGINEERS_DISMISS_ENGINEER): {
 			contador = 0;
-			for (int i = 0; i < jogadores.length; i++) /** para cada jogador */
+                        
+                        
+			for (int i = 0; i < jogadores.length; i++) 
 			{
 				for (int j = 0; j < jogadores[i].getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * conto quantos engenheiros
-													 * ele tem
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadores[i].getTabuleiro().getMesas()[j].getCartaMesa() != null)
 						contador++;
 				}
-				if (contador > 2) /** se numero de engenheiros > 2 */
+                                
+                                /** se numero de engenheiros > 2 */
+				if (contador > 2) 
 				{
 					for (int k = 0; k < cartaUtilizada
-							.getQuantidadePrimeiroEfeito(); k++) /**
-																	 * demiti-se
-																	 * uma
-																	 * quantidade
-																	 * de
-																	 * engenheiros
-																	 * do
-																	 * jogador
-																	 */
+							.getQuantidadePrimeiroEfeito(); k++) 
 					{
 						Random sorteio = new Random();
 						int engenheiroDemitido = sorteio.nextInt(Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO);
+                                                
 						/** sorteia qual engenheiro sera demitido */
 						boolean demitiu = false;
 						while (demitiu == false) {
 							if (jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa() != null) {
+                                                            
 								/**
 								 * se o engenheiro trabalhou nesta rodada,
 								 * significa que estamos no jogadorAtual,
@@ -1999,12 +1786,14 @@ public final class Jogo {
 										.isEngenheiroTrabalhouNestaRodada() == true)
 									jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa()
 											.setEngenheiroTrabalhouNestaRodada(false);
+                                                                
 								/**
 								 * atualizacao da variavel para reusar a funcao
 								 * abaixo
 								 */
 
-								/* TODO ver */despedirEngenheiro(jogadores[i],
+								
+                                                                        despedirEngenheiro(jogadores[i],
 										jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa());
 								demitiu = true;
 							} else
@@ -2013,6 +1802,7 @@ public final class Jogo {
 					}
 				}
 				contador = 0;
+                                
 				/**
 				 * atualiza contador para conferir se proximo jogador deve
 				 * demitir engenheiro
@@ -2022,38 +1812,31 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_PLAYERS_WITH_MORE_3_ENGINEERS_DISMISS_ENGINEER): {
 			contador = 0;
-			for (int i = 0; i < jogadores.length; i++) /** para cada jogador */
+                        
+                        /** para cada jogador */
+			for (int i = 0; i < jogadores.length; i++) 
 			{
 				for (int j = 0; j < jogadores[i].getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * conto quantos engenheiros
-													 * ele tem
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadores[i].getTabuleiro().getMesas()[j].getCartaMesa() != null)
 						contador++;
 				}
-				if (contador > 3) /** se numero de engenheiros > 3 */
+                                
+                                /** se numero de engenheiros > 3 */
+				if (contador > 3) 
 				{
 					for (int k = 0; k < cartaUtilizada
-							.getQuantidadePrimeiroEfeito(); k++) /**
-																	 * demiti-se
-																	 * uma
-																	 * quantidade
-																	 * de
-																	 * engenheiros
-																	 * do
-																	 * jogador
-																	 */
+							.getQuantidadePrimeiroEfeito(); k++)
 					{
 						Random sorteio = new Random();
 						int engenheiroDemitido = sorteio.nextInt(Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO);
+                                                
 						/** sorteia qual engenheiro sera demitido */
 						boolean demitiu = false;
 						while (demitiu == false) {
 							if (jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa() != null) {
+                                                            
 								/**
 								 * se o engenheiro trabalhou nesta rodada,
 								 * significa que estamos no jogadorAtual,
@@ -2063,6 +1846,7 @@ public final class Jogo {
 										.isEngenheiroTrabalhouNestaRodada() == true)
 									jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa()
 											.setEngenheiroTrabalhouNestaRodada(false);
+                                                                
 								/**
 								 * atualizacao da variavel para reusar a funcao
 								 * abaixo
@@ -2077,6 +1861,7 @@ public final class Jogo {
 					}
 				}
 				contador = 0;
+                                
 				/**
 				 * atualiza contador para conferir se proximo jogador deve
 				 * demitir engenheiro
@@ -2090,48 +1875,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_IS_ONLY_QUANTITY_CODE_ARTIFACT): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i]))
 					{
 						if (jogadorAlvo.getTabuleiro().getMesas()[j].getCodigos().size() > cartaUtilizada
-								.getQuantidadePrimeiroEfeito()) /**
-																 * se ele ter
-																 * mais que que
-																 * a quantidade
-																 * do limite
-																 * inferior
-																 */
+								.getQuantidadePrimeiroEfeito())
 						{
 							for (int k = 0; k < (jogadorAlvo.getTabuleiro().getMesas()[j].getCodigos().size()
-									- cartaUtilizada.getQuantidadePrimeiroEfeito()); k++)/**
-																							 * 
-																							 * 
-																							 * retira
-																							 * o
-																							 * restante
-																							 * dos
-																							 * artefatos
-																							 * do
-																							 * engenheiro
-																							 */
+									- cartaUtilizada.getQuantidadePrimeiroEfeito()); k++)
 							{
 								retirarArtefato(jogadorAlvo, j, Mesa.ARTEFATOS_CODIGO);
 							}
@@ -2145,26 +1905,21 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_LOSE_ALL_ARTIFACTS): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i]))
 					{
 						retirarTodosArtefatos(jogadorAlvo, j, Mesa.ARTEFATOS_AJUDA);
 						retirarTodosArtefatos(jogadorAlvo, j, Mesa.ARTEFATOS_CODIGO);
@@ -2181,26 +1936,27 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_LOSE_ARTIFACT): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
 						.getMesas().length; j++) /**
 													 * 
 													 * 
-													 * percorre mesa
+													 * 
 													 */
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i]))
 					{
 						for (int k = 0; k < cartaUtilizada.getQuantidadePrimeiroEfeito(); k++) {
 							Random sorteio = new Random();
@@ -2215,26 +1971,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_LOSE_CODE_ARTIFACT): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++)
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						for (int k = 0; k < cartaUtilizada.getQuantidadePrimeiroEfeito(); k++) {
 							retirarArtefato(jogadorAlvo, j, Mesa.ARTEFATOS_CODIGO);
@@ -2247,28 +2000,26 @@ public final class Jogo {
 			break;
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_NO_WORK): {
+                    
+                        //para cada engenheiro escolhido
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
+                                            
 						/**
 						 * colocando como se engenheiro ja estivesse trabalhado
 						 * na rodada do jogadorAlvo
@@ -2284,26 +2035,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_PENALTY_GIVING_OR_RECEIVING_HELP): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						jogadorAlvo.getTabuleiro().getMesas()[j]
 								.setEfeitoPenalizarAjuda(cartaUtilizada.getQuantidadePrimeiroEfeito());
@@ -2314,26 +2062,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_PRODUCE_ONLY_GRAY_ARTIFACTS): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++)
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
-				{
+						.getMesas().length; j++) 
+                                {
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						jogadorAlvo.getTabuleiro().getMesas()[j].setDuracaoEfeito_TEMPORARIO_ProduceOnlyGrayArtifacts(
 								cartaUtilizada.getDuracaoEfeito());
@@ -2344,26 +2089,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_PRODUCE_ONLY_WHITE_ARTIFACTS): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i]))
 					{
 						jogadorAlvo.getTabuleiro().getMesas()[j].setDuracaoEfeito_TEMPORARIO_ProduceOnlyWhiteArtifacts(
 								cartaUtilizada.getDuracaoEfeito());
@@ -2374,31 +2116,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_UNEMPLOYMENT_LATER): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
-
+                                
+                                //percorrendo mesas do tabuleiro
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorrendo mesas do
-													 * tabuleiro
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
+                                        
+                                        //encontra engenheiro que sera demitido
 					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[j])) /**
-													 * 
-													 * 
-													 * encontra engenheiro que
-													 * sera demitido
-													 */
+							.equals(engenheiro[j])) 
 					{
 						jogadorAlvo.getTabuleiro().getEfeitoDemitirEngenheiroLater().add(engenheiro[j]);
 					}
@@ -2408,39 +2142,36 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_UNEMPLOYMENT_NOW): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++)
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                         //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
-						/* TODO ver */despedirEngenheiro(jogadorAlvo,
+                                                        despedirEngenheiro(jogadorAlvo,
 								jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa());
+                                                
 						/** demite engenheiro */
 					}
 				}
 			}
 			break;
 		}
-		case (CardsConstants.LOSE_ALL_ARTIFACTS):/**
-													 * todos os engenheiros
-													 * perdem todos os artefatos
-													 */
+                
+                //todos os engenheiros perdem todos os artefatos
+		case (CardsConstants.LOSE_ALL_ARTIFACTS):
 		{
 			allEngineerLoseArtifacts(jogadorAlvo, ALL_ARTIFACTS, ANY_ARTIFACTS);
 			break;
@@ -2571,56 +2302,52 @@ public final class Jogo {
 		case (CardsConstants.LOWER_MATURITY_ENGINEER_UNEMPLOYMENT): {
 			int maturidadeMinima = 100;
 			ArrayList<String> engenheiros = new ArrayList<String>();
+                        
+                        //percorre mesa
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorre mesa
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
 						.getMaturidadeEngenheiro() <= maturidadeMinima) {
+                                    
 					/** encontrando qual a maturidade minima */
 					maturidadeMinima = jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
 							.getMaturidadeEngenheiro();
 				}
 			}
+                        
+                        //percorre mesa
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorre mesa
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
 						.getMaturidadeEngenheiro() == maturidadeMinima) {
+                                    
 					/** encontrando engenheiros com maturidade minima */
 					engenheiros.add(jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro());
 				}
 			}
 			Random sorteio = new Random();
 			int engenheiroSorteado = sorteio.nextInt(engenheiros.size());
+                        
 			/** sorteando uma posicao do array cujo engenheiro sera demitido */
 			String engenheiroDemitido = engenheiros.get(engenheiroSorteado - 1);
+                        
 			/** variavel contera nome do engenheiro sorteado a ser demitido */
 
+                        //percorre mesa
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorre mesa
-												 */
+					.getMesas().length; i++) 
 			{
+                               // tabuleiro do jogadorAlvo
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiroDemitido)) /**
-														 * acha engenheiro
-														 */
+						.equals(engenheiroDemitido)) 
 				{
-					/* TODO ver */despedirEngenheiro(jogadorAlvo,
+                                                despedirEngenheiro(jogadorAlvo,
 							jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa());
 				}
 			}
@@ -2644,14 +2371,14 @@ public final class Jogo {
 			retirarTodosArtefatos(jogadorAlvo, mesa, Mesa.ARTEFATOS_CODIGO);
 			break;
 		}
+                
 		// default: /**nao havera essa opcao, mas a colocamos por seguranca*/
 		// break;
 		}
+                
+                //insere SEGUNDO efeito no tabuleiro do jogadorAlvo
 		switch (cartaUtilizada
-				.getTipoSegundoEfeito()) /**
-											 * insere SEGUNDO efeito no
-											 * tabuleiro do jogadorAlvo
-											 */
+				.getTipoSegundoEfeito()) 
 		{
 		case (CardsConstants.NO_PROBLEM):
 			break;
@@ -2688,6 +2415,7 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_ENGINEERS_NO_WORK): {
 			for (int i = 0; i < jogadorAlvo.getTabuleiro().getMesas().length; i++) {
+                            
 				/**
 				 * colocando como se engenheiro ja estivesse trabalhado na
 				 * rodada do jogadorAlvo
@@ -2714,12 +2442,14 @@ public final class Jogo {
 		case (CardsConstants.ALL_LOSES_EFFECTS_CONCEPT_CARDS_ON_BOARD): {
 			for (int i = 0; i < jogadores.length; i++) {
 				jogadores[i].getTabuleiro().setEfeitoPositivoOrcamento(0);
+                                
 				/** retira efeito positivo sobre orcamento */
 
 				String[] vazia = new String[2];
 				vazia[0] = null;
 				vazia[1] = null;
 				jogadores[i].getTabuleiro().getEfeitoAumentarHabilidadeEngenheiroLater().clear();
+                                
 				/**
 				 * retira efeito de ter habilidade de engenheiro aumentada
 				 * depois
@@ -2741,35 +2471,34 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_PLAYERS_WITH_MORE_2_ENGINEERS_DISMISS_ENGINEER): {
 			contador = 0;
-			for (int i = 0; i < jogadores.length; i++) /** para cada jogador */
+                        
+                         /** para cada jogador */
+			for (int i = 0; i < jogadores.length; i++)
 			{
+                                //conto quantos engenheiros ele tem
 				for (int j = 0; j < jogadores[i].getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * conto quantos engenheiros
-													 * ele tem
-													 */
+						.getMesas().length; j++)
 				{
 					if (jogadores[i].getTabuleiro().getMesas()[j].getCartaMesa() != null)
 						contador++;
 				}
-				if (contador > 2) /** se numero de engenheiros > 2 */
+                                
+                                /** se numero de engenheiros > 2 */
+				if (contador > 2) 
 				{
+                                    
+                                        //demiti-se uma quantidade de engenheiros  do jogador
 					for (int k = 0; k < cartaUtilizada
-							.getQuantidadeSegundoEfeito(); k++) /**
-																 * demiti-se uma
-																 * quantidade de
-																 * engenheiros
-																 * do jogador
-																 */
+							.getQuantidadeSegundoEfeito(); k++) 
 					{
 						Random sorteio = new Random();
 						int engenheiroDemitido = sorteio.nextInt(Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO);
+                                                
 						/** sorteia qual engenheiro sera demitido */
 						boolean demitiu = false;
 						while (demitiu == false) {
 							if (jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa() != null) {
+                                                            
 								/**
 								 * se o engenheiro trabalhou nesta rodada,
 								 * significa que estamos no jogadorAtual,
@@ -2779,12 +2508,13 @@ public final class Jogo {
 										.isEngenheiroTrabalhouNestaRodada() == true)
 									jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa()
 											.setEngenheiroTrabalhouNestaRodada(false);
+                                                                
 								/**
 								 * atualizacao da variavel para reusar a funcao
 								 * abaixo
 								 */
 
-								/* TODO ver */despedirEngenheiro(jogadores[i],
+                                                                        despedirEngenheiro(jogadores[i],
 										jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa());
 								demitiu = true;
 							} else
@@ -2793,6 +2523,7 @@ public final class Jogo {
 					}
 				}
 				contador = 0;
+                                
 				/**
 				 * atualiza contador para conferir se proximo jogador deve
 				 * demitir engenheiro
@@ -2802,35 +2533,35 @@ public final class Jogo {
 		}
 		case (CardsConstants.ALL_PLAYERS_WITH_MORE_3_ENGINEERS_DISMISS_ENGINEER): {
 			contador = 0;
-			for (int i = 0; i < jogadores.length; i++) /** para cada jogador */
+                        
+                        /** para cada jogador */
+			for (int i = 0; i < jogadores.length; i++) 
 			{
+                            
+                                //conto quantos engenheiros ele tem
 				for (int j = 0; j < jogadores[i].getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * conto quantos engenheiros
-													 * ele tem
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadores[i].getTabuleiro().getMesas()[j].getCartaMesa() != null)
 						contador++;
 				}
-				if (contador > 3) /** se numero de engenheiros > 3 */
+                                
+                                 /** se numero de engenheiros > 3 */
+				if (contador > 3)
 				{
+                                    
+                                        //demiti-se uma quantidade de engenheiros  do jogador
 					for (int k = 0; k < cartaUtilizada
-							.getQuantidadeSegundoEfeito(); k++) /**
-																 * demiti-se uma
-																 * quantidade de
-																 * engenheiros
-																 * do jogador
-																 */
+							.getQuantidadeSegundoEfeito(); k++) 
 					{
 						Random sorteio = new Random();
 						int engenheiroDemitido = sorteio.nextInt(Tabuleiro.NUMERO_MAX_MESAS_TABULEIRO);
+                                                
 						/** sorteia qual engenheiro sera demitido */
 						boolean demitiu = false;
 						while (demitiu == false) {
 							if (jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa() != null) {
+                                                            
 								/**
 								 * se o engenheiro trabalhou nesta rodada,
 								 * significa que estamos no jogadorAtual,
@@ -2840,12 +2571,13 @@ public final class Jogo {
 										.isEngenheiroTrabalhouNestaRodada() == true)
 									jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa()
 											.setEngenheiroTrabalhouNestaRodada(false);
+                                                                
 								/**
 								 * atualizacao da variavel para reusar a funcao
 								 * abaixo
 								 */
 
-								/* TODO ver */despedirEngenheiro(jogadores[i],
+                                                                        despedirEngenheiro(jogadores[i],
 										jogadores[i].getTabuleiro().getMesas()[engenheiroDemitido].getCartaMesa());
 								demitiu = true;
 							} else
@@ -2854,6 +2586,7 @@ public final class Jogo {
 					}
 				}
 				contador = 0;
+                                
 				/**
 				 * atualiza contador para conferir se proximo jogador deve
 				 * demitir engenheiro
@@ -2867,47 +2600,32 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_IS_ONLY_QUANTITY_CODE_ARTIFACT): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
+                                            
+                                                //se ele ter mais que a quatidade do limite inferior
 						if (jogadorAlvo.getTabuleiro().getMesas()[j].getCodigos().size() > cartaUtilizada
-								.getQuantidadeSegundoEfeito()) /**
-																 * se ele ter
-																 * mais que que
-																 * a quantidade
-																 * do limite
-																 * inferior
-																 */
+								.getQuantidadeSegundoEfeito()) 
 						{
+                                                        //retira o restante dos artefatos do engenheiro 
 							for (int k = 0; k < (jogadorAlvo.getTabuleiro().getMesas()[j].getCodigos().size()
-									- cartaUtilizada.getQuantidadeSegundoEfeito()); k++)/**
-																						 * 
-																						 * retira
-																						 * o
-																						 * restante
-																						 * dos
-																						 * artefatos
-																						 * do
-																						 * engenheiro
-																						 */
+									- cartaUtilizada.getQuantidadeSegundoEfeito()); k++)
 							{
 								retirarArtefato(jogadorAlvo, j, Mesa.ARTEFATOS_CODIGO);
 							}
@@ -2920,27 +2638,23 @@ public final class Jogo {
 			break;
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_LOSE_ALL_ARTIFACTS): {
+                        
+                         //para cada engenheiro escolhido
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i]))
 					{
 						retirarTodosArtefatos(jogadorAlvo, j, Mesa.ARTEFATOS_AJUDA);
 						retirarTodosArtefatos(jogadorAlvo, j, Mesa.ARTEFATOS_CODIGO);
@@ -2957,26 +2671,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_LOSE_ARTIFACT): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++)
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++)
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						for (int k = 0; k < cartaUtilizada.getQuantidadeSegundoEfeito(); k++) {
 							Random sorteio = new Random();
@@ -2991,26 +2702,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_LOSE_CODE_ARTIFACT): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro  escolhido
+			for (int i = 0; i < engenheiro.length; i++)
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++)
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						for (int k = 0; k < cartaUtilizada.getQuantidadeSegundoEfeito(); k++) {
 							retirarArtefato(jogadorAlvo, j, Mesa.ARTEFATOS_CODIGO);
@@ -3024,26 +2732,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_NO_WORK): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++)
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						/**
 						 * colocando como se engenheiro ja estivesse trabalhado
@@ -3060,25 +2765,24 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_PENALTY_GIVING_OR_RECEIVING_HELP): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
 							.equals(engenheiro[i])) /**
-													 * acha engenheiro
+													 * 
 													 */
 					{
 						jogadorAlvo.getTabuleiro().getMesas()[j]
@@ -3088,28 +2792,25 @@ public final class Jogo {
 			}
 			break;
 		}
+                
+                //para cada engenheiro escolhido
 		case (CardsConstants.ENGINEER_CHOSEN_PRODUCE_ONLY_GRAY_ARTIFACTS): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+			for (int i = 0; i < engenheiro.length; i++)
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++) 
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						jogadorAlvo.getTabuleiro().getMesas()[j].setDuracaoEfeito_TEMPORARIO_ProduceOnlyGrayArtifacts(
 								cartaUtilizada.getDuracaoEfeito());
@@ -3120,26 +2821,23 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_PRODUCE_ONLY_WHITE_ARTIFACTS): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro  escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++)
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
 						jogadorAlvo.getTabuleiro().getMesas()[j].setDuracaoEfeito_TEMPORARIO_ProduceOnlyWhiteArtifacts(
 								cartaUtilizada.getDuracaoEfeito());
@@ -3150,31 +2848,22 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_UNEMPLOYMENT_LATER): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        // para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++)
 			{
 				if (engenheiro[i] == null)
 					continue;
-
+                                // percorrendo mesas do tabuleiro
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorrendo mesas do
-													 * tabuleiro
-													 */
+						.getMesas().length; j++)
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
+                                        
+                                        //encontra engenheiro que sera demitido
 					if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[j])) /**
-													 * 
-													 * 
-													 * encontra engenheiro que
-													 * sera demitido
-													 */
+							.equals(engenheiro[j]))
 					{
 						jogadorAlvo.getTabuleiro().getEfeitoDemitirEngenheiroLater().add(engenheiro[j]);
 					}
@@ -3184,39 +2873,36 @@ public final class Jogo {
 		}
 		case (CardsConstants.ENGINEER_CHOSEN_UNEMPLOYMENT_NOW): {
 			String[] engenheiro = setupController.escolherEngenheiro(jogadorAlvo, 1);
-			for (int i = 0; i < engenheiro.length; i++) /**
-														 * para cada engenheiro
-														 * escolhido
-														 */
+                        
+                        //para cada engenheiro escolhido
+			for (int i = 0; i < engenheiro.length; i++) 
 			{
 				if (engenheiro[i] == null)
 					continue;
+                                
+                                //percorre mesa
 				for (int j = 0; j < jogadorAlvo.getTabuleiro()
-						.getMesas().length; j++) /**
-													 * 
-													 * 
-													 * percorre mesa
-													 */
+						.getMesas().length; j++)
 				{
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa() == null)
 						continue;
+                                        
+                                        //acha engenheiro
 					if (jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa().getNomeEngenheiro()
-							.equals(engenheiro[i])) /**
-													 * acha engenheiro
-													 */
+							.equals(engenheiro[i])) 
 					{
-						/* TODO ver */despedirEngenheiro(jogadorAlvo,
+                                                            despedirEngenheiro(jogadorAlvo,
 								jogadorAlvo.getTabuleiro().getMesas()[j].getCartaMesa());
+                                                
 						/** demite engenheiro */
 					}
 				}
 			}
 			break;
 		}
-		case (CardsConstants.LOSE_ALL_ARTIFACTS):/**
-													 * todos os engenheiros
-													 * perdem todos os artefatos
-													 */
+                
+                //todos os engenheiros perdem todos os artefatos
+		case (CardsConstants.LOSE_ALL_ARTIFACTS):
 		{
 			allEngineerLoseArtifacts(jogadorAlvo, ALL_ARTIFACTS, ANY_ARTIFACTS);
 			break;
@@ -3347,54 +3033,50 @@ public final class Jogo {
 		case (CardsConstants.LOWER_MATURITY_ENGINEER_UNEMPLOYMENT): {
 			int maturidadeMinima = 100;
 			ArrayList<String> engenheiros = new ArrayList<String>();
+                        
+                        //percorre mesa
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorre mesa
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
 						.getMaturidadeEngenheiro() <= maturidadeMinima) {
+                                    
 					/** encontrando qual a maturidade minima */
 					maturidadeMinima = jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
 							.getMaturidadeEngenheiro();
 				}
 			}
+                        
+                        //percorre mesa
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorre mesa
-												 */
+					.getMesas().length; i++)
 			{
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa() == null)
 					continue;
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa()
 						.getMaturidadeEngenheiro() == maturidadeMinima) {
+                                    
 					/** encontrando engenheiros com maturidade minima */
 					engenheiros.add(jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro());
 				}
 			}
 			Random sorteio = new Random();
 			int engenheiroSorteado = sorteio.nextInt(engenheiros.size());
+                        
 			/** sorteando uma posicao do array cujo engenheiro sera demitido */
 			String engenheiroDemitido = engenheiros.get(engenheiroSorteado - 1);
+                        
 			/** variavel contera nome do engenheiro sorteado a ser demitido */
-
+                        
+                        //percorre mesa
 			for (int i = 0; i < jogadorAlvo.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorre mesa
-												 */
-			{
+					.getMesas().length; i++) 
+			{       
+                                //acha engenheiro
 				if (jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
-						.equals(engenheiroDemitido)) /**
-														 * acha engenheiro
-														 */
+						.equals(engenheiroDemitido))
 				{
 					/* TODO ver */despedirEngenheiro(jogadorAlvo,
 							jogadorAlvo.getTabuleiro().getMesas()[i].getCartaMesa());
@@ -3415,25 +3097,29 @@ public final class Jogo {
 			jogadorAlvo.getTabuleiro().setEfeitoNegativoOrcamento(cartaUtilizada.getQuantidadeSegundoEfeito());
 			break;
 		}
+                
+                // default: /**nao havera essa opcao, mas a colocamos por seguranca*/
 		case (CardsConstants.TABLE_CHOSEN_LOSE_ALL_CODE_ARTIFACT): {
 			int mesa = setupController.escolherMesaSofrerProblema();
 			retirarTodosArtefatos(jogadorAlvo, mesa, Mesa.ARTEFATOS_CODIGO);
 			break;
 		}
-		// default: /**nao havera essa opcao, mas a colocamos por seguranca*/
+		
 		// break;
 		}
 
 		Carta[] carta = new Carta[1];
 		carta[0] = cartaUtilizada;
 		retirarCartas(jogadorAtual, carta);
+                
 		/** removendo carta utilizada */
 		return jogadorAtual;
 	}
 
 	public boolean verificarCondicao(Jogador jogador, CartaPenalizacao carta) {
 		switch (carta
-				.getTipoPrimeiraCondicao()) /** Conferindo PRIMEIRA condicao */
+                                /** Conferindo PRIMEIRA condicao */
+				.getTipoPrimeiraCondicao()) 
 		{
 		case (CardsConstants.AFFECTS_ALL_PLAYERS): {
 			return true;
@@ -5132,34 +4818,28 @@ public final class Jogo {
 		}
 		return max;
 	}
-
+        
+        //Todos os engenheiros perdem artefatos
 	public void allEngineerLoseArtifacts(Jogador jogador, int quantidadeArtefato,
-			int tipoArtefato)/**
-								 * Todos os engenheiros perdem artefatos
-								 */
+			int tipoArtefato)
 	{
 		Random sorteio = new Random();
+                
+                //percorrendo mesas dos engenheiros
 		for (int i = 0; i < jogador.getTabuleiro()
-				.getMesas().length; i++) /**
-											 * 
-											 * 
-											 * percorrendo mesas dos engenheiros
-											 */
+				.getMesas().length; i++)
 		{
 			if (jogador.getTabuleiro().getMesas()[i].getCartaMesa() == null)
+                            
 				/** se mesa nao tem engenheiro, pula iteracao */
 				continue;
-
-			if (quantidadeArtefato == ALL_ARTIFACTS) /**
-														 * se deve-se retirara
-														 * todos os artefatos
-														 */
+                        
+                        //se deve-se retirara todos os artefatos
+			if (quantidadeArtefato == ALL_ARTIFACTS)
 			{
-				if (tipoArtefato == ANY_ARTIFACTS) /**
-													 * caso, seja todos os tipos
-													 * de artefatos a serem
-													 * retirados
-													 */
+                            
+                                // caso, seja todos os tipos de artefatos a serem  retirados
+				if (tipoArtefato == ANY_ARTIFACTS) 
 				{
 					/** retira todos os artefatos */
 					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_AJUDA);
@@ -5170,8 +4850,10 @@ public final class Jogo {
 				}
 
 				if (tipoArtefato == Mesa.ARTEFATOS_AJUDA)
+                                    
 					/** caso, seja todos os tipos de artefatos de ajuda */
 					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_AJUDA);
+                                
 				/** retira todos os artefatos de ajuda */
 				if (tipoArtefato == Mesa.ARTEFATOS_CODIGO)
 					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_CODIGO);
@@ -5181,30 +4863,24 @@ public final class Jogo {
 					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_RASTROS);
 				if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS)
 					retirarTodosArtefatos(jogador, i, Mesa.ARTEFATOS_REQUISITOS);
-			} else /** se nao for todos os artefatos */
+                                
+                         /** se nao for todos os artefatos */
+			} else
 			{
-				for (int j = 0; j < quantidadeArtefato; j++) /**
-																 * ira retirar a
-																 * quantidade de
-																 * artefato de
-																 * cada
-																 * engenheiro
-																 */
-				{
-					if (tipoArtefato == ANY_ARTIFACTS) /**
-														 * se for qualquer tipo
-														 * de de artefato a ser
-														 * retirado
-														 */
+                            
+                                //retirado quantidade de artefato de cada engenheiro
+				for (int j = 0; j < quantidadeArtefato; j++) 
+                                    
+				{       //se for qualquer tipo de de artefato a ser retirado
+					if (tipoArtefato == ANY_ARTIFACTS)
 					{
 						boolean retirou = false;
-						while (retirou == false)/**
-												 * enquanto nao se retirar
-												 * artefato e existir artefato
-												 * no tabuleiro, repete-se loop
-												 */
+                                                
+                                                //enquanto nao se retirar artefato e existir artefato no tabuleiro, repete-se loop
+						while (retirou == false)
 						{
 							int tipoArtefatoSorteado = sorteio.nextInt(5);
+                                                        
 							/**
 							 * sorteando qual tipo de artefato ira ser retirado
 							 */
@@ -5238,11 +4914,13 @@ public final class Jogo {
 									&& (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() == 0)
 									&& (jogador.getTabuleiro().getMesas()[i].getRastros().size() == 0)
 									&& (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() == 0))
+                                                            
 								/**
 								 * se chegou ate aqui, nao ha mais o que se
 								 * retirar no tabuleiro do jogador
 								 */
 								break;
+                                                        
 							/** sai do while */
 						}
 					}
@@ -5274,124 +4952,138 @@ public final class Jogo {
 
 	public void retirarTodosArtefatos(Jogador jogador, int mesa, int tipoArtefato) {
 		int auxiliar = 0;
+                
 		/**
 		 * sempre, quando se remove um objeto do arrayList, todos os elementos
 		 * acima desse indice sao deslocados para baixo por 1
 		 */
 		if (tipoArtefato == Mesa.ARTEFATOS_AJUDA) {
+                        
+                        // retirando todos os artefatos de ajuda
 			while (jogador.getTabuleiro().getMesas()[mesa].getAjudas()
 					.size() != 0) /**
 									 * 
 									 * 
-									 * retirando todos os artefatos de ajuda
+									 *
 									 */
 			{
 				if (jogador.getTabuleiro().getMesas()[mesa].getAjudas().get(auxiliar).isPoorQuality() == true) {
 					baralhoArtefatosRuins[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getAjudas().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getAjudas().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				} else {
 					baralhoArtefatosBons[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getAjudas().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getAjudas().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				}
 
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_CODIGO) {
+                        //retirando todos os artefatos de codigo
 			while (jogador.getTabuleiro().getMesas()[mesa].getCodigos()
-					.size() != 0) /**
-									 * 
-									 * 
-									 * retirando todos os artefatos de codigo
-									 */
+					.size() != 0)
 			{
 				if (jogador.getTabuleiro().getMesas()[mesa].getCodigos().get(auxiliar).isPoorQuality() == true) {
 					baralhoArtefatosRuins[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getCodigos().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getCodigos().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				} else {
 					baralhoArtefatosBons[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getCodigos().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getCodigos().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				}
 
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_DESENHO) {
+                    
+                        //retirando todos os artefatos de desenhos
 			while (jogador.getTabuleiro().getMesas()[mesa].getDesenhos()
-					.size() != 0) /**
-									 * 
-									 * 
-									 * retirando todos os artefatos de desenhos
-									 */
+					.size() != 0)
 			{
 				if (jogador.getTabuleiro().getMesas()[mesa].getDesenhos().get(auxiliar).isPoorQuality() == true) {
 					baralhoArtefatosRuins[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getDesenhos().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getDesenhos().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				} else {
 					baralhoArtefatosBons[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getDesenhos().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getDesenhos().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				}
 
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_RASTROS) {
+                    
+                        //retirando todos os artefatos de rastros
 			while (jogador.getTabuleiro().getMesas()[mesa].getRastros()
-					.size() != 0) /**
-									 * 
-									 * 
-									 * retirando todos os artefatos de rastros
-									 */
+					.size() != 0) 
 			{
 				if (jogador.getTabuleiro().getMesas()[mesa].getRastros().get(auxiliar).isPoorQuality() == true) {
 					baralhoArtefatosRuins[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRastros().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getRastros().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				} else {
 					baralhoArtefatosBons[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRastros().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getRastros().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				}
 
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS) {
+                        //retirando todos os artefatos de requisitos
 			while (jogador.getTabuleiro().getMesas()[mesa].getRequisitos()
-					.size() != 0) /**
-									 * retirando todos os artefatos de
-									 * requisitos
-									 */
+					.size() != 0) 
 			{
 				if (jogador.getTabuleiro().getMesas()[mesa].getRequisitos().get(auxiliar).isPoorQuality() == true) {
 					baralhoArtefatosRuins[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRequisitos().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getRequisitos().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				} else {
 					baralhoArtefatosBons[BARALHO_AUXILIAR]
 							.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRequisitos().get(auxiliar));
+                                        
 					/** recolhendo artefato para baralho */
 					jogador.getTabuleiro().getMesas()[mesa].getRequisitos().remove(auxiliar);
+                                        
 					/** removendo 1 artefato na posicao auxiliar */
 				}
 
@@ -5402,115 +5094,143 @@ public final class Jogo {
 
 	public void retirarArtefato(Jogador jogador, int mesa, int tipoArtefato) {
 		Random sorteio = new Random();
+                
 		/** sorteara qual artefato retirar de um arrayList */
 		if (tipoArtefato == Mesa.ARTEFATOS_AJUDA) {
 			int sorteado = sorteio.nextInt(jogador.getTabuleiro().getMesas()[mesa].getAjudas().size());
+                        
 			/** sorteou o artefato a ser retirado */
 			if (jogador.getTabuleiro().getMesas()[mesa].getAjudas().get(sorteado).isPoorQuality() == true) {
 				baralhoArtefatosRuins[BARALHO_AUXILIAR]
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getAjudas().get(sorteado));
+                                
 				/** recolhendo artefato para baralho */
 				jogador.getTabuleiro().getMesas()[mesa].getAjudas().remove(sorteado);
+                                
 				/** removendo 1 artefato na posicao do sorteio */
 			} else {
 				baralhoArtefatosBons[BARALHO_AUXILIAR]
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getAjudas().get(sorteado));
+                                
 				/** recolhendo artefato para baralho */
 				jogador.getTabuleiro().getMesas()[mesa].getAjudas().remove(sorteado);
+                                
 				/** removendo 1 artefato na posicao do sorteio */
 			}
 
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_CODIGO) {
 			int sorteado = sorteio.nextInt(jogador.getTabuleiro().getMesas()[mesa].getCodigos().size());
+                        
 			/** sorteou o artefato a ser retirado */
 			if (jogador.getTabuleiro().getMesas()[mesa].getCodigos().get(sorteado).isPoorQuality() == true) {
 				baralhoArtefatosRuins[BARALHO_AUXILIAR]
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getCodigos().get(sorteado));
+                                
 				/** recolhendo artefato para baralho */
 				jogador.getTabuleiro().getMesas()[mesa].getCodigos().remove(sorteado);
+                                
 				/** removendo 1 artefato na posicao do sorteio */
 			} else {
 				baralhoArtefatosBons[BARALHO_AUXILIAR]
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getCodigos().get(sorteado));
+                                
 				/** recolhendo artefato para baralho */
 				jogador.getTabuleiro().getMesas()[mesa].getCodigos().remove(sorteado);
+                                
 				/** removendo 1 artefato na posicao do sorteio */
 			}
 
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_DESENHO) {
 			int sorteado = sorteio.nextInt(jogador.getTabuleiro().getMesas()[mesa].getDesenhos().size());
+                        
 			/** sorteou o artefato a ser retirado */
 			if (jogador.getTabuleiro().getMesas()[mesa].getDesenhos().get(sorteado).isPoorQuality() == true) {
 				baralhoArtefatosRuins[BARALHO_AUXILIAR]
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getDesenhos().get(sorteado));
+                                
 				/** recolhendo artefato para baralho */
 				jogador.getTabuleiro().getMesas()[mesa].getDesenhos().remove(sorteado);
+                                
 				/** removendo 1 artefato na posicao do sorteio */
 			} else {
 				baralhoArtefatosBons[BARALHO_AUXILIAR]
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getDesenhos().get(sorteado));
 				/** recolhendo artefato para baralho */
 				jogador.getTabuleiro().getMesas()[mesa].getDesenhos().remove(sorteado);
+                                
 				/** removendo 1 artefato na posicao do sorteio */
 			}
 
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_RASTROS) {
+                    
+                        /** sorteou o artefato a ser retirado */
 			int sorteado = sorteio.nextInt(jogador.getTabuleiro().getMesas()[mesa].getRastros().size());
-			/** sorteou o artefato a ser retirado */
+			
 			if (jogador.getTabuleiro().getMesas()[mesa].getRastros().get(sorteado).isPoorQuality() == true) {
 				baralhoArtefatosRuins[BARALHO_AUXILIAR]
+                                        
+                                                /** recolhendo artefato para baralho */
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRastros().get(sorteado));
-				/** recolhendo artefato para baralho */
+				
 				jogador.getTabuleiro().getMesas()[mesa].getRastros().remove(sorteado);
 				/** removendo 1 artefato na posicao do sorteio */
 			} else {
 				baralhoArtefatosBons[BARALHO_AUXILIAR]
+                                        
+                                                /** recolhendo artefato para baralho */
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRastros().get(sorteado));
-				/** recolhendo artefato para baralho */
+				
+                                
+                                /** removendo 1 artefato na posicao do sorteio */
 				jogador.getTabuleiro().getMesas()[mesa].getRastros().remove(sorteado);
-				/** removendo 1 artefato na posicao do sorteio */
+				
 			}
 
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS) {
+                    
+                        /** sorteou o artefato a ser retirado */
 			int sorteado = sorteio.nextInt(jogador.getTabuleiro().getMesas()[mesa].getRequisitos().size());
-			/** sorteou o artefato a ser retirado */
+			
 			if (jogador.getTabuleiro().getMesas()[mesa].getRequisitos().get(sorteado).isPoorQuality() == true) {
 				baralhoArtefatosRuins[BARALHO_AUXILIAR]
+                                                
+                                                /** recolhendo artefato para baralho */
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRequisitos().get(sorteado));
-				/** recolhendo artefato para baralho */
+				
+                                /** removendo 1 artefato na posicao do sorteio */
 				jogador.getTabuleiro().getMesas()[mesa].getRequisitos().remove(sorteado);
-				/** removendo 1 artefato na posicao do sorteio */
+				
 			} else {
 				baralhoArtefatosBons[BARALHO_AUXILIAR]
+                                        
+                                                /** recolhendo artefato para baralho */
 						.recolherArtefato(jogador.getTabuleiro().getMesas()[mesa].getRequisitos().get(sorteado));
-				/** recolhendo artefato para baralho */
+				
+                                /** removendo 1 artefato na posicao do sorteio */
 				jogador.getTabuleiro().getMesas()[mesa].getRequisitos().remove(sorteado);
-				/** removendo 1 artefato na posicao do sorteio */
+				
 			}
 
 		}
 	}
 
 	public void changeWhiteArtifactsByGrayArtifacts(Jogador jogador, int tipoArtefato) {
+            
+                //percorrendo mesas do jogador
 		for (int i = 0; i < jogador.getTabuleiro()
-				.getMesas().length; i++) /**
-											 * 
-											 * 
-											 * percorrendo mesas do jogador
-											 */
+				.getMesas().length; i++)
 		{
 			if (tipoArtefato == Mesa.ARTEFATOS_AJUDA) {
 				boolean percorreuTudo = false;
+                                
+                                //percorrendo vetor de artefatos de ajuda na mesa
 				while (percorreuTudo == false) {
 					for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getAjudas()
-							.size(); j++) /**
-											 * percorrendo vetor de artefatos de
-											 * ajuda na mesa
-											 */
+							.size(); j++) 
 					{
 						if (jogador.getTabuleiro().getMesas()[i].getAjudas().get(j).isPoorQuality() == false) {
 							baralhoArtefatosBons[BARALHO_AUXILIAR]
@@ -5518,6 +5238,7 @@ public final class Jogo {
 							jogador.getTabuleiro().getMesas()[i].getAjudas()
 									.add(baralhoArtefatosRuins[BARALHO_PRINCIPAL].darArtefato());
 							break;
+                                                        
 							/**
 							 * nao pode-se percorrer um arrayList por for ja que
 							 * ha reorganizacao do array,logo deve-se retirar
@@ -5526,6 +5247,7 @@ public final class Jogo {
 						}
 					}
 					percorreuTudo = true;
+                                        
 					/**
 					 * se percorreu todo o array, nao ha artefatos brancos nele
 					 */
@@ -5534,12 +5256,11 @@ public final class Jogo {
 
 			if (tipoArtefato == Mesa.ARTEFATOS_CODIGO) {
 				boolean percorreuTudo = false;
+                                
+                                //percorrendo vetor de artefatos de codigos na mesa
 				while (percorreuTudo == false) {
 					for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getCodigos()
-							.size(); j++) /**
-											 * percorrendo vetor de artefatos de
-											 * codigos na mesa
-											 */
+							.size(); j++)
 					{
 						if (jogador.getTabuleiro().getMesas()[i].getCodigos().get(j).isPoorQuality() == false) {
 							baralhoArtefatosBons[BARALHO_AUXILIAR]
@@ -5547,6 +5268,7 @@ public final class Jogo {
 							jogador.getTabuleiro().getMesas()[i].getCodigos()
 									.add(baralhoArtefatosRuins[BARALHO_PRINCIPAL].darArtefato());
 							break;
+                                                        
 							/**
 							 * nao pode-se percorrer um arrayList por for ja que
 							 * ha reorganizacao do array,logo deve-se retirar
@@ -5555,6 +5277,7 @@ public final class Jogo {
 						}
 					}
 					percorreuTudo = true;
+                                        
 					/**
 					 * se percorreu todo o array, nao ha artefatos brancos nele
 					 */
@@ -5563,12 +5286,11 @@ public final class Jogo {
 
 			if (tipoArtefato == Mesa.ARTEFATOS_DESENHO) {
 				boolean percorreuTudo = false;
+                                
+                                //percorrendo vetor de artefatos de desenho na mesa
 				while (percorreuTudo == false) {
 					for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getDesenhos()
-							.size(); j++) /**
-											 * percorrendo vetor de artefatos de
-											 * desenhos na mesa
-											 */
+							.size(); j++) 
 					{
 						if (jogador.getTabuleiro().getMesas()[i].getDesenhos().get(j).isPoorQuality() == false) {
 							baralhoArtefatosBons[BARALHO_AUXILIAR]
@@ -5576,6 +5298,7 @@ public final class Jogo {
 							jogador.getTabuleiro().getMesas()[i].getDesenhos()
 									.add(baralhoArtefatosRuins[BARALHO_PRINCIPAL].darArtefato());
 							break;
+                                                        
 							/**
 							 * nao pode-se percorrer um arrayList por for ja que
 							 * ha reorganizacao do array,logo deve-se retirar
@@ -5584,6 +5307,7 @@ public final class Jogo {
 						}
 					}
 					percorreuTudo = true;
+                                        
 					/**
 					 * se percorreu todo o array, nao ha artefatos brancos nele
 					 */
@@ -5592,12 +5316,11 @@ public final class Jogo {
 
 			if (tipoArtefato == Mesa.ARTEFATOS_RASTROS) {
 				boolean percorreuTudo = false;
+                                
+                                //percorrendo vetor de artefatos de rastros na mesa
 				while (percorreuTudo == false) {
 					for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getRastros()
-							.size(); j++) /**
-											 * percorrendo vetor de artefatos de
-											 * rastros na mesa
-											 */
+							.size(); j++)
 					{
 						if (jogador.getTabuleiro().getMesas()[i].getRastros().get(j).isPoorQuality() == false) {
 							baralhoArtefatosBons[BARALHO_AUXILIAR]
@@ -5605,6 +5328,7 @@ public final class Jogo {
 							jogador.getTabuleiro().getMesas()[i].getRastros()
 									.add(baralhoArtefatosRuins[BARALHO_PRINCIPAL].darArtefato());
 							break;
+                                                        
 							/**
 							 * nao pode-se percorrer um arrayList por for ja que
 							 * ha reorganizacao do array,logo deve-se retirar
@@ -5613,6 +5337,7 @@ public final class Jogo {
 						}
 					}
 					percorreuTudo = true;
+                                        
 					/**
 					 * se percorreu todo o array, nao ha artefatos brancos nele
 					 */
@@ -5621,12 +5346,11 @@ public final class Jogo {
 
 			if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS) {
 				boolean percorreuTudo = false;
+                                
+                                //percorrendo vetor de artefatos de requisitos na mesa
 				while (percorreuTudo == false) {
 					for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getRequisitos()
-							.size(); j++) /**
-											 * percorrendo vetor de artefatos de
-											 * requisitos na mesa
-											 */
+							.size(); j++) 
 					{
 						if (jogador.getTabuleiro().getMesas()[i].getRequisitos().get(j).isPoorQuality() == false) {
 							baralhoArtefatosBons[BARALHO_AUXILIAR]
@@ -5634,6 +5358,7 @@ public final class Jogo {
 							jogador.getTabuleiro().getMesas()[i].getRequisitos()
 									.add(baralhoArtefatosRuins[BARALHO_PRINCIPAL].darArtefato());
 							break;
+                                                        
 							/**
 							 * nao pode-se percorrer um arrayList por for ja que
 							 * ha reorganizacao do array,logo deve-se retirar
@@ -5642,6 +5367,7 @@ public final class Jogo {
 						}
 					}
 					percorreuTudo = true;
+                                        
 					/**
 					 * se percorreu todo o array, nao ha artefatos brancos nele
 					 */
@@ -5654,26 +5380,24 @@ public final class Jogo {
 
 	public void retirarTodosArtefatosCinzas(Jogador jogador, int tipoArtefato) {
 		if (tipoArtefato == Mesa.ARTEFATOS_AJUDA) {
+                    
+                        //percorrendo mesas
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas
-												 */
+					.getMesas().length; i++)
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getAjudas().size() > 0) {
 					boolean percorreuTudo = false;
+                                        
+                                        //percorrendo vetor de artefatos de ajuda na mesa
 					while (percorreuTudo == false) {
 						for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getAjudas()
-								.size(); j++) /**
-												 * percorrendo vetor de
-												 * artefatos de ajuda na mesa
-												 */
+								.size(); j++) 
 						{
 							if (jogador.getTabuleiro().getMesas()[i].getAjudas().get(j).isPoorQuality() == true) {
 								baralhoArtefatosRuins[BARALHO_AUXILIAR]
 										.recolherArtefato(jogador.getTabuleiro().getMesas()[i].getAjudas().remove(j));
 								break;
+                                                                
 								/**
 								 * nao pode-se percorrer um arrayList por for ja
 								 * que ha reorganizacao do array,logo deve-se
@@ -5682,6 +5406,7 @@ public final class Jogo {
 							}
 						}
 						percorreuTudo = true;
+                                                
 						/**
 						 * se percorreu todo o array, nao ha artefatos cinzas
 						 * nele
@@ -5691,26 +5416,24 @@ public final class Jogo {
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_CODIGO) {
+                        
+                         //percorrendo mesas
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getCodigos().size() > 0) {
 					boolean percorreuTudo = false;
+                                        
+                                         //percorrendo vetor de artefatos de ajuda na mesa
 					while (percorreuTudo == false) {
 						for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getCodigos()
-								.size(); j++) /**
-												 * percorrendo vetor de
-												 * artefatos de ajuda na mesa
-												 */
+								.size(); j++) 
 						{
 							if (jogador.getTabuleiro().getMesas()[i].getCodigos().get(j).isPoorQuality() == true) {
 								baralhoArtefatosRuins[BARALHO_AUXILIAR]
 										.recolherArtefato(jogador.getTabuleiro().getMesas()[i].getCodigos().remove(j));
 								break;
+                                                                
 								/**
 								 * nao pode-se percorrer um arrayList por for ja
 								 * que ha reorganizacao do array,logo deve-se
@@ -5719,6 +5442,7 @@ public final class Jogo {
 							}
 						}
 						percorreuTudo = true;
+                                                
 						/**
 						 * se percorreu todo o array, nao ha artefatos cinzas
 						 * nele
@@ -5728,26 +5452,24 @@ public final class Jogo {
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_DESENHO) {
+                    
+                        //percorrendo mesas
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getDesenhos().size() > 0) {
 					boolean percorreuTudo = false;
+                                        
+                                         //percorrendo vetor de artefatos de ajuda na mesa
 					while (percorreuTudo == false) {
 						for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getDesenhos()
-								.size(); j++) /**
-												 * percorrendo vetor de
-												 * artefatos de ajuda na mesa
-												 */
+								.size(); j++)
 						{
 							if (jogador.getTabuleiro().getMesas()[i].getDesenhos().get(j).isPoorQuality() == true) {
 								baralhoArtefatosRuins[BARALHO_AUXILIAR]
 										.recolherArtefato(jogador.getTabuleiro().getMesas()[i].getDesenhos().remove(j));
 								break;
+                                                                
 								/**
 								 * nao pode-se percorrer um arrayList por for ja
 								 * que ha reorganizacao do array,logo deve-se
@@ -5765,26 +5487,23 @@ public final class Jogo {
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_RASTROS) {
+                    
+                        //percorrendo mesas
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas
-												 */
+					.getMesas().length; i++)
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getRastros().size() > 0) {
 					boolean percorreuTudo = false;
 					while (percorreuTudo == false) {
+                                                //percorrendo vetor de artefatos de ajuda na mesa
 						for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getRastros()
-								.size(); j++) /**
-												 * percorrendo vetor de
-												 * artefatos de ajuda na mesa
-												 */
+								.size(); j++) 
 						{
 							if (jogador.getTabuleiro().getMesas()[i].getRastros().get(j).isPoorQuality() == true) {
 								baralhoArtefatosRuins[BARALHO_AUXILIAR]
 										.recolherArtefato(jogador.getTabuleiro().getMesas()[i].getRastros().remove(j));
 								break;
+                                                                
 								/**
 								 * nao pode-se percorrer um arrayList por for ja
 								 * que ha reorganizacao do array,logo deve-se
@@ -5793,6 +5512,7 @@ public final class Jogo {
 							}
 						}
 						percorreuTudo = true;
+                                                
 						/**
 						 * se percorreu todo o array, nao ha artefatos cinzas
 						 * nele
@@ -5802,26 +5522,24 @@ public final class Jogo {
 			}
 		}
 		if (tipoArtefato == Mesa.ARTEFATOS_REQUISITOS) {
+                    
+                        //percorrendo mesas
 			for (int i = 0; i < jogador.getTabuleiro()
-					.getMesas().length; i++) /**
-												 * 
-												 * 
-												 * percorrendo mesas
-												 */
+					.getMesas().length; i++) 
 			{
 				if (jogador.getTabuleiro().getMesas()[i].getRequisitos().size() > 0) {
 					boolean percorreuTudo = false;
 					while (percorreuTudo == false) {
 						for (int j = 0; j < jogador.getTabuleiro().getMesas()[i].getRequisitos()
-								.size(); j++) /**
-												 * percorrendo vetor de
-												 * artefatos de ajuda na mesa
-												 */
+                                                        
+                                                                
+								.size(); j++) 
 						{
 							if (jogador.getTabuleiro().getMesas()[i].getRequisitos().get(j).isPoorQuality() == true) {
 								baralhoArtefatosRuins[BARALHO_AUXILIAR].recolherArtefato(
 										jogador.getTabuleiro().getMesas()[i].getRequisitos().remove(j));
 								break;
+                                                                
 								/**
 								 * nao pode-se percorrer um arrayList por for ja
 								 * que ha reorganizacao do array,logo deve-se
@@ -5830,6 +5548,7 @@ public final class Jogo {
 							}
 						}
 						percorreuTudo = true;
+                                                
 						/**
 						 * se percorreu todo o array, nao ha artefatos cinzas
 						 * nele
@@ -5843,42 +5562,35 @@ public final class Jogo {
 	public void adicionarEfeitosFimTurno() {
 		for (int j = 0; j < getJogadores().length; j++) {
 			while (getJogadores()[j].getTabuleiro().getEfeitoAumentarHabilidadeEngenheiroLater()
-					.size() > 0) /**
-									 * 
-									 * 
-									 * enquanto houver efeito de aumentar
-									 * habilidade ao final da rodada
-									 */
+                                        // enquanto houver efeito de aumentar habilidade ao final da rodada
+					.size() > 0) 
 			{
+                            
+                                //percorrendo mesas do jogador com direito ao beneficio
 				for (int i = 0; i < getJogadores()[j].getTabuleiro().getMesas().length; i++)
-													/**
-													 * 
-													 * 
-													 * percorrendo mesas do
-													 * jogador com direito ao
-													 * beneficio
-													 */
 				{
 					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
 
 					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
 							.equals(getJogadores()[j].getTabuleiro().getEfeitoAumentarHabilidadeEngenheiroLater()
-									.get(0)[0])) /**
-													 * encontra engenheiro que
-													 * recebera efeito
-													 */
+                                                                
+                                                                        /** encontra engenheiro que recebera efeito */
+									.get(0)[0])) 
 					{
 						getJogadores()[j].getTabuleiro().getMesas()[i]
 								.setEfeitoAumentarHabilidadeEngenheiro(Integer.parseInt(getJogadores()[j].getTabuleiro()
 										.getEfeitoAumentarHabilidadeEngenheiroLater().get(0)[1]));
+                                                
 						/** inserindo efeito */
 						getJogadores()[j].getTabuleiro().getEfeitoAumentarHabilidadeEngenheiroLater().remove(0);
+                                                
 						/**
 						 * se inseriu remove engenheiro da lista de inserir
 						 * efeitos na proxima rodada
 						 */
 					}
+                                        
 					/**
 					 * se nao encontrar engenheiro para inserir efeito,
 					 * significa que engenheiro foi demitido, nao tendo
@@ -5889,27 +5601,19 @@ public final class Jogo {
 			}
 			while (getJogadores()[j].getTabuleiro().getEfeitoDemitirEngenheiroLater().size() > 0) {
 				for (int i = 0; i < getJogadores()[j].getTabuleiro()
-						.getMesas().length; i++) /**
-													 * 
-													 * 
-													 * percorrendo mesas do
-													 * jogador com direito ao
-													 * beneficio
-													 */
+                                        
+                                                // percorrendo mesas do jogador com direito ao beneficio
+						.getMesas().length; i++) 
 				{
 					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa() == null)
 						continue;
 
 					if (getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa().getNomeEngenheiro()
 							.equals(getJogadores()[j].getTabuleiro().getEfeitoDemitirEngenheiroLater()
-									.get(0))) /**
-												 * 
-												 * 
-												 * encontra engenheiro que
-												 * recebera efeito
-												 */
-					{
-						/* TODO ver */despedirEngenheiro(getJogadores()[j],
+									.get(0))) 
+                                            
+					{                       /* TODO ver *//** encontra engenheiro que recebera efeito  */				
+                                                                despedirEngenheiro(getJogadores()[j],
 								getJogadores()[j].getTabuleiro().getMesas()[i].getCartaMesa());
 						getJogadores()[j].getTabuleiro().getEfeitoDemitirEngenheiroLater().remove(0);
 					}
@@ -5968,15 +5672,9 @@ public final class Jogo {
 		//#endif
 		cartasProblema = new int[1];
 		cartasProblema[0] = ModeGameConstants.ALL_CARDS_PROBLEMA;
-
-		String[] nomeJogadores = { "ziraldo", "zezin", "mariazinha" }; // insere
-																		// nome
-																		// dos
-																		// jogadores
-																		// no
-																		// vetor
-																		// de
-																		// string
+                
+                //insere o nome dos jogadores no vetor de string
+		String[] nomeJogadores = { "ziraldo", "zezin", "mariazinha" }; 
 
 		// configurarJogo(DIFICIL,nomeJogadores,cartasConceito,cartasProblema);
 
@@ -6002,6 +5700,7 @@ public final class Jogo {
 		this.baralhoArtefatosRuins[BARALHO_AUXILIAR] = new BaralhoArtefatosRuins(0);
 
 		cadastrarJogadores(nomeJogadores);
+                
 		// ordenarJogadores();
 		embaralharCartaseArtefatos();
 

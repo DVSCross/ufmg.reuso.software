@@ -19,23 +19,39 @@ import java.io.IOException;
 
 public class CartaEngenheiro extends Carta
 {
-	private String nomeEngenheiro;								//variável que guarda nome do engenheiro
-	private int salarioEngenheiro;								//variável que guarda salário do engenheiro
-	private int habilidadeEngenheiro;							//variável que guarda habilidade do engenheiro
-	private int maturidadeEngenheiro;							//variável que guarda a maturidade do engenheiro
-	private boolean engenheiroTrabalhouNestaRodada; 			/**se true-> trabalhou, se false-> não trabalhou na rodada*/ 
-	
-	private int habilidadeEngenheiroAtual;						/**contém a pontos de habilidade que engenheiro tem na rodada*/ 
+        
+        //variável que guarda nome do engenheiro
+	private String nomeEngenheiro;
+        
+        //variável que guarda salário do engenheiro
+	private int salarioEngenheiro;		
+        
+        //variável que guarda habilidade do engenheiro
+	private int habilidadeEngenheiro;
+        
+        //variável que guarda a maturidade do engenheiro
+	private int maturidadeEngenheiro;	
 
-	public CartaEngenheiro (String codigo, String texto, String nomeEng, //construindo a carta de engenheiro
+        /**se true-> trabalhou, se false-> não trabalhou na rodada*/
+	private boolean engenheiroTrabalhouNestaRodada; 			 
+	
+        /**contém a pontos de habilidade que engenheiro tem na rodada*/
+	private int habilidadeEngenheiroAtual;						 
+        
+        //construindo a carta de engenheiro
+	public CartaEngenheiro (String codigo, String texto, String nomeEng, 
 			int salarioEng, int habilidadeEng, int maturidadeEng)
 	{
-		super ("Eng.Software", codigo, texto,ENGENHEIRO);				 //inicializando a superclasse explicitamente
+                
+                //inicializando a superclasse explicitamente
+		super ("Eng.Software", codigo, texto,ENGENHEIRO);				 
 		
 		setNomeEngenheiro(nomeEng);
 		setSalarioEngenheiro(salarioEng);
 		setHabilidadeEngenheiro(habilidadeEng);
-		setHabilidadeEngenheiroAtual(getHabilidadeEngenheiro());		/**habilidade atual na construção da carta do engenheiro é igual à habildade da carta*/
+                
+                /**habilidade atual na construção da carta do engenheiro é igual à habildade da carta*/
+		setHabilidadeEngenheiroAtual(getHabilidadeEngenheiro());		
 		setMaturidadeEngenheiro(maturidadeEng);
 		this.engenheiroTrabalhouNestaRodada=false;
 	}
@@ -44,7 +60,7 @@ public class CartaEngenheiro extends Carta
 	@Override
 	public void mostrarCarta()
 	{
-    // printa a carta
+            // printa a carta
 	}
 	
 	public String getNomeEngenheiro() 

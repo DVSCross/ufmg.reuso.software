@@ -50,7 +50,8 @@ public class ScreenInteraction implements SetupInteraction {
 	private static ScreenInteraction instance;
 
 	private ScreenInteraction() {
-	} // evita que cliente use new ScreenInteraction()
+	} 
+           // evita que cliente use new ScreenInteraction()
 
 	public ScreenTabuleiro getTabuleiro() {
 		if (tabuleiro == null)
@@ -63,9 +64,10 @@ public class ScreenInteraction implements SetupInteraction {
 			instance = new ScreenInteraction();
 		return instance;
 	}
-
+        
+        /** exibe GUI(tela) para iniciar o jogo */
 	@Override
-	public int exibirStart() /** exibe GUI(tela) para iniciar o jogo */
+	public int exibirStart() 
 	{
 
 		tabuleiro = ScreenTabuleiro.createAndShowTabuleiro(null, null);
@@ -73,14 +75,12 @@ public class ScreenInteraction implements SetupInteraction {
 		String Retorno = ScreenStart.createAndShowGetModo(tabuleiro)
 				.getReturn();
 		
-		return 0; // TODO michael david -> teste [ARS]Micheal voce precisa
-					// testar o valor de retorno para saber se entra ou não no
-					// modo de configuração. Quais são os valores 0 passa direto
-					// e 1 entra na configuração?
+		return 0; 
 	}
 
 	@Override
-	public int inserirDificuldadeJogo() /**
+	public int inserirDificuldadeJogo() 
+         /**
 	 * valorDificuldade corresponde a:
 	 * Fácil: 1 ; Moderado = 2 ; Difícil = 3
 	 */
@@ -89,7 +89,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public String[] inserirNomesJogadores() /**
+	public String[] inserirNomesJogadores() 
+         /**
 	 * insere nome dos jogadores no
 	 * vetor de string
 	 */
@@ -100,7 +101,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void pedirRolarDadosInicial(String nomeJogador) /**
+	public void pedirRolarDadosInicial(String nomeJogador) 
+        /**
 	 * exibe GUI
 	 * solicitando que o jogador lance os dados para definir ordem do jogo
 	 */
@@ -112,7 +114,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void mostrarPontosObtidosInicial(int pontosObtidos) /**
+	public void mostrarPontosObtidosInicial(int pontosObtidos) 
+         /**
 	 * exibe GUI
 	 * mostrando pontos obtidos;
 	 */
@@ -122,7 +125,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void mostrarEmpatePontosObtidosInicial(String nomeJogador) /**
+	public void mostrarEmpatePontosObtidosInicial(String nomeJogador) 
+        /**
 	 * exibe
 	 * GUI mostrando que houve empate, solicita que o jogador lance dados
 	 * novamente
@@ -132,7 +136,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void mostrarOrdemJogo(String[] nomeJogadoresOrdenados) /**
+	public void mostrarOrdemJogo(String[] nomeJogadoresOrdenados)
+         /**
 	 * recebe
 	 * vetor de strings já ordenados para exibir na GUI
 	 */
@@ -143,7 +148,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirProjeto(CartaoProjeto projeto) /**
+	public void exibirProjeto(CartaoProjeto projeto) 
+        /**
 	 * exibe cartao de projeto
 	 * na GUI
 	 */
@@ -152,7 +158,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void mostrarNumberCardasDelivered(int numberCardsDelivered) /**
+	public void mostrarNumberCardasDelivered(int numberCardsDelivered) 
+         /**
 	 * exibe
 	 * a GUI mostrando o número de cartas recebidas respeito o limite de cartas
 	 * na mao
@@ -191,7 +198,8 @@ public class ScreenInteraction implements SetupInteraction {
 	/****************************************************************************/
 
 	@Override
-	public void exibirNaoDemiteEngenheiro() /**
+	public void exibirNaoDemiteEngenheiro() 
+         /**
 	 * exibe GUI informando que
 	 * engenheiro não pode ser demitido pois ele trabalhou naquela roodada
 	 */
@@ -203,7 +211,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirExcessoPessoal() /**
+	public void exibirExcessoPessoal() 
+         /**
 	 * exibe GUI informandao que não pode
 	 * haver contratação de engenheiro devido à excesso de pessoal
 	 */
@@ -216,7 +225,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirFaltaDinheiro() /**
+	public void exibirFaltaDinheiro() 
+         /**
 	 * exibe GUI informando que não há
 	 * recursos para ação solicitada
 	 */
@@ -228,7 +238,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public int escolherMesa() /**
+	public int escolherMesa()
+         /**
 	 * exibe GUI para jogador escolher mesa para
 	 * alocar engenheiro contratado
 	 */
@@ -249,7 +260,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public int escolherMesaTransferencia() /**
+	public int escolherMesaTransferencia()
+        /**
 	 * exibe GUI para jogador escolher
 	 * mesa para transferir módulo integrado
 	 */
@@ -271,7 +283,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public int escolherMesadeTrabalho() /**
+	public int escolherMesadeTrabalho() 
+         /**
 	 * exibe GUI para jogador escolher mesa
 	 * na qual o engenheiro deve trabalhar
 	 */
@@ -300,8 +313,7 @@ public class ScreenInteraction implements SetupInteraction {
 	@Override
 	public Modulo[] exibirTabelaProducao(int habilidadeEngenheiro,
 			int complexidadeProjeto) {
-		Modulo[] modulo = null; // Não pinta modulo algum - apresenta um máximo
-								// de 4 elementos para criar.
+		Modulo[] modulo = null; 
 		return ScreenChooseArtefacts.createAndShowChooseArtefacts(
 				"Indique o número de artefatos a produzir.", modulo,
 				complexidadeProjeto, habilidadeEngenheiro).getReturn();
@@ -313,15 +325,10 @@ public class ScreenInteraction implements SetupInteraction {
 	 */
 	@Override
 	public Modulo[] exibirTabelaInspecao(int habilidadeEngenheiro,
-			Modulo[] artefatosNotInspecionados) { // os inteiros que iniciam com
-													// "artefatos..." servem
-													// para fazer teste para ver
-													// se houve tentativa de
-													// inspecionar um número de
-													// artefatos desnecessários
+			Modulo[] artefatosNotInspecionados) { 
 		Modulo[] pedidoArtefatos = artefatosNotInspecionados;
 
-		int complexidade = -1; // Complexidade padrão igual a 1
+		int complexidade = -1; 
 
 		Modulo[] retorno = ScreenChooseArtefacts.createAndShowChooseArtefacts(
 				"Selecione os artefatos a serem inspecionados",
@@ -343,8 +350,9 @@ public class ScreenInteraction implements SetupInteraction {
 		// para ver se houve tentativa de corrigir um número de artefatos
 		// desnecessários
 		Modulo[] pedidoArtefatos = artefatosInspecionadosBug;
-
-		int complexidade = -1; // Complexidade padrão igual a 1
+                
+                // Complexidade padrão igual a 1
+		int complexidade = -1; 
 
 		Modulo[] retorno = ScreenChooseArtefacts.createAndShowChooseArtefacts(
 				"Selecione os artefatos a serem corrigidos", pedidoArtefatos,
@@ -392,7 +400,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirEngenheiroNaoIntegra() /**
+	public void exibirEngenheiroNaoIntegra()
+         /**
 	 * exibe GUI informando que
 	 * engenheiro não pode integrar artefatos pois ele trabalhou naquela roodada
 	 */
@@ -405,7 +414,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirQuantidadeArtefatosInsuficientes() /**
+	public void exibirQuantidadeArtefatosInsuficientes() 
+        /**
 	 * exibe GUI
 	 * informaando que qualquer combinação de artefatos da mesa do jogador não
 	 * coincide com a combinação de artefatos do módulo do projeto escolhido
@@ -419,7 +429,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirHabilidadeInsuficiente() /**
+	public void exibirHabilidadeInsuficiente() 
+        /**
 	 * exibe GUI informaando que
 	 * engenheiro deve ter habilidade >=1 para integrar módulo do projeto
 	 * escolhido
@@ -433,7 +444,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirModuloJaIntegrado(int mesa) /**
+	public void exibirModuloJaIntegrado(int mesa) 
+         /**
 	 * exibe GUI informado que o
 	 * modulo já foi integrado
 	 */
@@ -447,7 +459,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void habilitarTrocarModuloIntegrado(int mesaTrabalho) /**
+	public void habilitarTrocarModuloIntegrado(int mesaTrabalho)
+       /**
 	 * habilita
 	 * função do engenheiro da mesaTrabalho para trocar modulo integrado de mesa
 	 */
@@ -457,7 +470,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirMesaModulo() /**
+	public void exibirMesaModulo()
+         /**
 	 * exibe GUI informando que a mesa já contém
 	 * módulo integrado
 	 */
@@ -469,7 +483,8 @@ public class ScreenInteraction implements SetupInteraction {
 	}
 
 	@Override
-	public void exibirVencedor(Jogador jogador) /**
+	public void exibirVencedor(Jogador jogador) 
+        /**
 	 * exibe GUI informando que o
 	 * jogador venceu
 	 */

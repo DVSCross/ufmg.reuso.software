@@ -22,19 +22,34 @@ public class CartaPenalizacao extends Carta
 	private String referenciaBibliografica;
 	private int duracaoEfeito;
 	private String condicaoProblema;
+        
+	/** contém quanto de efeito será gerado.*/
+	private int quantidadePrimeiroEfeito;								
 	
-	private int quantidadePrimeiroEfeito;								/** contém quanto de efeito será gerado.*/
-	private int quantidadeSegundoEfeito;								/** contém quanto de efeito será gerado.*/
-	private int tipoPrimeiroEfeito; 									/** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java */
-	private int tipoSegundoEfeito;										/** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java*/ 
+        /** contém quanto de efeito será gerado.*/
+        private int quantidadeSegundoEfeito;								
 	
-	private int quantidadePrimeiraCondicao;								/** contém quanto de condicao é necessária.*/
-	private int quantidadeSegundaCondicao;								/** contém quanto de condicao é necessária.*/
-	private int tipoPrimeiraCondicao; 									/** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
-	private int tipoSegundaCondicao;									/** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
+        /** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java */
+        private int tipoPrimeiroEfeito; 									
 	
-		
-	public CartaPenalizacao (String titulo, String codigo, String texto,				//construindo a carta de conceito
+        /** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java*/
+        private int tipoSegundoEfeito;										 
+	
+        /** contém quanto de condicao é necessária.*/
+	private int quantidadePrimeiraCondicao;								
+	
+        /** contém quanto de condicao é necessária.*/
+        private int quantidadeSegundaCondicao;								
+	
+        /** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
+        private int tipoPrimeiraCondicao; 									
+	
+        /** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
+        private int tipoSegundaCondicao;									
+	
+	
+        //construindo a carta de conceito
+	public CartaPenalizacao (String titulo, String codigo, String texto,				
 			String referencia, int duracao, String condicao,int efeito1,int efeito2, int quantidadeEfeito1,
 			int quantidadeEfeito2, int condicao1, int condicao2, int quantCondicao1, int quantCondicao2)
 	{
@@ -57,7 +72,7 @@ public class CartaPenalizacao extends Carta
 	@Override
 	public void mostrarCarta()
 	{
-    // printa a carta
+            // printa a carta
 	}
 	
 	public void inserirEfeito()
