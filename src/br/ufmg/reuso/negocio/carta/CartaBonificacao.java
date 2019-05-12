@@ -22,16 +22,24 @@ public class CartaBonificacao extends Carta
 	private String referenciaBibliografica;
 	private int duracaoEfeito;
 	private int custoEfeito;
+        
+	/** contém quanto de efeito será gerado.*/
+	private int quantidadePrimeiroEfeito;	
+        
+        /** contém quanto de efeito será gerado.*/
+	private int quantidadeSegundoEfeito;
+        
+        /** será igual a uma das constantes de efeitos oriundos de carta conceito de Constants.java */
+	private int tipoPrimeiroEfeito; 									
 	
-	private int quantidadePrimeiroEfeito;								/** contém quanto de efeito será gerado.*/
-	private int quantidadeSegundoEfeito;								/** contém quanto de efeito será gerado.*/
-	private int tipoPrimeiroEfeito; 									/** será igual a uma das constantes de efeitos oriundos de carta conceito de Constants.java */
-	private int tipoSegundoEfeito;										/** será igual a uma das constantes de efeitos oriundos de carta conceito de Constants.java*/ 
+        /** será igual a uma das constantes de efeitos oriundos de carta conceito de Constants.java*/ 
+        private int tipoSegundoEfeito;										
 	
 	/**
 	 * Construtor que inicializa a Carta com tudo zerado.
 	 */
 	public CartaBonificacao (){
+            
 		//inicializando a superclasse explicitamente, texto significa a descricao do efeito ao utlizar a carta
 		super (null, null, null, CONCEITO);												
 		setReferenciaBibliografica(null);
@@ -54,6 +62,7 @@ public class CartaBonificacao extends Carta
 			                 int efeito2,
 			                 int quantidade1,
 			                 int quantidade2)
+
 	{
 		//inicializando a superclasse explicitamente, texto significa a descricao do efeito ao utlizar a carta
 		super (titulo, codigo, texto,CONCEITO);												
@@ -69,7 +78,7 @@ public class CartaBonificacao extends Carta
 	@Override
 	public void mostrarCarta()
 	{
-    // printa carta
+            // printa carta
 	}
 	
 	public void inserirEfeito()					

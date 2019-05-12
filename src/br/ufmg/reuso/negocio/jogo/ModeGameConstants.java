@@ -3,21 +3,39 @@ package br.ufmg.reuso.negocio.jogo;
 public class ModeGameConstants 
 {
 	// #ifdef LocalConceptCard
-	public static final String PATH_CARTA_CONCEITO_DIFICIL = "CartasConceitoDificil";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de conceitos
-	public static final String PATH_CARTA_CONCEITO_MODERADO = "CartasConceitoModerado";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de conceitos
-	public static final String PATH_CARTA_CONCEITO_FACIL = "CartasConceitoFacil";						//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de conceitos
+    
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de conceitos
+	public static final String PATH_CARTA_CONCEITO_DIFICIL = "CartasConceitoDificil";
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de conceitos
+	public static final String PATH_CARTA_CONCEITO_MODERADO = "CartasConceitoModerado";
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de conceitos
+	public static final String PATH_CARTA_CONCEITO_FACIL = "CartasConceitoFacil";						
 	// #endif
 	
 	// #ifdef LocalProblemCard
-//@	public static final String PATH_CARTA_PROBLEMA_DIFICIL = "CartasProblemaDificil";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
-//@	public static final String PATH_CARTA_PROBLEMA_MODERADO = "CartasProblemaModerado";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
-//@	public static final String PATH_CARTA_PROBLEMA_FACIL = "CartasProblemaFacil";						//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
+//@	public static final String PATH_CARTA_PROBLEMA_DIFICIL = "CartasProblemaDificil";
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
+//@	public static final String PATH_CARTA_PROBLEMA_MODERADO = "CartasProblemaModerado";
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de problemas
+//@	public static final String PATH_CARTA_PROBLEMA_FACIL = "CartasProblemaFacil";						
 	// #endif
 	
 	// #ifdef LocalSoftwareEngineerCard
-	public static final String PATH_CARTA_ENGENHEIRO_DIFICIL = "CartasEngenheiroDificil";				//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro	
-	public static final String PATH_CARTA_ENGENHEIRO_MODERADO = "CartasEngenheiroModerado";				//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro
-	public static final String PATH_CARTA_ENGENHEIRO_FACIL = "CartasEngenheiroFacil";					//variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro	
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro
+	public static final String PATH_CARTA_ENGENHEIRO_DIFICIL = "CartasEngenheiroDificil";
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro
+	public static final String PATH_CARTA_ENGENHEIRO_MODERADO = "CartasEngenheiroModerado";	
+        
+        //variavel referenciando o diretorio CartaoProjeto no qual ha os cartas de engenheiro
+	public static final String PATH_CARTA_ENGENHEIRO_FACIL = "CartasEngenheiroFacil";						
 	// #endif
 	
 	// #ifdef OnlineConceptCard

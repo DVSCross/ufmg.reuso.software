@@ -28,7 +28,9 @@ import br.ufmg.reuso.ui.ScreenControl;
 
 public class CartaoProjeto 
 {
-	private static final String PATH = "CartaoProjeto";	//variavel referenciando o diretório CartaoProjeto no qual há os cartoes de projeto
+        
+        //variavel referenciando o diretório CartaoProjeto no qual há os cartoes de projeto
+	private static final String PATH = "CartaoProjeto";	
 	private int complexidade;
 	private int tamanho;
 	private int qualidade;
@@ -38,6 +40,7 @@ public class CartaoProjeto
 	private String texto;
 	private String referenciaBibliografica;
 	private Modulo[] modulos;
+        
 	/**
 	 * Reuso de Software 2016 - Código Adicionado
 	 */
@@ -57,7 +60,6 @@ public class CartaoProjeto
 
 	public void definirProjeto(String facilidade)
 	{
-
 		if (facilidade.equals(Jogo.FACIL))		
 			this.definirProjetoFacil();		
 		
@@ -69,13 +71,17 @@ public class CartaoProjeto
 	}
 
 	private void definirProjetoDificil() {
+    
 		/**
 		 * Reuso de Software 2016 - Código Modificado
 		 */
 		String[] arquivosDiretorio = repositorio.getNomeArquivosPasta(PATH);	
-
-		Random sorteio = new Random();          								// variável para conferir valores aleatórios
-		int projetoSorteado = sorteio.nextInt(arquivosDiretorio.length);		// sorteia um valor que siginificará o projeto a ser selecionado para o jogo 
+    
+    // variável para conferir valores aleatórios
+		Random sorteio = new Random();          
+    
+    // sorteia um valor que siginificará o projeto a ser selecionado para o jogo 
+		int projetoSorteado = sorteio.nextInt(arquivosDiretorio.length);		
 
 
 		CartaoProjeto c = null;
@@ -83,39 +89,73 @@ public class CartaoProjeto
 		int controlador = 0;
 		
 		c = this.carregarProjeto(arquivosDiretorio, projetoSorteado, sentinela, controlador);
-
-		try		//tentativa de leitura e abstração de dados dos arquivos
+    
+    //tentativa de leitura e abstração de dados dos arquivos
+		try		
 		{
-			setCodigo(c.getCodigo());		/** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo codigo*/
-			setTitulo(c.getTitulo());		/** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo titulo*/
-			setTexto(c.getTexto());		/** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo texto*/
-			setReferenciaBibliografica(c.getReferenciaBibliografica());	/** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo referenciaBibliografica*/
+      
+      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo codigo*/
+			setCodigo(c.getCodigo());
+      
+      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo titulo*/
+			setTitulo(c.getTitulo());		
+      
+      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo texto*/
+			setTexto(c.getTexto());		
+      
+      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo referenciaBibliografica*/
+			setReferenciaBibliografica(c.getReferenciaBibliografica());	
 		}
-		catch (NoSuchElementException noSuchElementException)		//se os dados estiverem fora do formato ou se não haver mais dados para saída, há problema
+    
+    //se os dados estiverem fora do formato ou se não haver mais dados para saída, há problema
+		catch (NoSuchElementException noSuchElementException)		
 		{
-			System.exit(1);											//jogo termina sem êxito devido ao problema
+      //jogo termina sem êxito devido ao problema
+			System.exit(1);											
 		}
-
-		setComplexidade(4);											// definindo complexidade do projeto com valor igual a 4
-		setTamanho((sorteio.nextInt(3)+3));							// definindo tamanho do projeto com valores de 3 a 5
-		setQualidade((sorteio.nextInt(getTamanho())));  			// definindo qualidade do projeto conforme tamnho do projeto
-		if (this.qualidade<3)										// caso qualidade seja zero 
-			setQualidade(3);										// ela é configurada como 1
-		setOrcamento((sorteio.nextInt(21)+230));					// definindo orçamento de 230 a 250
-
-		modulos= new Modulo[getTamanho()];							// criando o número de módulos conforme o tamanho do projeto
+    
+    
+    	// definindo complexidade do projeto com valor igual a 4
+		setComplexidade(4);										
+    
+    	// definindo tamanho do projeto com valores de 3 a 5
+		setTamanho((sorteio.nextInt(3)+3));						
+    
+    // definindo qualidade do projeto conforme tamnho do projeto
+		setQualidade((sorteio.nextInt(getTamanho())));  			
+    
+    // caso qualidade seja zero 
+		if (this.qualidade<3)										
+      
+      // ela é configurada como 1
+			setQualidade(3);										
+    
+    // definindo orçamento de 230 a 250
+		setOrcamento((sorteio.nextInt(21)+230));					
+    
+    
+    // criando o número de módulos conforme o tamanho do projeto
+		modulos= new Modulo[getTamanho()];							
 		/*IMP*/		
 		for (int i=0;i<modulos.length;i++)
-			modulos[i] = new Modulo();								// construindo os módulos
-		int contador;												// controla o número do módulo para preenchimento
-		for (contador = 0;contador <getTamanho(); contador++)		//preenche o módulo
+      
+      	// construindo os módulos
+			modulos[i] = new Modulo();							
+    
+    // controla o número do módulo para preenchimento
+		int contador;												
+    
+    //preenche o módulo
+		for (contador = 0;contador <getTamanho(); contador++)		
 		{
 			modulos[contador].setRequisitos((sorteio.nextInt(3)+2));
 			modulos[contador].setDesenhos((sorteio.nextInt(3)+2));
 			modulos[contador].setCodigos((sorteio.nextInt(3)+2));
 			modulos[contador].setRastros((sorteio.nextInt(3)+2));
 			modulos[contador].setAjudas((sorteio.nextInt(3)+2));
-		}															//fim do preenchimento do módulo
+      
+      //fim do preenchimento do módulo
+		}															
 	}
 
 	private CartaoProjeto carregarProjeto(String[] arquivosDiretorio,
@@ -125,17 +165,25 @@ public class CartaoProjeto
 		CartaoProjeto c;
 		while (sentinela == -1)
 		{
-
-			if(arquivosDiretorio[projetoSorteado].endsWith(".properties"))	/**testando se arquivo é .properties*/
-				sentinela=0;												/**atualiza sentinela para sair do while*/
+      
+      /**testando se arquivo é .properties*/
+			if(arquivosDiretorio[projetoSorteado].endsWith(".properties"))	
+        
+        /**atualiza sentinela para sair do while*/
+				sentinela=0;												
 			else
 			{
 				controlador++;
-				projetoSorteado = new Random().nextInt(arquivosDiretorio.length);/**sorteia um número novamente*/
+        
+        /**sorteia um número novamente*/
+				projetoSorteado = new Random().nextInt(arquivosDiretorio.length);
 			}
-			if (controlador>=arquivosDiretorio.length)						
-				sentinela=0;												/**se chegar aqui, significa que pasta não tem arquivo propesties*/
+			if (controlador>=arquivosDiretorio.length)		
+        
+        /**se chegar aqui, significa que pasta não tem arquivo propesties*/
+				sentinela=0;												
 		}
+    
 		/**
 		 * Reuso de Software 2016 - Código Modificado
 		 */
@@ -143,47 +191,92 @@ public class CartaoProjeto
 			c = repositorio.obterCartaoProjeto(PATH + File.separator + ScreenControl.nomeProjeto);	
 		}else{
 			c = repositorio.obterCartaoProjeto(PATH + File.separator + arquivosDiretorio[projetoSorteado]);
+
 		}
 		return c;
 	}
 
 	private void definirProjetoModerado() {
-		Random sorteio = new Random();          // variável para conferir valores aleatórios
-		setComplexidade(2);						// definindo complexidade do projeto com valor igual a 2
-		setTamanho((sorteio.nextInt(3)+2));		// definindo tamanho do projeto com valores de 2 a 4
-		setQualidade((sorteio.nextInt(getTamanho())));  // definindo qualidade do projeto conforme tamnho do projeto
-		if (this.qualidade<2)							// caso qualidade seja zero 
-			setQualidade(2);							// ela é configurada como 1
-		setOrcamento((sorteio.nextInt(21)+190)); 		// definindo orçamento de 190 a 210
+    
+    // variável para conferir valores aleatórios
+		Random sorteio = new Random();  
+    
+    // definindo complexidade do projeto com valor igual a 2
+		setComplexidade(2);					
+    
+    // definindo tamanho do projeto com valores de 2 a 4
+		setTamanho((sorteio.nextInt(3)+2));		
+    
+     // definindo qualidade do projeto conforme tamnho do projeto
+		setQualidade((sorteio.nextInt(getTamanho()))); 
+    
+    // caso qualidade seja zero 
+		if (this.qualidade<2)					
+      
+      // ela é configurada como 1
+			setQualidade(2);	
+    
+    // definindo orçamento de 190 a 210
+		setOrcamento((sorteio.nextInt(21)+190)); 		
 
-		modulos= new Modulo[getTamanho()];										// criando o número de módulos conforme o tamanho do projeto
+    // criando o número de módulos conforme o tamanho do projeto
+		modulos= new Modulo[getTamanho()];										
 		for (int i=0;i<modulos.length;i++)
-			modulos[i] = new Modulo();											// construindo os módulos
-		int contador;															// controla o número do mdulo para preenchimento
-		for (contador = 0;contador <getTamanho(); contador++)					// preenche os módulos 
+      
+      // construindo os módulos
+			modulos[i] = new Modulo();	
+    
+    // controla o número do mdulo para preenchimento
+		int contador;							
+    
+    // preenche os módulos 
+		for (contador = 0;contador <getTamanho(); contador++)					
 		{
 			modulos[contador].setRequisitos((sorteio.nextInt(3)+1));
 			modulos[contador].setDesenhos((sorteio.nextInt(3)+1));
 			modulos[contador].setCodigos((sorteio.nextInt(3)+1));
 			modulos[contador].setRastros((sorteio.nextInt(3)+1));
 			modulos[contador].setAjudas((sorteio.nextInt(3)+1));
-		}																		//fim do preenchimento do módulo
+      
+      //fim do preenchimento do módulo
+		}																		
 	}
 
 	private void definirProjetoFacil() {
-		Random sorteio = new Random();          // variável para conferir valores aleatórios
-		setComplexidade(2);						// definindo complexidade do projeto com valor igual a 2
-		setTamanho((sorteio.nextInt(2)+1));		// definindo tamanho do projeto com valores de 1 a 2
-		setQualidade((sorteio.nextInt(getTamanho())));  // definindo qualidade do projeto conforme tamanho do projeto
-		if (this.qualidade==0)							// caso qualidade seja zero 
-			setQualidade(1);							// ela é configurada como 1, para ter qualidade mínima
-		setOrcamento((sorteio.nextInt(31)+150));		// definindo orçamento de 150 a 180 
-
-		modulos= new Modulo[getTamanho()];				// criando o número de módulos conforme o tamanho do projeto
+    
+     // variável para conferir valores aleatórios
+		Random sorteio = new Random();  
+    
+    // definindo complexidade do projeto com valor igual a 2
+		setComplexidade(2);						
+    
+    // definindo tamanho do projeto com valores de 1 a 2
+		setTamanho((sorteio.nextInt(2)+1));		
+    
+     // definindo qualidade do projeto conforme tamanho do projeto
+		setQualidade((sorteio.nextInt(getTamanho()))); 
+    
+    // caso qualidade seja zero 
+		if (this.qualidade==0)	
+      
+      // ela é configurada como 1, para ter qualidade mínima
+			setQualidade(1);							
+    
+    // definindo orçamento de 150 a 180 
+		setOrcamento((sorteio.nextInt(31)+150));		
+    
+    // criando o número de módulos conforme o tamanho do projeto
+		modulos= new Modulo[getTamanho()];				
 		for (int i=0;i<modulos.length;i++)
-			modulos[i] = new Modulo();					// construindo os módulos
-		int contador;									// controla o número do módulo para preenchimento
-		for (contador = 0;contador <getTamanho(); contador++)		// preenche os módulos 
+      
+      // construindo os módulos
+			modulos[i] = new Modulo();		
+    
+    // controla o número do módulo para preenchimento
+		int contador;		
+    
+    // preenche os módulos 
+		for (contador = 0;contador <getTamanho(); contador++)		
 		{
 			modulos[contador].setRequisitos((sorteio.nextInt(2)+1));
 			modulos[contador].setDesenhos((sorteio.nextInt(2)+1));
@@ -230,7 +323,8 @@ public class CartaoProjeto
 
 	public void setOrcamento(int orcamento) 
 	{
-		while ((orcamento%10)!=0) 	//garante que orçamento é um número divisível por 10 
+                //garante que orçamento é um número divisível por 10 
+		while ((orcamento%10)!=0) 	
 		{
 			orcamento++;
 		}
@@ -295,26 +389,30 @@ public class CartaoProjeto
 	 * @return
 	 */
 	public int validarProjeto(Jogo jogo, Jogador jogador) {
-		if (jogador.contarModuloJaIntegrado() == getTamanho()) {
-			for (int i = 0; i < getQualidade(); i++) /**
+    
+    /**
 											 * conferindo x modulos integrados,
 											 * onde x e igual ? qualidade do
 											 * projeto
 											 */
+		if (jogador.contarModuloJaIntegrado() == getTamanho()) {
+			for (int i = 0; i < getQualidade(); i++) 
 			{
-				for (int z = 0; z < jogador.getTabuleiro()
-						.getMesas().length; z++)/**
+        
+        /**
 												 * 
 												 * 
 												 * percorrendo mesas do
 												 * tabuleiro
-												 */
+												 */ 
+				for (int z = 0; z < jogador.getTabuleiro()
+						.getMesas().length; z++)
 				{
 					if (jogador.getTabuleiro().getMesas()[z].getModuloJaIntegrado() == false)
 						/** se mesa nao tem modulo integrado */
 						continue;
-					for (int j = 0; j < jogador.getTabuleiro().getMesas()[z]
-							.getModuloIntegrado().length; j++) /**
+          
+          /**
 																 * Percorrendo
 																 * cada conjunto
 																 * de artefatos
@@ -323,24 +421,28 @@ public class CartaoProjeto
 																 * mesa z do
 																 * jogador
 																 */
+					for (int j = 0; j < jogador.getTabuleiro().getMesas()[z]
+							.getModuloIntegrado().length; j++) 
 					{// TODO caso tenha efeito de pular modulo integrado, entra
 						// aqui
-						for (int k = 0; k < jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j]
-								.size(); k++) /**
+                          /**
 												 * 
 												 * 
 												 * percorrendo o array de
 												 * artefato da posicao j do
 												 * modulo integrado em analise
 												 */
+						for (int k = 0; k < jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j]
+								.size(); k++) 
 						{
-							if (jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j].get(k)
-									.isPoorQuality() == true) /**
+              /**
 																 * se qualidade
 																 * do artefato
 																 * for ruim, ou
 																 * seja, com bug
 																 */
+							if (jogador.getTabuleiro().getMesas()[z].getModuloIntegrado()[j].get(k)
+									.isPoorQuality() == true) 
 							{
 								return SetupInteraction.PROJETO_NAO_CONCLUIDO;
 							}

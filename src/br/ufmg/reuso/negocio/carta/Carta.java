@@ -22,10 +22,12 @@ public abstract class Carta
 	public static final int CONCEITO = 1;
 	public static final int ENGENHEIRO = 2;
 	public static final int PROBLEMA = 3;
-	private int tipoCarta;						// carta deve ter tipo entre: CONCEITO, ENGENHEIRO OU PROBLEMA
+        
+        // carta deve ter tipo entre: CONCEITO, ENGENHEIRO OU PROBLEMA
+	private int tipoCarta;						
 	
-	
-	public Carta(String titulo, String codigo, String texto, int tipo)		//construindo a carta
+	// carta deve ter tipo entre: CONCEITO, ENGENHEIRO OU PROBLEMA
+	public Carta(String titulo, String codigo, String texto, int tipo)		
 	{
 		setTituloCarta(titulo);
 		setCodigoCarta(codigo);
@@ -33,8 +35,8 @@ public abstract class Carta
 		setTipoCarta(tipo);
 	}
 	
-	
-	public abstract void mostrarCarta();		//metodo abstrato para impressão de carta através de polimorfismo
+	//metodo abstrato para impressão de carta através de polimorfismo
+	public abstract void mostrarCarta();		
 	
 	
 	

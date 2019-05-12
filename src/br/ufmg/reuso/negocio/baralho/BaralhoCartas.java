@@ -156,19 +156,26 @@ public class BaralhoCartas
 		 * Reuso de Software 2016 - C?digo Modificado
 		 */
 		String[] arquivosDiretorio = repositorio.getNomeArquivosPasta(dificuldade);	
+                
 		/**preenhendo um vetor de string com nome dos arquivos do diretorio*/
-
 		ArrayList <String> somenteArquivosProperties = new ArrayList <String>();;
 		for (int i=0;i<arquivosDiretorio.length;i++)
-		{
-			if((arquivosDiretorio[i].endsWith(".properties"))&&(selecionarCartaConceito(cartasConceitoSelecionadas,arquivosDiretorio[i])==true))/**testando se arquivo do diret?rio ? .properties e se carta foi selecionada*/
-				somenteArquivosProperties.add(arquivosDiretorio[i]);			/**adciona arquivo ? lista de array de arquivos properties conforme cartas selecionadas para o jogo*/
+		{       
+                        /**testando se arquivo do diret?rio ? .properties e se carta foi selecionada*/
+			if((arquivosDiretorio[i].endsWith(".properties"))&&(selecionarCartaConceito(cartasConceitoSelecionadas,arquivosDiretorio[i])==true))
+				
+                            /**adciona arquivo ? lista de array de arquivos properties conforme cartas selecionadas para o jogo*/
+                            somenteArquivosProperties.add(arquivosDiretorio[i]);			
 		}
 
-		setNumeroTotalConceito(somenteArquivosProperties.size());						/**numero de cartas conceito total que o baralho ter?*/
-		CartaBonificacao [] cartaconceito = new CartaBonificacao[getNumeroTotalConceito()];	/**vetor que aloja cartas conceito do jogo*/
+                /**numero de cartas conceito total que o baralho ter?*/
+		setNumeroTotalConceito(somenteArquivosProperties.size());		
+                
+                /**vetor que aloja cartas conceito do jogo*/
+		CartaBonificacao [] cartaconceito = new CartaBonificacao[getNumeroTotalConceito()];	
 
-		for(int i=0;i<somenteArquivosProperties.size();i++)								/**ir? abrir todos os arquivos e extrair dados deles*/
+                /**ir? abrir todos os arquivos e extrair dados deles*/
+		for(int i=0;i<somenteArquivosProperties.size();i++)								
 		{
 
 			try
@@ -181,9 +188,11 @@ public class BaralhoCartas
 
 
 			}
-			catch (NoSuchElementException noSuchElementException)		/**se os dados estiverem fora do formato ou se n?o haver mais dados para sa?da, h? problema*/
-			{
-				System.exit(1);											/**jogo termina sem ?xito devido ao problema*/
+                        
+                        /**se os dados estiverem fora do formato ou se n?o haver mais dados para sa?da, h? problema*/
+                        /**jogo termina sem ?xito devido ao problema*/
+			catch (NoSuchElementException noSuchElementException){		
+				System.exit(1);											
 			}
 		}
 		return cartaconceito;
@@ -219,20 +228,27 @@ public class BaralhoCartas
 		/**
 		 * Reuso de Software 2016 - C?digo Modificado
 		 */
-		String[] arquivosDiretorio = repositorio.getNomeArquivosPasta(dificuldade);							//preenhendo um vetor de string com nome dos arquivos do diretorio
-
+		String[] arquivosDiretorio = repositorio.getNomeArquivosPasta(dificuldade);							
+                
+                //preenhendo um vetor de string com nome dos arquivos do diretorio
 		ArrayList <String> somenteArquivosProperties = new ArrayList <String>();;
 		for (int i=0;i<arquivosDiretorio.length;i++)
 		{
-			if((arquivosDiretorio[i].endsWith(".properties"))&&(selecionarCartaProblema(cartasProblemaSelecionadas,arquivosDiretorio[i])==true))/**testando se arquivo do diret?rio ? .properties e se carta foi selecionada*/
-				somenteArquivosProperties.add(arquivosDiretorio[i]);			/**adciona arquivo ? lista de array de arquivos properties conforme cartas selecionadas para o jogo*/
+                        /**testando se arquivo do diret?rio ? .properties e se carta foi selecionada*/
+			if((arquivosDiretorio[i].endsWith(".properties"))&&(selecionarCartaProblema(cartasProblemaSelecionadas,arquivosDiretorio[i])==true))
+                                
+                                /**adciona arquivo ? lista de array de arquivos properties conforme cartas selecionadas para o jogo*/
+				somenteArquivosProperties.add(arquivosDiretorio[i]);			
 		}
 
-		setNumeroTotalProblemas(somenteArquivosProperties.size());				/**numero de cartas problema total que o baralho ter?*/
+                 /**numero de cartas problema total que o baralho ter?*/
+		setNumeroTotalProblemas(somenteArquivosProperties.size());				
+                
+                /**vetor que aloja cartas problema do jogo*/
+		CartaPenalizacao [] cartaproblema = new CartaPenalizacao[getNumeroTotalProblemas()];	
 
-		CartaPenalizacao [] cartaproblema = new CartaPenalizacao[getNumeroTotalProblemas()];	/**vetor que aloja cartas problema do jogo*/
-
-		for(int i=0;i<somenteArquivosProperties.size();i++)								/**ir? abrir todos os arquivos e extrair dados deles*/
+                /**ir? abrir todos os arquivos e extrair dados deles*/
+		for(int i=0;i<somenteArquivosProperties.size();i++)								
 		{
 			try
 			{
@@ -242,9 +258,12 @@ public class BaralhoCartas
 				/**construindo a carta com dados do arquivo cujo nome est? na posicao i do vetor de arquivos do diretorio*/	
 				cartaproblema[i] = repositorio.obterCartaPenalizacao(dificuldade + File.separator + somenteArquivosProperties.get(i));
 			}
-			catch (NoSuchElementException noSuchElementException)		/**se os dados estiverem fora do formato ou se n?o haver mais dados para sa?da, h? problema*/
+                        
+                        /**se os dados estiverem fora do formato ou se n?o haver mais dados para sa?da, h? problema*/
+                        /**jogo termina sem ?xito devido ao problema*/
+			catch (NoSuchElementException noSuchElementException)		
 			{
-				System.exit(1);											/**jogo termina sem ?xito devido ao problema*/
+				System.exit(1);											
 			}
 		}
 		return cartaproblema;
@@ -282,42 +301,68 @@ public class BaralhoCartas
 		ArrayList <String> somenteArquivosProperties = new ArrayList <String>();;
 		for (int i=0;i<arquivosDiretorio.length;i++)
 		{
-			if(arquivosDiretorio[i].endsWith(".properties"))					/**testando se arquivo do diret?rio ? .properties*/
-				somenteArquivosProperties.add(arquivosDiretorio[i]);			/**adciona arquivo ? lista de array de arquivos properties*/
+                    
+                        /**testando se arquivo do diret?rio ? .properties*/
+			if(arquivosDiretorio[i].endsWith(".properties"))
+                            
+                                /**adciona arquivo ? lista de array de arquivos properties*/
+				somenteArquivosProperties.add(arquivosDiretorio[i]);			
 		}
-
-		setNumeroTotalEngenheiro(somenteArquivosProperties.size());				/**numero de cartas de engenheiros total que o baralho ter?*/
-		CartaEngenheiro[] cartaengenheiro = new CartaEngenheiro[getNumeroTotalEngenheiro()];			/**vetor de todas as cartas de engenheiro*/
-
-		for(int i=0;i<somenteArquivosProperties.size();i++)								/**ir? abrir todos os arquivos e extrair dados deles*/
+                
+                /**numero de cartas de engenheiros total que o baralho ter?*/
+		setNumeroTotalEngenheiro(somenteArquivosProperties.size());
+                
+                /**vetor de todas as cartas de engenheiro*/
+		CartaEngenheiro[] cartaengenheiro = new CartaEngenheiro[getNumeroTotalEngenheiro()];			
+                
+                /**ir? abrir todos os arquivos e extrair dados deles*/
+		for(int i=0;i<somenteArquivosProperties.size();i++)								
 		{
 			/**
 			 * Reuso de Software 2016 - C?digo Modificado
 			 */
 			try
 			{
-				cartaengenheiro[i]= repositorio.obterCartaEngenheiro(dificuldade + File.separator + somenteArquivosProperties.get(i)); /**construindo a carta com dados do arquivo cujo nome est? na posicao i do vetor de arquivos do diretorio*/	
+                            
+                                /**construindo a carta com dados do arquivo cujo nome est? na posicao i do vetor de arquivos do diretorio*/
+				cartaengenheiro[i]= repositorio.obterCartaEngenheiro(dificuldade + File.separator + somenteArquivosProperties.get(i)); 	
 			}
-			catch (NoSuchElementException noSuchElementException)		/**se os dados estiverem fora do formato ou se n?o haver mais dados para sa?da, h? problema*/
+                        
+                        /**se os dados estiverem fora do formato ou se n?o haver mais dados para sa?da, h? problema*/
+                        /**jogo termina sem ?xito devido ao problema*/
+			catch (NoSuchElementException noSuchElementException)		
 			{
-				System.exit(1);											/**jogo termina sem ?xito devido ao problema*/
+				System.exit(1);											
 			}
 		}										
 		return cartaengenheiro;
 	}
-
-	public void embaralharInicial()	//vai deixar as cartas de engenheiro retiradas do baralho nas ultimas posi??es e embaralhar o baralho restante.
-	{
-		int ultimaCartaValida = getNumeroTotalCartas()-1;				//ser? a posicao da ultima carta do baralho n?o null
-		for (int i=0;i<getNumeroTotalEngenheiro(); i++)					//for precisa ser rodado at? o fim das cartas de engenheiro no baralho
+        
+        //vai deixar as cartas de engenheiro retiradas do baralho nas ultimas posi??es e embaralhar o baralho restante.
+	public void embaralharInicial()	
+	{       
+                //ser? a posicao da ultima carta do baralho n?o null
+		int ultimaCartaValida = getNumeroTotalCartas()-1;
+                
+                //for precisa ser rodado at? o fim das cartas de engenheiro no baralho
+		for (int i=0;i<getNumeroTotalEngenheiro(); i++)					
 		{
-			if (baralho[i]==null)										//caso a carta seja nula
+                        //caso a carta seja nula
+			if (baralho[i]==null)										
 			{
-				baralho[i]=baralho[ultimaCartaValida];					//a ultima carta (existente) do baralho ocupa a posicao desta nula
-				baralho[ultimaCartaValida]=null;						//a carta nula vai ocupar o lugar da ?ltima carta existente
-				ultimaCartaValida--;									//a utima carta v?lida tem posicao decrescida de 1
+                            
+                                //a ultima carta (existente) do baralho ocupa a posicao desta nula
+				baralho[i]=baralho[ultimaCartaValida];
+                                
+                                //a carta nula vai ocupar o lugar da ?ltima carta existente
+				baralho[ultimaCartaValida]=null;
+                                
+                                //a utima carta v?lida tem posicao decrescida de 1
+				ultimaCartaValida--;									
 			}
-		}																//neste ponto todas as cartas null est?o no final do baralho
+                        
+                //neste ponto todas as cartas null est?o no final do baralho
+		}																
 
 		embaralhar();
 
@@ -335,7 +380,8 @@ public class BaralhoCartas
 		}
 	}
 
-	public void mostrarBaralho()					//TODO METODO DE TESTE -> EXCUIR DEPOIS
+        //TODO METODO DE TESTE -> EXCUIR DEPOIS
+	public void mostrarBaralho()					
 	{		
 		for (int i=0;i<getNumeroCartasBaralhoAtual();i++)
 		{
@@ -357,25 +403,38 @@ public class BaralhoCartas
 		else
 			return null;
 	}
-
-	public Carta darCarta()															/**Distribui uma carta*/
+        
+        /**Distribui uma carta*/
+	public Carta darCarta()															
 	{
-		if (baralho[currentCard]!=null)												/**Determina se ainda h? carta a ser distribu?da*/
+            
+                /**Determina se ainda h? carta a ser distribu?da*/
+		if (baralho[currentCard]!=null)												
 		{
-			setNumeroCartasBaralhoAtual(getNumeroCartasBaralhoAtual()-1);			/**Diminui o n?mero de cartas que o baralho cont?m*/
+                    
+                        /**Diminui o n?mero de cartas que o baralho cont?m*/
+			setNumeroCartasBaralhoAtual(getNumeroCartasBaralhoAtual()-1);			
 			Carta temporaria = baralho[currentCard];
 			baralho[currentCard]=null;
-			this.currentCard++;														/**Incrementa ?ndice da pr?xima carta a ser distribu?da*/
+                        
+                        /**Incrementa ?ndice da pr?xima carta a ser distribu?da*/
+			this.currentCard++;														
 			return temporaria;
 		}
 		else
-			return null;															/**Retorna nulo para indicar que baralho est? vazio*/
+                        
+                        /**Retorna nulo para indicar que baralho est? vazio*/
+			return null;															
 	}
 
 	public void recolherCarta(Carta cartaDevolvida)
 	{
-		baralho[getNumeroCartasBaralhoAtual()]=cartaDevolvida;						/**colocando carta no baralho*/ 
-		setNumeroCartasBaralhoAtual(getNumeroCartasBaralhoAtual() + 1);				/**adicionando carta ao baralho que recolhe carta*/
+                
+                /**colocando carta no baralho*/
+		baralho[getNumeroCartasBaralhoAtual()]=cartaDevolvida;
+                
+                /**adicionando carta ao baralho que recolhe carta*/
+		setNumeroCartasBaralhoAtual(getNumeroCartasBaralhoAtual() + 1);				
 	}
 
 

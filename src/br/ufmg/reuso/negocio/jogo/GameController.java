@@ -43,28 +43,41 @@ public class GameController implements GameInteraction
 		return GameController;
 	}
 	
+        /**joga dados do jogadorAtual, no jogoAtual. É retornado as novas carcateristicas do jogadorAtual*/
 	 @Override
-	public Jogador jogarDados(Jogo jogoAtual,Jogador jogadorAtual) 		/**joga dados do jogadorAtual, no jogoAtual. É retornado as novas carcateristicas do jogadorAtual*/
+	public Jogador jogarDados(Jogo jogoAtual,Jogador jogadorAtual) 		
 	{
 		Jogador auxiliar;
 		auxiliar=jogoAtual.jogarDado(jogadorAtual);
-		jogadorAtual.setDadoJogado(true);				/**atualiza que o jogador não pode jogar dados, ou seja, na rodada já jogou dados*/
+                
+                /**atualiza que o jogador não pode jogar dados, ou seja, na rodada já jogou dados*/
+		jogadorAtual.setDadoJogado(true);				
 		return auxiliar;
 	} 
 	 
+        /**Termina jogada do jogadorAtual*/
 	 @Override
-	public void terminarJogada(Jogador jogadorAtual) 					/**Termina jogada do jogadorAtual*/
+	public void terminarJogada(Jogador jogadorAtual) 					
 	{
-		jogadorAtual.setDadoJogado(false);     /**atualiza que o jogador pode jogar dados, ou seja, na rodada ainda não jogou dados*/
+                /**atualiza que o jogador pode jogar dados, ou seja, na rodada ainda não jogou dados*/
+		jogadorAtual.setDadoJogado(false);     
 		for (int i=0;i<jogadorAtual.getTabuleiro().getMesas().length;i++) 
 		{
-			if(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa()==null) /**Se mesa vazia, pula iteração*/
+                        /**Se mesa vazia, pula iteração*/
+			if(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa()==null) 
 				continue;			
 			else
 			{
 				/**Restaura pontos de habilidade das cartas de engenheiro na mesas do tabuleiro do jogador*/
-				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setHabilidadeEngenheiroAtual /**codigo particionado: Início*/
-					(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro()); /**codigo particionado: Fim*/
+
+				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setHabilidadeEngenheiroAtual
+					(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getHabilidadeEngenheiro()); 
+
+        /**codigo particionado: Início*/
+				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setHabilidadeEngenheiroAtual 
+        
+        /**codigo particionado: Fim*/
+					(jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().getEngenheiro().getHabilidadeEngenheiro()); 
 			
 				/**Atualiza que o engenheiro não trabalhou na rodada para a próxima rodada que virá*/
 				jogadorAtual.getTabuleiro().getMesas()[i].getCartaMesa().setEngenheiroTrabalhouNestaRodada(false);
@@ -72,9 +85,10 @@ public class GameController implements GameInteraction
 		}
 		
 	}
-
+        
+        /**Mostra cartao de projeto do jogo*/
 	 @Override
-	public void verProjeto(Jogo jogoAtual) 		/**Mostra cartao de projeto do jogo*/
+	public void verProjeto(Jogo jogoAtual) 		
 	{
 		jogoAtual.setupController.exibirProjeto(jogoAtual.getProjeto());
 	}
@@ -112,22 +126,25 @@ public class GameController implements GameInteraction
 		return auxiliar;
 	}
 	
-		
+	/**Engenheiro produz artefato*/
 	 @Override
-	public Jogador produzirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroProduzindo) /**Engenheiro produz artefato*/
+	public Jogador produzirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroProduzindo) 
 	{
 		Jogador auxiliar;
 		int mesaTrabalho = jogoAtual.setupController.escolherMesadeTrabalho();
 		if (mesaTrabalho ==-1)													
 		{
-			ScreenInteraction.getScreenInteraction().exibirMensagem("Operação de produzir artefato cancelada pelo jogador",""); 		//	
-			return jogadorAtual;												//NÃO FAZ NADA COM JOGADOR
+			ScreenInteraction.getScreenInteraction().exibirMensagem("Operação de produzir artefato cancelada pelo jogador",""); 
+                        //NÃO FAZ NADA COM JOGADOR
+			return jogadorAtual;												
 		}
 		mesaTrabalho--;
 		if (jogadorAtual.getTabuleiro().getMesas()[mesaTrabalho].getCartaMesa()==null)
 		{
 			ScreenInteraction.getScreenInteraction().exibirMensagem("Operação de produzir artefato cancelada: Mesa vazia","");
-			return jogadorAtual;												//NÃO FAZ NADA COM JOGADOR
+                        
+                        //NÃO FAZ NADA COM JOGADOR
+			return jogadorAtual;												
 		}	
 		auxiliar=jogoAtual.inserirArtefato(jogadorAtual,engenheiroProduzindo, mesaTrabalho);
 		
@@ -135,8 +152,9 @@ public class GameController implements GameInteraction
 		
 	}
 
+        /**Engenheiro inspeciona artefato*/
 	 @Override
-	 public Jogador inspecionarArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroInspecionando) /**Engenheiro inspeciona artefato*/
+	 public Jogador inspecionarArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroInspecionando) 
 	{
 		Jogador auxiliar;
 		int mesaTrabalho = jogoAtual.setupController.escolherMesadeTrabalho();
@@ -158,8 +176,9 @@ public class GameController implements GameInteraction
 
 	}
 	
+         /**Engenheiro corrige artefato com bug*/
 	 @Override
-	public Jogador corrigirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroCorrigindo) /**Engenheiro corrige artefato com bug*/
+	public Jogador corrigirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroCorrigindo) 
 	{
 		Jogador auxiliar;
 		int mesaTrabalho = jogoAtual.setupController.escolherMesadeTrabalho();
@@ -203,7 +222,9 @@ public class GameController implements GameInteraction
 		int [][]artefatosEscolhidos = jogoAtual.setupController.artefatosEscolhidos();
 		
 		auxiliar=jogoAtual.integrarModuloJ(jogadorAtual, engenheiroIntegrador, mesaTrabalho,moduloEscolhido,artefatosEscolhidos);
-		jogoAtual.setupController.habilitarTrocarModuloIntegrado(mesaTrabalho); /**habilita o engenheiro situado na mesaTrabalho a trocar modulo integrado de mesa*/
+                
+                 /**habilita o engenheiro situado na mesaTrabalho a trocar modulo integrado de mesa*/
+		jogoAtual.setupController.habilitarTrocarModuloIntegrado(mesaTrabalho);
 		
 		
 		if (jogoAtual.getProjeto().validarProjeto(jogoAtual, jogadorAtual) ==SetupInteraction.PROJETO_CONCLUIDO)
@@ -217,10 +238,14 @@ public class GameController implements GameInteraction
 	 
 
 	 @Override
-	public Jogador tranferirModuloIntegrado(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroTransferindo)	/**transfere modulo integrado de uma mesa para outra mesa sem módulo integrado*/
+        
+         /**transfere modulo integrado de uma mesa para outra mesa sem módulo integrado*/
+	public Jogador tranferirModuloIntegrado(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroTransferindo)	
 	{
 		ScreenInteraction.getScreenInteraction().exibirMensagem("tranferir módulo requerido","");
-		int mesaEscolhida = jogoAtual.setupController.escolherMesaTransferencia();		 /**contém mesa para transferir módulo integrado*/
+                
+                /**contém mesa para transferir módulo integrado*/
+		int mesaEscolhida = jogoAtual.setupController.escolherMesaTransferencia();		 
 		mesaEscolhida--;
 		if(jogadorAtual.getTabuleiro().getMesas()[mesaEscolhida].getModuloJaIntegrado()==true)
 		{

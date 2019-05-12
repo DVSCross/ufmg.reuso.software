@@ -26,11 +26,17 @@ import br.ufmg.reuso.ui.ScreenTabuleiro;
 
 public class Artefato 
 {
-	private boolean bug;						/**se true há bug, do contrário não há bug*/
-	private boolean qualidadeArtefatoRuim;		/**se true é ruim, se não é bom*/
-	private boolean artefatoInspecionado;		/**se true foi inspecionado, se false não foi inspecionado*/
+        /**se true há bug, do contrário não há bug*/
+	private boolean bug;		
+        
+        /**se true é ruim, se não é bom*/
+	private boolean qualidadeArtefatoRuim;	
+        
+        /**se true foi inspecionado, se false não foi inspecionado*/
+	private boolean artefatoInspecionado;		
 	
-	protected EstadoCarta estado;				// verifica o estado da carta artefato
+        // verifica o estado da carta artefato
+	protected EstadoCarta estado;				
 	
 	/**
 	 * @param bug

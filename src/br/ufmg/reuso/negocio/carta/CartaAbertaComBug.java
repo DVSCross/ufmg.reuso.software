@@ -19,11 +19,13 @@ package br.ufmg.reuso.negocio.carta;
 public class CartaAbertaComBug extends CartaAberta {
 	
 	public void setBug(Artefato carta) {
+            
 		//define que o artefato possui bug
 		carta.setQualidadeArtefatoRuim(true);
 	}
 	
 	public void corrigirBug(Artefato carta) {
+            
 		//corrige o bug existente no artefato
 		carta.setQualidadeArtefatoRuim(false);
 	}

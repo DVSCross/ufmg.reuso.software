@@ -31,18 +31,22 @@ public interface GameInteraction
 	/*************************************************************************************************************/
 	/*************************************************************************************************************/
 	/*************************************************************************************************************/
-
-	public Jogador jogarDados(Jogo jogoAtual,Jogador jogador); 			/**joga dados do jogadorAtual, no jogoAtual. É retornado as novas carcateristicas do jogadorAtual*/
+        
+    
+        /**joga dados do jogadorAtual, no jogoAtual. É retornado as novas carcateristicas do jogadorAtual*/
+	public Jogador jogarDados(Jogo jogoAtual,Jogador jogador); 			
 	  
 	//vet tabuleiro oponente será de uso excluivo da GUI:troca a tela, habilita algumas funcionalidade e desabilita outras (não altera camada de negócios)
 	/**public vodi verTabuleiro();*/
 	/********************************************************************************************/
 	
 	
+	/**Termina jogada do jogadorAtual*/
+	public void terminarJogada(Jogador jogadorAtual);					
 	
-	public void terminarJogada(Jogador jogadorAtual);					/**Termina jogada do jogadorAtual*/
-	
-	public void verProjeto(Jogo jogoAtual); 		/**Mostra cartao de projeto do jogo*/
+        
+        /**Mostra cartao de projeto do jogo*/
+	public void verProjeto(Jogo jogoAtual); 		
 	
 	
 	
@@ -61,19 +65,23 @@ public interface GameInteraction
 	/**public void selecionarEng();*/ 
 	/***************************************************************************/
 	
-
-	public Jogador contratarEngenheiroI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroContratado);	/**retira cartas de engenheiro da mão do jogador e as insere no tabuleiro*/
+        /**retira cartas de engenheiro da mão do jogador e as insere no tabuleiro*/
+	public Jogador contratarEngenheiroI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroContratado);	
 	
-	public Jogador produzirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroProduzindo);		/**Engenheiro produz artefato*/
+        /**Engenheiro produz artefato*/
+	public Jogador produzirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroProduzindo);		
 	  
-	public Jogador inspecionarArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroInspecionando);	 /**Engenheiro inspeciona artefato*/
+        /**Engenheiro inspeciona artefato*/
+	public Jogador inspecionarArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroInspecionando);	 
 	
-	public Jogador corrigirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroCorrigindo); /**Engenheiro corrige artefato com bug*/
+        /**Engenheiro corrige artefato com bug*/
+	public Jogador corrigirArtefatoI(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroCorrigindo); 
 	
 	/** Integra um conjunto de artefatos em módulo, conforme cartão de projeto.*/
 	public Jogador integrarModuloI(Jogo jogoAtual, Jogador jogadorAtual,CartaEngenheiro engenheiroIntegrador, int mesaTrabalho); 
 	
-	public Jogador tranferirModuloIntegrado(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroTransferindo);	/**transfere modulo integrado de uma mesa para outra mesa sem módulo integrado*/
+        /**transfere modulo integrado de uma mesa para outra mesa sem módulo integrado*/
+	public Jogador tranferirModuloIntegrado(Jogo jogoAtual, Jogador jogadorAtual, CartaEngenheiro engenheiroTransferindo);	
   	  
 	/**public void escolherModulo();   método exclusivo da GUI*/
 	 

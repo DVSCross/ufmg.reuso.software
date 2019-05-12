@@ -35,9 +35,15 @@ public class Mesa
 	public static final int ARTEFATOS_REQUISITOS = 4;
 
 	private CartaEngenheiro cartaMesa;
-	private boolean moduloJaIntegrado;				/** variavel que mostra se ha modulo integrado na mesa ou nao*/
-	private int especificacaoModuloIntegrado;       /** especifica qual modulo integrado do projeto a mesa contem (de 0 ate (tamanho do projeto-1)*/
-	private ArrayList <Artefato>[] moduloIntegrado;	/** vetor de ArrayList contendo o modulo da integracao*/
+        
+        /** variavel que mostra se ha modulo integrado na mesa ou nao*/
+	private boolean moduloJaIntegrado;	
+        
+        /** especifica qual modulo integrado do projeto a mesa contem (de 0 ate (tamanho do projeto-1)*/
+	private int especificacaoModuloIntegrado;
+        
+        /** vetor de ArrayList contendo o modulo da integracao*/
+	private ArrayList <Artefato>[] moduloIntegrado;	
 	private ArrayList <Artefato> ajudas;
 	private ArrayList <Artefato> codigos;
 	private ArrayList <Artefato> desenhos;
@@ -45,13 +51,20 @@ public class Mesa
 	private ArrayList <Artefato> requisitos;
 
 	/*----------------------EFEITOS DA CARTA CONCEITO PERMANENTES---------------------------------*/
-	private int efeitoAumentarMaturidadeEngenheiro; /**contem um inteiro com efeito na maturidade do engenheiro que ocupa a mesa*/
-	private int efeitoAumentarHabilidadeEngenheiro; /**contem um inteiro com efeito na habilidade do engenheiro que ocupa a mesa*/
-	private boolean efeitoModuloIntegradoNeutralizado; /**contem o efeito de ter o modulo desta mesa neutralizado na fase de validacao*/
+	
+        /**contem um inteiro com efeito na maturidade do engenheiro que ocupa a mesa*/
+        private int efeitoAumentarMaturidadeEngenheiro; 
+        
+        /**contem um inteiro com efeito na habilidade do engenheiro que ocupa a mesa*/
+	private int efeitoAumentarHabilidadeEngenheiro; 
+        
+         /**contem o efeito de ter o modulo desta mesa neutralizado na fase de validacao*/
+	private boolean efeitoModuloIntegradoNeutralizado;
 	
 	/*--------------------EFEITOS DA CARTA PROBLEMA PERMANENTES-----------------------------------*/
-
-	private int efeitoPenalizarAjuda;				/**contem o efeito de aumentar pontos de habilidade necessarios dos engenheiros para dar ou receber ajuda*/
+        
+        /**contem o efeito de aumentar pontos de habilidade necessarios dos engenheiros para dar ou receber ajuda*/
+	private int efeitoPenalizarAjuda;				
 	
 	
 	
@@ -77,9 +90,10 @@ public class Mesa
 	@SuppressWarnings("unchecked")
 	public Mesa ()
 	{
-		efeitoAumentarMaturidadeEngenheiro = 0;     		/**nao ha efeito algum no inicio do jogo*/
-		efeitoAumentarHabilidadeEngenheiro = 0;				/**nao ha efeito algum no inicio do jogo*/
-		efeitoModuloIntegradoNeutralizado = false;			/**nao ha efeito algum no inicio do jogo*/
+                /**nao ha efeito algum no inicio do jogo*/
+		efeitoAumentarMaturidadeEngenheiro = 0;     		
+		efeitoAumentarHabilidadeEngenheiro = 0;				
+		efeitoModuloIntegradoNeutralizado = false;			
 				
 		duracaoEfeito_TEMPORARIO_EnginnersNotProduceArtifacts = 0;
 		duracaoEfeito_TEMPORARIO_EnginnersNotInspectArtifacts = 0;
@@ -95,11 +109,15 @@ public class Mesa
 		desenhos = new ArrayList <Artefato>();
 		rastros = new ArrayList <Artefato>();
 		requisitos = new ArrayList <Artefato>();
-		moduloJaIntegrado = false;						/** mesa ainda nao contem modulo integrado*/
-		especificacaoModuloIntegrado=-1;				/** mesa ainda nao contem modulo integrado*/
+		moduloJaIntegrado = false;
+                
+                /** mesa ainda nao contem modulo integrado*/
+		especificacaoModuloIntegrado=-1;				
 		
-		moduloIntegrado= new ArrayList[5]; 				/** alocando o moduloIntegracao com 5 posicoes*/
+    /** alocando o moduloIntegracao com 5 posicoes*/
+		moduloIntegrado= new ArrayList[5]; 				
 		this.artifactsInspector = new ArtifactsInspector();
+
 	}
 	
 	
@@ -290,6 +308,7 @@ public class Mesa
 	 * @param ArtefatosB
 	 * @param ArtefatosR
 	 */
+
 	public void virarArtefatos(Modulo[] pedido, BaralhoArtefatosBons[] ArtefatosB,BaralhoArtefatosRuins[] ArtefatosR)
 	{		
 		if(pedido[ARTEFATOS_BONS].getAjudas() > 0)
@@ -346,11 +365,11 @@ public class Mesa
 				while((ajudas.get(j).inspected() == false)||(ajudas.get(j).isBug()==false)||(ajudas.get(j).isPoorQuality()== true))
 					j++;
 				Artefato temporario=ajudas.get(j);
-				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				ajudas.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				ajudas.remove(j);													
 				
-				ajudas.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				ajudas.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosBons(ArtefatosB);
@@ -367,11 +386,11 @@ public class Mesa
 				while((codigos.get(j).inspected() == false)||(codigos.get(j).isBug()==false)||(codigos.get(j).isPoorQuality()== true))
 					j++;
 				Artefato temporario=codigos.get(j);
-				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				codigos.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				codigos.remove(j);													
 				
-				codigos.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				codigos.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosBons(ArtefatosB);
@@ -388,11 +407,11 @@ public class Mesa
 				while((desenhos.get(j).inspected() == false)||(desenhos.get(j).isBug()==false)||(desenhos.get(j).isPoorQuality()== true))
 					j++;
 				Artefato temporario=desenhos.get(j);
-				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				desenhos.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				desenhos.remove(j);													
 				
-				desenhos.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				desenhos.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosBons(ArtefatosB);
@@ -409,11 +428,11 @@ public class Mesa
 				while((rastros.get(j).inspected() == false)||(rastros.get(j).isBug()==false)||(rastros.get(j).isPoorQuality()== true))
 					j++;
 				Artefato temporario=rastros.get(j);
-				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				rastros.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				rastros.remove(j);													
 				
-				rastros.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				rastros.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosBons(ArtefatosB);
@@ -430,11 +449,11 @@ public class Mesa
 				while((requisitos.get(j).inspected() == false)||(requisitos.get(j).isBug()==false)||(requisitos.get(j).isPoorQuality()== true))
 					j++;
 				Artefato temporario=requisitos.get(j);
-				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosB[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				requisitos.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				requisitos.remove(j);													
 				
-				requisitos.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				requisitos.add(ArtefatosB[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosB[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosBons(ArtefatosB);
@@ -451,11 +470,11 @@ public class Mesa
 				while((ajudas.get(j).inspected() == false)||(ajudas.get(j).isBug()==false)||(ajudas.get(j).isPoorQuality()== false))
 					j++;
 				Artefato temporario=ajudas.get(j);
-				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				ajudas.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				ajudas.remove(j);													
 				
-				ajudas.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				ajudas.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosRuins(ArtefatosR);
@@ -472,11 +491,11 @@ public class Mesa
 				while((codigos.get(j).inspected() == false)||(codigos.get(j).isBug()==false)||(codigos.get(j).isPoorQuality()== false))
 					j++;
 				Artefato temporario=codigos.get(j);
-				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				codigos.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				codigos.remove(j);													
 				
-				codigos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				codigos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosRuins(ArtefatosR);
@@ -493,11 +512,11 @@ public class Mesa
 				while((desenhos.get(j).inspected() == false)||(desenhos.get(j).isBug()==false)||(desenhos.get(j).isPoorQuality()== false))
 					j++;
 				Artefato temporario=desenhos.get(j);
-				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				desenhos.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				desenhos.remove(j);													
 				
-				desenhos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				desenhos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosRuins(ArtefatosR);
@@ -514,11 +533,11 @@ public class Mesa
 				while((rastros.get(j).inspected() == false)||(rastros.get(j).isBug()==false)||(rastros.get(j).isPoorQuality()== false))
 					j++;
 				Artefato temporario=rastros.get(j);
-				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				rastros.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				rastros.remove(j);													
 				
-				rastros.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				rastros.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosRuins(ArtefatosR);
@@ -534,12 +553,18 @@ public class Mesa
 				/**Enquanto artefato nao estiver inspecionado ou artefato nao conter bug ou artefato ser bom, procura proximo artefato*/
 				while((requisitos.get(j).inspected() == false)||(requisitos.get(j).isBug()==false)||(requisitos.get(j).isPoorQuality()== false))
 					j++;
+                                
+                                /**colocando artefato descartado no baralho auxiliar*/
 				Artefato temporario=requisitos.get(j);
-				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		/**colocando artefato descartado no baralho auxiliar*/
+				ArtefatosR[Jogo.BARALHO_AUXILIAR].recolherArtefato(temporario);		
 				
-				requisitos.remove(j);													/**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+                                
+                                /**removendo artefato descartado do tabuleiro do jogador para troca-lo por outro*/
+				requisitos.remove(j);													
 				
-				requisitos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	/**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+                                
+                                /**jogador recebe novo artefato do mesmo tipo, logo houve uma troca de artefatos*/
+				requisitos.add(ArtefatosR[Jogo.BARALHO_PRINCIPAL].darArtefato());	
 				if (ArtefatosR[Jogo.BARALHO_PRINCIPAL].getNumeroArtefatosAtual()<=0)
 				{
 					trocarBaralhoArtefatosRuins(ArtefatosR);
@@ -547,38 +572,43 @@ public class Mesa
 			}
 		}	
 
-		for (int i=0;i<ajudas.size();i++)			//TODO teste
-				ajudas.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<ajudas.size();i++)			
+				ajudas.get(i).mostrarArtefato();	
 
-		for (int i=0;i<codigos.size();i++)			//TODO teste
-				codigos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<codigos.size();i++)			
+				codigos.get(i).mostrarArtefato();	
 		
-		for (int i=0;i<desenhos.size();i++)			//TODO teste
-				desenhos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<desenhos.size();i++)			
+				desenhos.get(i).mostrarArtefato();	
 		
-		for (int i=0;i<rastros.size();i++)			//TODO teste
-				rastros.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<rastros.size();i++)			
+				rastros.get(i).mostrarArtefato();	
 		
-		for (int i=0;i<requisitos.size();i++)			//TODO teste
-				requisitos.get(i).mostrarArtefato();	//TODO teste , so estou inspecionando requisitos la no metodo exibirTabelaInspecaoCorrecao
+		for (int i=0;i<requisitos.size();i++)			
+				requisitos.get(i).mostrarArtefato();	
 	}
 	
-	public void trocarBaralhoArtefatosBons(BaralhoArtefatosBons[] artefatosB)		/**troca o baralho principal pelo auxiliar*/
+	public void trocarBaralhoArtefatosBons(BaralhoArtefatosBons[] artefatosB)		
 	{
 		BaralhoArtefatosBons temporario = artefatosB[Jogo.BARALHO_PRINCIPAL];
-		artefatosB[Jogo.BARALHO_AUXILIAR].embaralhar();								/**embaralhando as cartas que foram retiradas*/
+		artefatosB[Jogo.BARALHO_AUXILIAR].embaralhar();								
 		artefatosB[Jogo.BARALHO_PRINCIPAL] = artefatosB[Jogo.BARALHO_AUXILIAR];
 		artefatosB[Jogo.BARALHO_AUXILIAR] = temporario;
-		artefatosB[Jogo.BARALHO_AUXILIAR].setCurrentArtifact(0);					/**o novo baralho auxiliar tem o indice retornada para zero*/
+		artefatosB[Jogo.BARALHO_AUXILIAR].setCurrentArtifact(0);					
 	}
 	
-	public void trocarBaralhoArtefatosRuins(BaralhoArtefatosRuins[] artefatosR)		/**troca o baralho principal pelo auxiliar*/
+        /**troca o baralho principal pelo auxiliar*/
+	public void trocarBaralhoArtefatosRuins(BaralhoArtefatosRuins[] artefatosR)		
 	{
 		BaralhoArtefatosRuins temporario = artefatosR[Jogo.BARALHO_PRINCIPAL];
-		artefatosR[Jogo.BARALHO_AUXILIAR].embaralhar();								/**embaralhando as cartas que foram retiradas*/
+                
+                /**embaralhando as cartas que foram retiradas*/
+		artefatosR[Jogo.BARALHO_AUXILIAR].embaralhar();								
 		artefatosR[Jogo.BARALHO_PRINCIPAL] = artefatosR[Jogo.BARALHO_AUXILIAR];
 		artefatosR[Jogo.BARALHO_AUXILIAR] = temporario;
-		artefatosR[Jogo.BARALHO_AUXILIAR].setCurrentArtifact(0);					/**o novo baralho auxiliar tem o indice retornada para zero*/
+                
+                /**o novo baralho auxiliar tem o indice retornada para zero*/
+		artefatosR[Jogo.BARALHO_AUXILIAR].setCurrentArtifact(0);					
 	}
 	
 	/** calcula quantos artefatos nao inspecionados um ArrayList contem.*/
@@ -587,7 +617,7 @@ public class Mesa
 		int contador = 0;
 		for (int i=0;i<arrayArtefatos.size();i++)
 		{	
-			if (arrayArtefatos.get(i).inspected() == true)			/** se artefato foi inspecionado, pula iteracao*/
+			if (arrayArtefatos.get(i).inspected() == true)			
 				continue;
 			contador++;
 		}
@@ -600,9 +630,9 @@ public class Mesa
 		int contador = 0;
 		for (int i=0;i<arrayArtefatos.size();i++)
 		{	
-			if (arrayArtefatos.get(i).inspected() == false) /**se artefato nao foi inspecionado, pula iteracao*/
+			if (arrayArtefatos.get(i).inspected() == false) 
 				continue;
-			if((arrayArtefatos.get(i).inspected() == true) &&(arrayArtefatos.get(i).isBug()==false)) /** se artefato foi inspecionado e nao contem bug, pula iteracao*/
+			if((arrayArtefatos.get(i).inspected() == true) &&(arrayArtefatos.get(i).isBug()==false)) 
 				continue;
 			contador++;
 		}
@@ -616,11 +646,13 @@ public class Mesa
 		int contadorArtefatosRuins = 0;
 		for (int i=0;i<arrayArtefatos.size();i++)
 		{	
-			if (arrayArtefatos.get(i).inspected() == true)			/** se artefato foi inspecionado, pula iteracao*/
+                        /** se artefato foi inspecionado, pula iteracao*/
+			if (arrayArtefatos.get(i).inspected() == true)			
 				continue;
 			else
 			{
-				if(arrayArtefatos.get(i).isPoorQuality()==true)		/**se artefato e ruim*/
+                                /**se artefato e ruim*/
+				if(arrayArtefatos.get(i).isPoorQuality()==true)		
 				{
 					contadorArtefatosRuins++;
 				}
@@ -644,9 +676,12 @@ public class Mesa
 		int contadorArtefatosRuins = 0;
 		for (int i=0;i<arrayArtefatos.size();i++)
 		{	
-			if (arrayArtefatos.get(i).inspected() == false) /**se artefato nao foi inspecionado, pula iteracao*/
+                        /**se artefato nao foi inspecionado, pula iteracao*/
+			if (arrayArtefatos.get(i).inspected() == false) 
 				continue;
-			if((arrayArtefatos.get(i).inspected() == true) &&(arrayArtefatos.get(i).isBug()==false)) /** se artefato foi inspecionado e nao contem bug, pula iteracao*/
+                        
+                        /** se artefato foi inspecionado e nao contem bug, pula iteracao*/
+			if((arrayArtefatos.get(i).inspected() == true) &&(arrayArtefatos.get(i).isBug()==false)) 
 				continue;
 			if(arrayArtefatos.get(i).isPoorQuality()==true)
 				contadorArtefatosRuins++;
@@ -760,6 +795,7 @@ public class Mesa
 					trocarBaralhoArtefatosRuins(artefatosR);
 			}
 		}	
+
 	}
 
 	private void receberAjudas(Modulo[] pedido,

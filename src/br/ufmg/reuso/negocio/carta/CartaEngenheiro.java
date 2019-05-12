@@ -21,14 +21,20 @@ public class CartaEngenheiro extends Carta
 {	
 	private Engenheiro engenheiro;
 	
-	private boolean engenheiroTrabalhouNestaRodada; 			/**se true-> trabalhou, se false-> não trabalhou na rodada*/ 
-	
-	private int habilidadeEngenheiroAtual;						/**contém a pontos de habilidade que engenheiro tem na rodada*/ 
+  /**se true-> trabalhou, se false-> não trabalhou na rodada*/ 
+	private boolean engenheiroTrabalhouNestaRodada; 			
 
-	public CartaEngenheiro (String codigo, String texto, String nomeEng, //construindo a carta de engenheiro
+	
+        /**contém a pontos de habilidade que engenheiro tem na rodada*/
+	private int habilidadeEngenheiroAtual;						 
+        
+        //construindo a carta de engenheiro
+	public CartaEngenheiro (String codigo, String texto, String nomeEng, 
 			int salarioEng, int habilidadeEng, int maturidadeEng)
 	{
-		super ("Eng.Software", codigo, texto,ENGENHEIRO);				 //inicializando a superclasse explicitamente
+                
+                //inicializando a superclasse explicitamente
+		super ("Eng.Software", codigo, texto,ENGENHEIRO);				 
 		
 		this.engenheiro = new Engenheiro();
 		this.engenheiro.setNomeEngenheiro(nomeEng);
@@ -36,14 +42,16 @@ public class CartaEngenheiro extends Carta
 		this.engenheiro.setHabilidadeEngenheiro(habilidadeEng);		
 		this.engenheiro.setMaturidadeEngenheiro(maturidadeEng);
 		this.engenheiroTrabalhouNestaRodada=false;
-		this.setHabilidadeEngenheiroAtual(this.engenheiro.getHabilidadeEngenheiro()); /**habilidade atual na construção da carta do engenheiro é igual à habildade da carta*/
+    
+    /**habilidade atual na construção da carta do engenheiro é igual à habildade da carta*/
+		this.setHabilidadeEngenheiroAtual(this.engenheiro.getHabilidadeEngenheiro()); 
 	}
 	
 		
 	@Override
 	public void mostrarCarta()
 	{
-    // printa a carta
+            // printa a carta
 	}
 	
 	public Engenheiro getEngenheiro() {

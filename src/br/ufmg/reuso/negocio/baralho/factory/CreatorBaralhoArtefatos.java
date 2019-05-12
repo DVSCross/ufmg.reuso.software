@@ -8,6 +8,7 @@ import br.ufmg.reuso.negocio.jogo.ModeGameConstants;
 public class CreatorBaralhoArtefatos implements AbstractCreatorBaralhoArtefatos {
 	
 	public CreatorBaralhoArtefatos() {
+            
 		/* n�o h� necessidade de executar nada no construtor */
 	}
 	

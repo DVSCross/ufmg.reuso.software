@@ -23,6 +23,7 @@ public class CartaAberta implements EstadoCarta {
 	
 	@Override
 	public void setEstado(Artefato carta) {
+            
 		//define que o artefato ja foi inspecionado
 		carta.setArtefatoInspecionado(true);
 	}

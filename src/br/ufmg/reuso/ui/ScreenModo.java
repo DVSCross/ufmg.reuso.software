@@ -65,6 +65,7 @@ public class ScreenModo extends JDialog implements ActionListener {
 		this.setPreferredSize(new Dimension(300,200));
 		
 		JPanel panel = new JPanel(new BorderLayout());
+                
 		//Cria os botões de rádio.
 		JRadioButton easyButton = new JRadioButton(easyString);
 		easyButton.setMnemonic(KeyEvent.VK_F);
@@ -206,6 +207,7 @@ public class ScreenModo extends JDialog implements ActionListener {
 	}
 
 	public static void main(String[] args) {
+            
 		//O uso da Thread com a utilização de invokeLater tem a 
 		//função da construção total da GUI para somente então
 		//apresentá-la na tela.		

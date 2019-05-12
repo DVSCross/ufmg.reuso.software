@@ -80,6 +80,7 @@ public class ScreenTabuleiro extends JDialog {
 	Jogo jogo = null;
 	Mesa board = null;
 	Carta cartaAtiva = null;
+    public int x;
 
 	// Variáveis utilizadas para posicionamento dos paineis.
 	private int x, y, width;
@@ -330,7 +331,6 @@ public class ScreenTabuleiro extends JDialog {
 			board = jogadorAtual.getTabuleiro().getMesas()[i];
 			panelBoard = new JPanel();
 			panelBoard.setLayout(null);
-				
 			y = 0;
 			height = yInc;
 			width = xInc;
@@ -349,6 +349,7 @@ public class ScreenTabuleiro extends JDialog {
 			JButton buttonIntegrate = new JButton("Integrar");
 			y += height;
 			height = yInc / 2;
+      
 			//width = (maxBoardSize > width ? maxBoardSize : width); 
 			buttonIntegrate.setBounds(x, y, width, height);
 			buttonIntegrate.setActionCommand(Integer.toString(i));
@@ -410,13 +411,15 @@ public class ScreenTabuleiro extends JDialog {
 
 					// label.setBorder(borderW);
 					panelBoard.add(label);
-
-				} // Fim do while sobre os artafatos de um tipo
+        
+        // Fim do while sobre os artafatos de um tipo
+				} 
 
 				// y += height/2;
 				height = yInc;
-
-			} else { // Se não há artefatos do tipo atual
+      
+        // Se não há artefatos do tipo atual
+			} else { 
 				label = new JLabel(names.elementAt(j) + " mesa "
 							+ Integer.toString(mesa + 1));
 				label.setOpaque(false);
@@ -428,7 +431,9 @@ public class ScreenTabuleiro extends JDialog {
 				panelBoard.add(label);
 			}
 			j++;
-		} // Fim do while sobre tipos de artefatos
+      
+      // Fim do while sobre tipos de artefatos
+		}
 		return maxBoardSize;
 	}
 
@@ -830,7 +835,7 @@ public class ScreenTabuleiro extends JDialog {
 							oponent = null;
 						}
 						ScreenTabuleiro.this.refresh();
-					}// FIM DO TESTE VER OPONENTE
+					}
 
 				}
 			}
@@ -856,6 +861,7 @@ public class ScreenTabuleiro extends JDialog {
 							.getCartaMesa();
 					jogador = GameController.getGameController()
 							.integrarModuloI(jogo, jogador, carta, numMesa);
+                                        
 					// ScreenInteraction.getScreenInteraction().exibirMensagem("Mesa a integra "
 					// + Integer.toString(numMesa) , "");
 					ScreenTabuleiro.this.refresh();
@@ -934,6 +940,7 @@ public class ScreenTabuleiro extends JDialog {
 	 */
 	public static ScreenTabuleiro createAndShowTabuleiro(Jogador jogador,
 			Jogo jogo) {
+            
 		// Cria e configura a tela.
 		ScreenTabuleiro scr = new ScreenTabuleiro(jogador, jogo);
 		scr.rootPane.setOpaque(true);
@@ -949,6 +956,7 @@ public class ScreenTabuleiro extends JDialog {
 	/**************************** TEST FUNCTION *********************************/
 	/****************************************************************************/
 	public static void main(String[] args) {
+            
 		// O uso da Thread com a utilização de invokeLater tem a
 		// função da construção total da GUI para somente então
 		// apresentá-la na tela.

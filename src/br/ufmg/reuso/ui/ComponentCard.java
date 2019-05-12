@@ -371,7 +371,9 @@ public class ComponentCard extends JPanel {
 	 */
 	void updateBounds() {
 		int x, y, width, height, xgap, ygap;
-		xgap = x = mySize.width * 5 / 100; // 5% para borda esquerda
+                
+                // 5% para borda esquerda
+		xgap = x = mySize.width * 5 / 100; 
 		ygap = y = mySize.height * 3 / 100;
 		width = mySize.width * 45 / 100;
 		height = mySize.height * 10 / 100;
