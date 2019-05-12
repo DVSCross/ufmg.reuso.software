@@ -398,6 +398,5 @@ public class CardsConstants
 	
 	/** Fim das constantes utilizadas para efeitos oriundos de cartas de conceito*/
 
-
-
+	private CardsConstants() {}
 }
