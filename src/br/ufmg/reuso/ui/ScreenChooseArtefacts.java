@@ -328,10 +328,6 @@ public class ScreenChooseArtefacts extends JDialog implements ActionListener {
 				text.requestFocus();
 				text.setBorder(BorderFactory.createLineBorder(Color.RED));
 				break;
-			} catch (Exception e) {
-				System.exit(0);
-			} finally {
-
 			}
 
 			if (soma > habilidade) {

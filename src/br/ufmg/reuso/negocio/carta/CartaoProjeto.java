@@ -27,9 +27,8 @@ import br.ufmg.reuso.negocio.tabuleiro.SetupInteraction;
 import br.ufmg.reuso.ui.ScreenControl;
 
 public class CartaoProjeto 
-{
-        
-        //variavel referenciando o diretório CartaoProjeto no qual há os cartoes de projeto
+{        
+    //variavel referenciando o diretório CartaoProjeto no qual há os cartoes de projeto
 	private static final String PATH = "CartaoProjeto";	
 	private int complexidade;
 	private int tamanho;
@@ -77,43 +76,47 @@ public class CartaoProjeto
 		 */
 		String[] arquivosDiretorio = repositorio.getNomeArquivosPasta(PATH);	
     
-    // variável para conferir valores aleatórios
+        // variável para conferir valores aleatórios
 		Random sorteio = new Random();          
     
-    // sorteia um valor que siginificará o projeto a ser selecionado para o jogo 
+        // sorteia um valor que siginificará o projeto a ser selecionado para o jogo 
 		int projetoSorteado = sorteio.nextInt(arquivosDiretorio.length);		
 
 
 		CartaoProjeto c = null;
 		int sentinela = -1;
 		int controlador = 0;
-		
-		c = this.carregarProjeto(arquivosDiretorio, projetoSorteado, sentinela, controlador);
     
-    //tentativa de leitura e abstração de dados dos arquivos
+        //tentativa de leitura e abstração de dados dos arquivos
 		try		
-		{
-      
-      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo codigo*/
+		{     
+			c = this.carregarProjeto(arquivosDiretorio, projetoSorteado, sentinela, controlador);
+			/** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo codigo*/
 			setCodigo(c.getCodigo());
-      
-      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo titulo*/
+	      
+	        /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo titulo*/
 			setTitulo(c.getTitulo());		
-      
-      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo texto*/
+	      
+	        /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo texto*/
 			setTexto(c.getTexto());		
-      
-      /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo referenciaBibliografica*/
+	      
+	        /** lendo o valor da chave codigo do arquivo e inserindo dados lidos em no campo referenciaBibliografica*/
 			setReferenciaBibliografica(c.getReferenciaBibliografica());	
 		}
     
-    //se os dados estiverem fora do formato ou se não haver mais dados para saída, há problema
+        //Em caso de falhas na leitura das cartas de projeto, inicializa o baralho com um cart�o de projeto placeholder (PR1)
 		catch (NoSuchElementException noSuchElementException)		
-		{
-      //jogo termina sem êxito devido ao problema
-			System.exit(1);											
-		}
-    
+		{		
+			System.out.println("Houve uma falha ao carregar projetos, utilizando placeholder PR1.");
+			c = new CartaoProjeto("PR1", 
+					              "Expert Committee",
+					              "Expert Committee � um sistema multi-agente aberto para suporte ao "
+					            + "gerenciamento de submiss�es e revis�es de artigos submetidos a uma "
+					            + "confer�ncia ou workshop. O sistema oferece suporte a diferentes atividades, "
+					            + "tais como, envio de trabalhos, atribui��o de um artigo a um revisor, "
+					            + "sele��o de revisores, notifica��o da aceita��o e recusa de artigos.",
+					              "[Garcia et al. 2004]");
+		}   
     
     	// definindo complexidade do projeto com valor igual a 4
 		setComplexidade(4);										
@@ -121,20 +124,19 @@ public class CartaoProjeto
     	// definindo tamanho do projeto com valores de 3 a 5
 		setTamanho((sorteio.nextInt(3)+3));						
     
-    // definindo qualidade do projeto conforme tamnho do projeto
+        // definindo qualidade do projeto conforme tamnho do projeto
 		setQualidade((sorteio.nextInt(getTamanho())));  			
     
-    // caso qualidade seja zero 
-		if (this.qualidade<3)										
-      
-      // ela é configurada como 1
+        // caso qualidade seja zero 
+	 	if (this.qualidade<3)
+            // ela é configurada como 1
 			setQualidade(3);										
     
-    // definindo orçamento de 230 a 250
+        // definindo orçamento de 230 a 250
 		setOrcamento((sorteio.nextInt(21)+230));					
     
     
-    // criando o número de módulos conforme o tamanho do projeto
+        // criando o número de módulos conforme o tamanho do projeto
 		modulos= new Modulo[getTamanho()];							
 		/*IMP*/		
 		for (int i=0;i<modulos.length;i++)

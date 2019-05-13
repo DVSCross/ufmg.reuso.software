@@ -189,10 +189,18 @@ public class BaralhoCartas
 
 			}
                         
-                        /**se os dados estiverem fora do formato ou se n?o haver mais dados para sa?da, h? problema*/
-                        /**jogo termina sem ?xito devido ao problema*/
-			catch (NoSuchElementException noSuchElementException){		
-				System.exit(1);											
+			// Em caso de falhas na leitura das cartas de conceito, inicializa o baralho com uma carta placeholder (CCD1)
+			catch (NoSuchElementException noSuchElementException) {		
+				System.out.println("Houve uma falha ao carregar as cartas de conceito, utilizando placeholder CCD1.");
+				cartaconceito = new CartaBonificacao[1];
+				cartaconceito[0] = new CartaBonificacao("Ambiente de Teste",
+						                                "CCD1",
+						                                "Benefício Permanente: Use essa carta para neutralizar "
+						                              + "bugs em um de seus componentes. A escolha do componente "
+						                              + "imune é feita na fase de validação.",
+						                                "[JUnit 2006]",
+						                                10000, 10, 0, 0, 14, 0);
+				
 			}
 		}
 		return cartaconceito;

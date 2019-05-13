@@ -174,7 +174,10 @@ public class CartaBonificacao extends Carta
 			writer.write("tipoSegundoEfeito = " + this.tipoSegundoEfeito + "\n");
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block			
+			System.out.println("Não foi possível abrir o arquivo para realizar o dump das propriedades. "
+				             + "Verifique se o path " 
+					         + path
+					         + " está correto!");
 		}
 	}
 }

@@ -26,29 +26,29 @@ public class CartaPenalizacao extends Carta
 	/** contém quanto de efeito será gerado.*/
 	private int quantidadePrimeiroEfeito;								
 	
-        /** contém quanto de efeito será gerado.*/
-        private int quantidadeSegundoEfeito;								
+    /** contém quanto de efeito será gerado.*/
+    private int quantidadeSegundoEfeito;								
 	
-        /** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java */
-        private int tipoPrimeiroEfeito; 									
+    /** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java */
+    private int tipoPrimeiroEfeito; 									
 	
-        /** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java*/
-        private int tipoSegundoEfeito;										 
+    /** será igual a uma das constantes de efeitos oriundos de carta problema de Constants.java*/
+    private int tipoSegundoEfeito;										 
 	
-        /** contém quanto de condicao é necessária.*/
+    /** contém quanto de condicao é necessária.*/
 	private int quantidadePrimeiraCondicao;								
 	
-        /** contém quanto de condicao é necessária.*/
-        private int quantidadeSegundaCondicao;								
+    /** contém quanto de condicao é necessária.*/
+    private int quantidadeSegundaCondicao;								
 	
-        /** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
-        private int tipoPrimeiraCondicao; 									
+    /** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
+    private int tipoPrimeiraCondicao; 									
 	
-        /** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
-        private int tipoSegundaCondicao;									
+    /** será igual a uma das de condições oriundas de carta problema constantes de Constants.java*/
+    private int tipoSegundaCondicao;									
 	
 	
-        //construindo a carta de conceito
+    //construindo a carta de conceito
 	public CartaPenalizacao (String titulo, String codigo, String texto,				
 			String referencia, int duracao, String condicao,int efeito1,int efeito2, int quantidadeEfeito1,
 			int quantidadeEfeito2, int condicao1, int condicao2, int quantCondicao1, int quantCondicao2)
@@ -81,11 +81,7 @@ public class CartaPenalizacao extends Carta
 		{
 			//para cada codigo descrever problema
 		}
-	}
-		
-	
-	
-	
+	}	
 	
 	public String getReferenciaBibliografica() 
 	{
@@ -232,7 +228,10 @@ public class CartaPenalizacao extends Carta
 			writer.write("tipoSegundaCondicao = " + this.tipoSegundaCondicao + "\n");
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block			
+			System.out.println("N�o foi poss�vel abrir o arquivo para realizar o dump das propriedades. "
+		                     + "Verifique se o path " 
+			                 + path
+			                 + " est� correto!");			
 		}
 	}
 }

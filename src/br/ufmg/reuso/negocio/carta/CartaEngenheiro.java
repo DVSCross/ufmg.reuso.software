@@ -89,7 +89,10 @@ public class CartaEngenheiro extends Carta
 			writer.write("maturidade = " + this.engenheiro.getMaturidadeEngenheiro() + "\n");
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block			
+			System.out.println("Não foi possível abrir o arquivo para realizar o dump das propriedades. "
+		                     + "Verifique se o path " 
+			                 + path
+			                 + " está correto!");
 		}
 	}
 }

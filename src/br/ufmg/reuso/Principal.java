@@ -10,6 +10,7 @@ package br.ufmg.reuso;
  */
 
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
@@ -54,8 +55,10 @@ public class Principal {
 
 	      // RepositorioOnline repo = new RepositorioOnline();	     
 	    }
-	    catch (Exception e) { }
-
+	    catch (UnsupportedLookAndFeelException e) {
+	    	System.out.println("O sistema não conseguiu definir a interface de jogo desejada. Iniciando no modo padrão.");
+	    }
+	   
 	    Jogo jogo = Jogo.getJogo();	//instanciando um objeto da classe jogo ou chamando o existente.
 		jogo.start(jogo);			//iniciando a parte din?mica do jogo	
 	}
